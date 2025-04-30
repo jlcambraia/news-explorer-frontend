@@ -1,0 +1,21 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 42px;
+}
+
+.navigation__home {
+  margin: 0;
+  font-weight: 500;
+}
+
+.navigation__sign-in {
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  font-weight: 500;
+  padding: 12px;
+  width: 176px;
+  border-radius: 50px;
+}
