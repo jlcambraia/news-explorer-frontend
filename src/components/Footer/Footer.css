@@ -1,0 +1,37 @@
+.footer {
+  max-width: 1232px;
+  padding: 0 104px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+.footer__copyrights {
+  color: #b6bcbf;
+  font-size: 16px;
+  line-height: 22px;
+  margin: 0;
+}
+
+.footer__navigation {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.footer__navigation-home {
+  color: #1a1b22;
+  margin: 0;
+}
+
+.footer__navigation-site {
+  color: #1a1b22;
+  margin: 0;
+}
+
+.footer__navigation-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
