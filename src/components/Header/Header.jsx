@@ -1,6 +1,8 @@
 import Navigation from "./components/Navigation";
 import "./Header.css";
 
+import BackgroundImage from "../../images/main-background-image.png";
+
 export default function Header() {
   return (
     <>
