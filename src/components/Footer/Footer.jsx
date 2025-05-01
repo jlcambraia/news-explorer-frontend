@@ -10,7 +10,7 @@ export default function Footer() {
       </p>
       <div className="footer__navigation">
         <p className="footer__navigation-link">Home</p>
-        <p className="footer__navigation-link">Practicum by Yandex</p>
+        <p className="footer__navigation-link">TripleTen</p>
         <div className="footer__navigation-icons">
           <img
             className="footer__navigation-icon"
