@@ -20,9 +20,14 @@
   gap: 50px;
 }
 
-.footer__navigation-home {
+.footer__navigation-link {
   color: #1a1b22;
   margin: 0;
+  cursor: pointer;
+}
+
+.footer__navigation-link:hover {
+  opacity: 0.7;
 }
 
 .footer__navigation-site {
@@ -34,4 +39,12 @@
   display: flex;
   align-items: center;
   gap: 15px;
+}
+
+.footer__navigation-icon {
+  cursor: pointer;
+}
+
+.footer__navigation-icon:hover {
+  opacity: 0.7;
 }

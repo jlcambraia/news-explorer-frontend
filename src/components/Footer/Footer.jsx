@@ -9,8 +9,8 @@ export default function Footer() {
         &copy; 2025 Supersite, Powered by News API
       </p>
       <div className="footer__navigation">
-        <p className="footer__navigation-home">Home</p>
-        <p className="footer__navigation-site">Practicum by Yandex</p>
+        <p className="footer__navigation-link">Home</p>
+        <p className="footer__navigation-link">Practicum by Yandex</p>
         <div className="footer__navigation-icons">
           <img
             className="footer__navigation-icon"
