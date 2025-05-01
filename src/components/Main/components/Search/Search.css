@@ -1,0 +1,20 @@
+.search {
+  height: 496px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search__title {
+  font-family: "RobotoSlab";
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 64px;
+  width: 608px;
+  margin: 0 0 32px;
+}
+
+.search__subtitle {
+  margin: 0 0 88px;
+}
