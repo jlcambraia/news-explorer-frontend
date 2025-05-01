@@ -1,0 +1,26 @@
+.about {
+  height: 624px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1232px;
+  gap: 56px;
+}
+
+.about__image {
+  width: 464px;
+  height: 464px;
+}
+
+.about__title {
+  color: #000;
+  font-size: 40px;
+  line-height: 46px;
+  font-family: "RobotoSlab";
+  font-weight: 400;
+  margin: 0 0 24px;
+}
+
+.about__description {
+  color: #000;
+}
