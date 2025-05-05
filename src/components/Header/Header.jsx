@@ -1,15 +1,25 @@
-import Navigation from "./components/Navigation";
 import "./Header.css";
 
-import BackgroundImage from "../../images/main-background-image.png";
+import { useContext } from "react";
+import { CurrentPathContext } from "../../contexts/CurrentPathContext";
+
+import Navigation from "./components/Navigation";
 
 export default function Header() {
+  const pathLocation = useContext(CurrentPathContext);
+
   return (
     <>
-      <div className="header">
-        <h1 className="header__logo">NewsExplorer</h1>
+      <header className={pathLocation ? "header" : "header header_black"}>
+        <h1
+          className={
+            pathLocation ? "header__logo" : "header__logo header__logo_black"
+          }
+        >
+          NewsExplorer
+        </h1>
         <Navigation />
-      </div>
+      </header>
     </>
   );
 }
