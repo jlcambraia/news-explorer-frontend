@@ -6,6 +6,10 @@
   align-items: center;
 }
 
+.header_black {
+  border-bottom: 1px solid #d1d2d6;
+}
+
 .header__logo {
   font-family: "RobotoSlab";
   font-weight: 700;
@@ -13,4 +17,8 @@
   margin: 0;
   cursor: pointer;
   color: #fff;
+}
+
+.header__logo_black {
+  color: #1a1b22;
 }
