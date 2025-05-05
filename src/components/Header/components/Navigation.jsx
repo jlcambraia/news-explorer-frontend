@@ -3,21 +3,15 @@ import logoutIcon from "../../../images/logout-icon.png";
 import { useState } from "react";
 
 export default function Navigation() {
+  // isUserLoggedIn criado apenas para desenvolvimento. Passar para App no final do desenvolvimento do front-end.
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
-
-  // Função criada apenas para ajudar no desenvolvimento. Deve ser excluída ao final do desenvolvimento.
-  function handleUserLogin() {
-    setIsUserLoggedIn(!isUserLoggedIn);
-  }
 
   return (
     <div className="navigation">
       {isUserLoggedIn ? (
         <>
           <p className="navigation__link">Home</p>
-          <button onClick={handleUserLogin} className="navigation__button">
-            Sign in
-          </button>
+          <button className="navigation__button">Sign in</button>
         </>
       ) : (
         <>
