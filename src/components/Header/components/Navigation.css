@@ -9,14 +9,23 @@
   margin: 0;
   font-weight: 500;
   color: #fff;
+  text-decoration: none;
 }
 
-.navigation__link:hover {
+.navigation__link_black {
+  color: #1a1b22;
+}
+
+.navigation__link_active {
   text-decoration: underline;
   text-decoration-color: #fff;
   text-decoration-thickness: 3px;
   text-underline-offset: 31px;
   cursor: pointer;
+}
+
+.navigation__link_active_black {
+  text-decoration-color: #1a1b22;
 }
 
 .navigation__button {
@@ -27,6 +36,11 @@
   line-height: 24px;
   border-radius: 50px;
   padding: 12px 61px;
+}
+
+.navigation__button_black {
+  border: 1px solid #d1d2d6;
+  color: #1a1b22;
 }
 
 .navigation__button:hover {
