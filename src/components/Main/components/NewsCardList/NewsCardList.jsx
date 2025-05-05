@@ -2,7 +2,8 @@ import "./NewsCardList.css";
 import NewsCard from "./components/NewsCard/NewsCard";
 import notFoundIcon from "../../../../images/not-found-icon.png";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { CurrentPathContext } from "../../../../contexts/CurrentPathContext";
 
 // Criado apenas para desenvolvimento. Apagar depois que buscar informações da api.
 const placeholder = [
@@ -302,56 +303,156 @@ const placeholder = [
       "<ul><li>Microsoft stock rose 7.6% on Thursday, its secondbiggest postearnings jump since 2015.</li><li>Cloudcomputing revenue at the company surged to $27 billion, driven by fasterthanexpected g… [+2428 chars]",
   },
 ];
+// Criado apenas para desenvolvimento. Apagar depois que buscar informações da api.
+const savedArticles = [
+  {
+    source: {
+      id: null,
+      name: "News12.com",
+    },
+    author: null,
+    title:
+      "Delays continue Friday at Newark Liberty due to construction, staffing issues  News 12  New Jersey",
+    description:
+      "According to the FAA, more than 400 flights were delayed Thursday afternoon and more than 200 were canceled.",
+    url: "https://newjersey.news12.com/delayscontinuefridayatnewarklibertyduetoconstructionstaffingissues",
+    urlToImage:
+      "https://imagescf.news12static.com/3kqcuzntcg31/2JpH5B2pn4CZIkau9SWKGb/c1618a91ecda1e7dbe19a30e19bb061d/videoframe_5329.png?fit=thumb&w=600&h=340&q=80&fm=webp",
+    publishedAt: "20250501T21:51:52Z",
+    content: "Topics you care about, straight to your inbox",
+  },
+  {
+    source: {
+      id: null,
+      name: "MarketWatch",
+    },
+    author: "Joseph Adinolfi",
+    title:
+      "Stock market’s rapid rebound from tariffinspired rout stuns Wall Street. But there were signs this would happen.  MarketWatch",
+    description: "Several gauges showed stocks had become deeply oversold",
+    url: "https://www.marketwatch.com/story/stockmarketsrapidreboundfromtariffinspiredroutstunswallstreetbutthereweresignsthiswouldhappenae9b4296",
+    urlToImage: "https://images.mktw.net/im27712697/social",
+    publishedAt: "20250501T21:28:00Z",
+    content:
+      "Barely one month has passed since President Donald Trump blindsided global investors with his aggressive tariff plans. Yet U.S. stocks have already staged a remarkable recovery.\r\nOn Thursday, the S&a… [+108 chars]",
+  },
+  {
+    source: {
+      id: null,
+      name: "Investor's Business Daily",
+    },
+    author: "REINHARDT KRAUSE, Investor's Business Daily",
+    title:
+      "Square Earnings, Revenue, Key Metrics Miss In Q1. Payment Firm Lowers 2025 Guidance.  Investor's Business Daily",
+    description:
+      "Square stock plunged after payments firm Block reported Q1 earnings and revenue that missed Wall Street estimates and lowered fiscal 2025 guidance.",
+    url: "https://www.investors.com/news/technology/squarestockblockstocksquareearningsq12025/",
+    urlToImage:
+      "https://www.investors.com/wpcontent/uploads/2023/09/StockSquareBlockpayments02company.jpg",
+    publishedAt: "20250501T21:14:00Z",
+    content:
+      "Squareparent Block (XYZ) reported firstquarter earnings, revenue and key financial metrics that missed Wall Street targets. The digital payments company lowered fiscal 2025 guidance for Square stoc… [+2942 chars]",
+  },
+  {
+    source: {
+      id: null,
+      name: "NPR",
+    },
+    author: "NPR",
+    title: "Ford CEO does the math on Trump's auto tariffs  NPR",
+    description:
+      "Americans are rushing to car dealerships as they worry about what President Trump's tariffs will do to car prices in the coming months. New vehicle sales have been increasing steadily this year, and they jumped in March, according to market research firm Cox …",
+    url: "https://www.npr.org/2025/05/01/1248444368/fordceotalkstrumpautomobiletariffs",
+    urlToImage:
+      "https://media.npr.org/assets/img/2025/05/01/gettyimages22067243751_wideaa69bb8367d821b3cd382a6842f89b1ec4583030.jpg?s=1400&c=100&f=jpeg",
+    publishedAt: "20250501T21:13:53Z",
+    content:
+      "Ford150 pickup trucks are displayed for sale at a dealership on March 24, 2025 in Austin, Texas.\r\nBrandon Bell/Getty Images\r\nAmericans are rushing to car dealerships as they worry about what Preside… [+1111 chars]",
+  },
+  {
+    source: {
+      id: null,
+      name: "Investopedia",
+    },
+    author: "Colin Laidley",
+    title:
+      "Why Microsoft Stock Had One of Its Best PostEarnings Days in a Decade  Investopedia",
+    description:
+      "Microsoft stock soared on Thursday after the tech giant’s quarterly results handily beat Wall Street estimates.",
+    url: "https://www.investopedia.com/whymicrosoftstockhadoneofitsbestpostearningsdaysinadecade11726613",
+    urlToImage:
+      "https://www.investopedia.com/thmb/1hPq6Old_FjdBBRgzbmtJ_9Kyqk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/INV_MicrosoftHQ_GettyImages2195894808ae474dd95ea94e02b4232abce1459e6e.jpg",
+    publishedAt: "20250501T20:49:57Z",
+    content:
+      "<ul><li>Microsoft stock rose 7.6% on Thursday, its secondbiggest postearnings jump since 2015.</li><li>Cloudcomputing revenue at the company surged to $27 billion, driven by fasterthanexpected g… [+2428 chars]",
+  },
+];
 
-export default function newsCardList() {
+export default function NewsCardList() {
   const [articlesToRenderize, setArticlesToRenderize] = useState(3);
   // Passar isSearchingForNews para Main e renderizar apenas após submit
   const [isSearchingForNews, setIsSearchingForNews] = useState(false);
+  const pathLocation = useContext(CurrentPathContext);
 
   const handleShowMoreButton = () => {
     setArticlesToRenderize((articles) => articles + 3);
   };
 
   return (
-    <section className="news-card-list">
-      {isSearchingForNews ? (
-        <>
-          <i className="news-card-list__circle-preloader"></i>
-          <p className="news-card-list__text-preloader">
-            Searching for news...
-          </p>
-        </>
-      ) : placeholder.length > 0 ? (
-        <>
-          <h2 className="news-card-list__title">Search results</h2>
-          <ul className="news-card-list__cards">
-            {placeholder.slice(0, articlesToRenderize).map((article) => {
-              return <NewsCard key={article.url} article={article} />;
-            })}
-          </ul>
-          {placeholder.length > 3 &&
-            articlesToRenderize < placeholder.length && (
-              <button
-                onClick={handleShowMoreButton}
-                className="news-card-list__button"
-              >
-                Show more
-              </button>
+    <>
+      {pathLocation ? (
+        isSearchingForNews ? (
+          <section className="news-card-list">
+            <i className="news-card-list__circle-preloader"></i>
+            <p className="news-card-list__text-preloader">
+              Searching for news...
+            </p>
+          </section>
+        ) : placeholder.length > 0 ? (
+          <section className="news-card-list">
+            {pathLocation && (
+              <h2 className="news-card-list__title">Search results</h2>
             )}
-        </>
+
+            <ul className="news-card-list__cards">
+              {placeholder.slice(0, articlesToRenderize).map((article) => {
+                return <NewsCard key={article.url} article={article} />;
+              })}
+            </ul>
+            {placeholder.length > 3 &&
+              articlesToRenderize < placeholder.length && (
+                <button
+                  onClick={handleShowMoreButton}
+                  className="news-card-list__button"
+                >
+                  Show more
+                </button>
+              )}
+          </section>
+        ) : (
+          <section className="news-card-list">
+            <img
+              className="news-card-list__not-found-icon"
+              src={notFoundIcon}
+              alt="Ícone de artigo não encontrado"
+            />
+            <h3 className="news-card-list__not-found-title">Nothing found</h3>
+            <p className="news-card-list__not-found-subtitle">
+              Sorry, but nothing matched your search terms.
+            </p>
+          </section>
+        )
       ) : (
-        <>
-          <img
-            className="news-card-list__not-found-icon"
-            src={notFoundIcon}
-            alt="Ícone de artigo não encontrado"
-          />
-          <h3 className="news-card-list__not-found-title">Nothing found</h3>
-          <p className="news-card-list__not-found-subtitle">
-            Sorry, but nothing matched your search terms.
-          </p>
-        </>
+        savedArticles.length > 0 && (
+          <section className="news-card-list">
+            <ul className="news-card-list__cards">
+              {savedArticles.map((article) => (
+                <NewsCard key={article.url} article={article} />
+              ))}
+            </ul>
+          </section>
+        )
       )}
-    </section>
+    </>
   );
 }
