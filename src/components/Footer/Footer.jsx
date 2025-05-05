@@ -4,7 +4,7 @@ import facebookIcon from "../../images/facebook-icon.png";
 
 export default function Footer() {
   return (
-    <div className="footer">
+    <footer className="footer">
       <p className="footer__copyrights">
         &copy; 2025 Supersite, Powered by News API
       </p>
@@ -24,6 +24,6 @@ export default function Footer() {
           />
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
