@@ -2,13 +2,15 @@ import "./NewsCard.css";
 
 import imagePlaceholder from "../../../../../../images/image1-card-placeholder.png";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { CurrentPathContext } from "../../../../../../contexts/CurrentPathContext";
 
 export default function NewsCard({ article }) {
   // isUserLoggedIn criado apenas para desenvolvimento. Passar para App no final do desenvolvimento do front-end.
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
   const [isButtonHovered, setIsButtonHovered] = useState(false);
   const [isArticleSaved, setIsArticleSaved] = useState(false);
+  const pathLocation = useContext(CurrentPathContext);
 
   const handleDate = () => {
     const year = article.publishedAt.slice(0, 4);
@@ -55,30 +57,45 @@ export default function NewsCard({ article }) {
           src={imagePlaceholder}
           alt={`Imagem do artigo de ${article.author}`}
         />
-        {isUserLoggedIn ? (
-          <button
-            onClick={handleSaveArticle}
-            className={
-              isArticleSaved
-                ? "news-card__image-button news-card__image-button_saved"
-                : "news-card__image-button"
-            }
-            onMouseEnter={handleButtonOnMouseEnter}
-            onMouseLeave={handleButtonOnMouseLeave}
-          ></button>
+        {pathLocation ? (
+          isUserLoggedIn ? (
+            <button
+              onClick={handleSaveArticle}
+              className={
+                isArticleSaved
+                  ? "news-card__image-button news-card__image-button_saved"
+                  : "news-card__image-button"
+              }
+              onMouseEnter={handleButtonOnMouseEnter}
+              onMouseLeave={handleButtonOnMouseLeave}
+            ></button>
+          ) : (
+            <button
+              className="news-card__image-button"
+              onMouseEnter={handleButtonOnMouseEnter}
+              onMouseLeave={handleButtonOnMouseLeave}
+            >
+              {isButtonHovered && (
+                <span className="news-card__image-popup">
+                  Sign in to save articles
+                </span>
+              )}
+            </button>
+          )
         ) : (
           <button
-            className="news-card__image-button"
+            className="news-card__image-button news-card__image-button_delete"
             onMouseEnter={handleButtonOnMouseEnter}
             onMouseLeave={handleButtonOnMouseLeave}
           >
             {isButtonHovered && (
-              <span className="news-card__image-popup">
-                Sign in to save articles
-              </span>
+              <span className="news-card__image-popup">Remove from saved</span>
             )}
           </button>
         )}
+        {!pathLocation ? (
+          <div className="news-card__image-tag">{article.source.name}</div>
+        ) : null}
       </div>
       <div className="news-card__info-container">
         <p className="news-card__date">{handleDate()}</p>
