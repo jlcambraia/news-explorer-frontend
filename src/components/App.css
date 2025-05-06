@@ -7,8 +7,14 @@
   font-size: 18px;
   font-weight: normal;
   line-height: 24px;
-  color: #000000;
+  color: #1a1b22;
   background-image: url(../images/main-background-image.png);
   background-position: top;
   background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+.app__body_without-background-image {
+  background-image: none;
 }
