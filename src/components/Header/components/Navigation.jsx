@@ -5,7 +5,7 @@ import { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { CurrentPathContext } from "../../../contexts/CurrentPathContext";
 
-export default function Navigation() {
+export default function Navigation({ openPopup, loginPopup }) {
   // isUserLoggedIn criado apenas para desenvolvimento. Passar para App no final do desenvolvimento do front-end.
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
   const pathLocation = useContext(CurrentPathContext);
@@ -31,6 +31,7 @@ export default function Navigation() {
             className={
               pathLocation ? "navigation__button" : "navigation__button_black"
             }
+            onClick={() => openPopup(loginPopup)}
           >
             Sign in
           </button>
