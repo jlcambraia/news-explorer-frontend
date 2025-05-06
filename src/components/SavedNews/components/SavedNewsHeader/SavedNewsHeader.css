@@ -21,3 +21,7 @@
 .saved-news-header__keywords {
   margin: 0;
 }
+
+.saved-news-header__keyword {
+  font-weight: 700;
+}
