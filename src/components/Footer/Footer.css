@@ -24,6 +24,7 @@
 .footer__navigation-link {
   color: #1a1b22;
   margin: 0;
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -32,7 +33,6 @@
 }
 
 .footer__navigation-site {
-  color: #1a1b22;
   margin: 0;
 }
 
@@ -42,7 +42,12 @@
   gap: 15px;
 }
 
+.footer__navigation-anchor {
+  height: 20px;
+}
+
 .footer__navigation-icon {
+  width: 20px;
   cursor: pointer;
 }
 
