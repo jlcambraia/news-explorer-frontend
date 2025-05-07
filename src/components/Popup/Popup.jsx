@@ -42,7 +42,7 @@ export default function Popup({
         {title === "Sign in" ||
         title === "Registration failed, please try again!" ? (
           <p className="popup__signup-text">
-            or{" "}
+            {title === "Sign in" ? "or " : null}
             <Link
               onClick={() => openPopup(registerPopup)}
               className="popup__signup-link"
@@ -52,7 +52,7 @@ export default function Popup({
           </p>
         ) : (
           <p className="popup__signup-text">
-            or{" "}
+            {title === "Sign up" ? "or " : null}
             <Link
               onClick={() => openPopup(loginPopup)}
               className="popup__signup-link"
