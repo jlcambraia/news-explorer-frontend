@@ -24,7 +24,6 @@
   line-height: 100%;
   color: #000;
   padding: 10px 0 10px;
-  border-radius: none;
 }
 
 .register__email-input:focus {
@@ -167,4 +166,22 @@
   box-shadow: none;
   cursor: not-allowed;
   margin-bottom: 16px;
+}
+
+@media screen and (max-width: 320px) {
+  .register__form {
+    width: 100%;
+  }
+
+  .register__email-input {
+    width: 100%;
+  }
+
+  .register__password-input {
+    width: 100%;
+  }
+
+  .register__username-input {
+    width: 100%;
+  }
 }
