@@ -14,7 +14,7 @@ import Login from "./Popup/components/Login/Login";
 import Register from "./Popup/components/Register/Register";
 
 // Criado apenas para desenvolvimento. Apagar depois que buscar informações da api.
-// Para ver a renderização de quando não encontra notícias, é necessário comentar os objetos.
+// Para ver a renderização de quando não encontra notícias, é necessário comentar os objetos dentro da variável.
 const placeholder = [
   {
     source: {
