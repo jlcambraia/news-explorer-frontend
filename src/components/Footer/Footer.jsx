@@ -13,17 +13,20 @@ export default function Footer() {
         &copy; 2025 João Luiz Cambraia, Powered by News API
       </p>
       <div className="footer__navigation">
-        <p onClick={() => navigate("/")} className="footer__navigation-link">
-          Home
-        </p>
-        <a
-          className="footer__navigation-link"
-          href="https://tripleten.com/pt-bra/"
-          target="_blank"
-          rel="noopener noreferrer nofollow"
-        >
-          TripleTen
-        </a>
+        <div className="footer__navigation-links">
+          <p onClick={() => navigate("/")} className="footer__navigation-link">
+            Home
+          </p>
+          <a
+            className="footer__navigation-link"
+            href="https://tripleten.com/pt-bra/"
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+          >
+            TripleTen
+          </a>
+        </div>
+
         <div className="footer__navigation-icons">
           <a
             className="footer__navigation-anchor"
