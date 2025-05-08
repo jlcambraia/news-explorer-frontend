@@ -4,6 +4,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .header_black {
@@ -21,4 +22,70 @@
 
 .header__logo_black {
   color: #1a1b22;
+}
+
+.header__mobile-menu-button {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    height: 66px;
+    padding: 0 40px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    height: 56px;
+    padding: 0 16px;
+    z-index: 1;
+  }
+
+  .header_black {
+    border-bottom: 1px solid rgb(0 0 0 / 20%);
+  }
+
+  .header_mobile {
+    background-color: #1a1b22;
+    z-index: 2;
+  }
+
+  .header_mobile_white {
+    background-color: transparent;
+  }
+
+  .header__overlay {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  .header__logo {
+    font-size: 16px;
+  }
+
+  .header__mobile-menu-button {
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    border: none;
+    background-image: url(../../images/menu-mobile-icon.png);
+    cursor: pointer;
+  }
+
+  .header__mobile-menu-close-button {
+    background-image: url(../../images/close-icon-mobile.png);
+  }
+
+  .header__mobile-menu-button_black {
+    background-image: url(../../images/menu-mobile-icon-black.png);
+  }
 }
