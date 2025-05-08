@@ -1,3 +1,9 @@
 @import url(./vendor/normalize.css);
 
 @import url(./vendor/fonts.css);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
