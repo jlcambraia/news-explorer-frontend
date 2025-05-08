@@ -397,13 +397,13 @@ const savedArticles = [
 ];
 
 function App() {
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
+  const [isSearchingForNews, setIsSearchingForNews] = useState(false);
   const [popup, setPopup] = useState(null);
   const location = useLocation();
   const [homePathLocation, setHomePathLocation] = useState(
     location.pathname === "/"
   );
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-  const [isSearchingForNews, setIsSearchingForNews] = useState(false);
 
   useEffect(() => {
     setHomePathLocation(location.pathname === "/");
@@ -412,12 +412,15 @@ function App() {
   const loginPopup = { title: "Sign in", children: <Login /> };
   const registerPopup = { title: "Sign up", children: <Register /> };
 
-  const successfulRegistration = {
-    title: "Registration successfully completed!",
-  };
-  const failedRegistration = {
-    title: "Registration failed, please try again!",
-  };
+  // Este será o children do Popup quando o registro do usuário for bem sucedido.
+  // const successfulRegistration = {
+  //   title: "Registration successfully completed!",
+  // };
+
+  // Este será o children do Popup quando o registro do usuário for mal sucedido.
+  // const failedRegistration = {
+  //   title: "Registration failed, please try again!",
+  // };
 
   function handleOpenPopup(popup) {
     setPopup(null);
