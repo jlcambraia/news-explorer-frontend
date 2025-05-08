@@ -1,10 +1,9 @@
 .about {
-  height: 624px;
   display: flex;
   align-items: center;
   margin: 0 auto;
-  max-width: 1232px;
   gap: 56px;
+  padding: 80px 104px;
 }
 
 .about__image {
@@ -23,4 +22,41 @@
 
 .about__description {
   color: #000;
+}
+
+@media screen and (max-width: 768px) {
+  .about {
+    gap: 32px;
+    padding: 40px;
+  }
+
+  .about__image {
+    width: 232px;
+    height: 232px;
+  }
+
+  .about__title {
+    font-size: 30px;
+    line-height: 40px;
+    margin: 0 0 16px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about {
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px 16px 50px;
+  }
+
+  .about__image {
+    width: 272px;
+    height: 272px;
+  }
+
+  .about__title {
+    font-size: 30px;
+    line-height: 40px;
+    margin: 0 0 16px;
+  }
 }
