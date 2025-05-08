@@ -41,7 +41,7 @@ const placeholder = [
     title:
       "Berkshire investors hope for Buffett's guidance at annual meeting with tariffs shaking markets, economy  CNBC",
     description:
-      "Buffett's annual gathering in the Cornhusker State comes as the investment climate turned less certain thanks to President Trump's aggressive tariff regime.",
+      "Buffett's annual gathering in the Cornhusker State comes as the investment climate turned less certain thanks to President Trump's aggressive tariff regime. Buffett's annual gathering in the Cornhusker State comes as the investment climate turned less certain thanks to President Trump's aggressive tariff regime.",
     url: "https://www.cnbc.com/2025/05/02/warrenbuffettannualmeetingpreviewberkshirehathaway.html",
     urlToImage:
       "https://image.cnbcfm.com/api/v1/image/1074106221714848634258BuffetAbelBAM0504244.jpg?v=1714848731&w=1920&h=1080",
@@ -402,6 +402,8 @@ function App() {
   const [homePathLocation, setHomePathLocation] = useState(
     location.pathname === "/"
   );
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [isSearchingForNews, setIsSearchingForNews] = useState(false);
 
   useEffect(() => {
     setHomePathLocation(location.pathname === "/");
@@ -409,6 +411,7 @@ function App() {
 
   const loginPopup = { title: "Sign in", children: <Login /> };
   const registerPopup = { title: "Sign up", children: <Register /> };
+
   const successfulRegistration = {
     title: "Registration successfully completed!",
   };
@@ -435,12 +438,21 @@ function App() {
               : "app__body app__body_without-background-image"
           }
         >
-          <Header openPopup={handleOpenPopup} loginPopup={loginPopup} />
+          <Header
+            openPopup={handleOpenPopup}
+            loginPopup={loginPopup}
+            isUserLoggedIn={isUserLoggedIn}
+          />
           <Routes>
             <Route
               path="/"
               element={
-                <Main placeholder={placeholder} savedArticles={savedArticles} />
+                <Main
+                  placeholder={placeholder}
+                  savedArticles={savedArticles}
+                  isUserLoggedIn={isUserLoggedIn}
+                  isSearchingForNews={isSearchingForNews}
+                />
               }
             />
             <Route
@@ -449,6 +461,8 @@ function App() {
                 <SavedNews
                   savedArticles={savedArticles}
                   placeholder={placeholder}
+                  isUserLoggedIn={isUserLoggedIn}
+                  isSearchingForNews={isSearchingForNews}
                 />
               }
             />
