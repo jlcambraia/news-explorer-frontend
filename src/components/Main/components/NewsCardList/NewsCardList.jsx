@@ -5,10 +5,14 @@ import notFoundIcon from "../../../../images/not-found-icon.png";
 import { useState, useContext } from "react";
 import { CurrentPathContext } from "../../../../contexts/CurrentPathContext";
 
-export default function NewsCardList({ placeholder, savedArticles }) {
+export default function NewsCardList({
+  placeholder,
+  savedArticles,
+  isUserLoggedIn,
+  isSearchingForNews,
+}) {
   const [articlesToRenderize, setArticlesToRenderize] = useState(3);
-  // Passar isSearchingForNews para Main e renderizar apenas após submit
-  const [isSearchingForNews, setIsSearchingForNews] = useState(false);
+
   const pathLocation = useContext(CurrentPathContext);
 
   const handleShowMoreButton = () => {
@@ -33,7 +37,13 @@ export default function NewsCardList({ placeholder, savedArticles }) {
 
             <ul className="news-card-list__cards">
               {placeholder.slice(0, articlesToRenderize).map((article) => {
-                return <NewsCard key={article.url} article={article} />;
+                return (
+                  <NewsCard
+                    key={article.url}
+                    article={article}
+                    isUserLoggedIn={isUserLoggedIn}
+                  />
+                );
               })}
             </ul>
             {placeholder.length > 3 &&
