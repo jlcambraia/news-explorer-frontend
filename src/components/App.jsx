@@ -397,8 +397,11 @@ const savedArticles = [
 ];
 
 function App() {
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
-  const [isSearchingForNews, setIsSearchingForNews] = useState(false);
+  // Criado apenas para desenvolvimento. Colocar em useState depois que implementar o login.
+  const isUserLoggedIn = false;
+  // criado apenas para desenvolvimento. Colocar em useState depois que implementar as buscas por notícias.
+  const isSearchingForNews = false;
+
   const [popup, setPopup] = useState(null);
   const location = useLocation();
   const [homePathLocation, setHomePathLocation] = useState(
