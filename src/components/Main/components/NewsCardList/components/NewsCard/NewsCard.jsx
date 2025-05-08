@@ -5,9 +5,7 @@ import imagePlaceholder from "../../../../../../images/image1-card-placeholder.p
 import { useState, useContext } from "react";
 import { CurrentPathContext } from "../../../../../../contexts/CurrentPathContext";
 
-export default function NewsCard({ article }) {
-  // isUserLoggedIn criado apenas para desenvolvimento. Passar para App no final do desenvolvimento do front-end.
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
+export default function NewsCard({ article, isUserLoggedIn }) {
   const [isButtonHovered, setIsButtonHovered] = useState(false);
   const [isArticleSaved, setIsArticleSaved] = useState(false);
   const pathLocation = useContext(CurrentPathContext);
