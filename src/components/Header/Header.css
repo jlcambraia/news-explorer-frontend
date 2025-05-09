@@ -28,16 +28,20 @@
   display: none;
 }
 
+@media screen and (max-width: 1000px) {
+  .header {
+    padding: 0 40px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .header {
-    height: 66px;
     padding: 0 40px;
   }
 }
 
 @media screen and (max-width: 320px) {
   .header {
-    height: 56px;
     padding: 0 16px;
     z-index: 1;
   }
