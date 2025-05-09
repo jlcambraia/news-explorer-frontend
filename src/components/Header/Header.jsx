@@ -28,6 +28,9 @@ export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
 
   return (
     <>
+      {isMobile && isMobileMenuOpen && (
+        <div className="header__overlay" onClick={handleOpenMobileMenu} />
+      )}
       <header
         className={
           pathLocation
@@ -85,9 +88,6 @@ export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
             isUserLoggedIn={isUserLoggedIn}
             className="navigation_mobile"
           />
-        )}
-        {isMobile && isMobileMenuOpen && (
-          <div className="header__overlay" onClick={handleOpenMobileMenu} />
         )}
       </header>
     </>
