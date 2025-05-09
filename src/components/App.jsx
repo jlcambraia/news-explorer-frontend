@@ -14,7 +14,7 @@ import Login from "./Popup/components/Login/Login";
 import Register from "./Popup/components/Register/Register";
 
 // Criado apenas para desenvolvimento. Apagar depois que buscar informações da api.
-// Para ver a renderização de quando não encontra notícias, é necessário comentar os objetos dentro da variável.
+// Para ver a renderização de quando não encontra notícias, é necessário comentar esta variável placeholder e descomentar a variável placeholder abaixo.
 const placeholder = [
   {
     source: {
@@ -312,6 +312,10 @@ const placeholder = [
       "<ul><li>Microsoft stock rose 7.6% on Thursday, its secondbiggest postearnings jump since 2015.</li><li>Cloudcomputing revenue at the company surged to $27 billion, driven by fasterthanexpected g… [+2428 chars]",
   },
 ];
+
+// Para ver a renderização de quando encontra notícias, é necessário comentar esta variável placeholder e descomentar a variável placeholder acima.
+// const placeholder = [];
+
 // Criado apenas para desenvolvimento. Apagar depois que buscar informações da api.
 const savedArticles = [
   {
@@ -399,7 +403,7 @@ const savedArticles = [
 
 function App() {
   // Criado apenas para desenvolvimento. Colocar em useState depois que implementar o login.
-  const isUserLoggedIn = false;
+  const isUserLoggedIn = true;
   // criado apenas para desenvolvimento. Colocar em useState depois que implementar as buscas por notícias.
   const isSearchingForNews = false;
 
