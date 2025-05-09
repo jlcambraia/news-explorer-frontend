@@ -4,36 +4,14 @@ import imagePlaceholder from "../../../../images/image1-card-placeholder.png";
 
 import { useState, useContext } from "react";
 import { CurrentPathContext } from "../../../../contexts/CurrentPathContext";
+import { formatArticleDate } from "../../../../utils/validators/formatDate";
 
 export default function NewsCard({ article, isUserLoggedIn }) {
   const [isButtonHovered, setIsButtonHovered] = useState(false);
   const [isArticleSaved, setIsArticleSaved] = useState(false);
   const pathLocation = useContext(CurrentPathContext);
 
-  const handleDate = () => {
-    const year = article.publishedAt.slice(0, 4);
-    const day = article.publishedAt.slice(6, 8);
-    const monthNumber = article.publishedAt.slice(4, 6);
-
-    const months = {
-      "01": "January",
-      "02": "February",
-      "03": "March",
-      "04": "April",
-      "05": "May",
-      "06": "June",
-      "07": "July",
-      "08": "August",
-      "09": "September",
-      10: "October",
-      11: "November",
-      12: "December",
-    };
-
-    const month = months[monthNumber];
-
-    return `${month} ${day}, ${year}`;
-  };
+  const formattedDate = formatArticleDate(article.publishedAt);
 
   function handleButtonOnMouseEnter() {
     setIsButtonHovered(true);
@@ -96,7 +74,7 @@ export default function NewsCard({ article, isUserLoggedIn }) {
         ) : null}
       </div>
       <div className="news-card__info-container">
-        <p className="news-card__date">{handleDate()}</p>
+        <p className="news-card__date">{formattedDate}</p>
         <h3 className="news-card__title">{article.title}</h3>
         <p className="news-card__description">{article.description}</p>
         <p className="news-card__source">{article.source.name}</p>
