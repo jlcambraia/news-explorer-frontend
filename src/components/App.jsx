@@ -313,6 +313,7 @@ const placeholder = [
   },
 ];
 
+// Criado apenas para desenvolvimento. Apagar depois que buscar informações da api.
 // Para ver a renderização de quando encontra notícias, é necessário comentar esta variável placeholder e descomentar a variável placeholder acima.
 // const placeholder = [];
 
