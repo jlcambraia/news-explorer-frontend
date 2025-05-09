@@ -4,7 +4,7 @@ import { useContext, useState, useEffect } from "react";
 import { CurrentPathContext } from "../../contexts/CurrentPathContext";
 import { useNavigate } from "react-router-dom";
 
-import Navigation from "./components/Navigation";
+import Navigation from "../Navigation/Navigation";
 
 export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
   const [isMobile, setisMobile] = useState(window.innerWidth <= 320);
