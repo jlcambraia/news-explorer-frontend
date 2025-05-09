@@ -23,7 +23,7 @@
 
 @media screen and (max-width: 768px) {
   .search {
-    height: 334px;
+    height: 321px;
     align-items: flex-start;
   }
 
@@ -56,7 +56,7 @@
 
   .search__subtitle {
     width: 285px;
-    margin: 0 0 122px;
+    margin: 0 0 100px;
     padding: 0;
   }
 }
