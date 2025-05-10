@@ -83,13 +83,12 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top: -1px;
     background-color: #1a1b22;
     padding: 16px 16px 24px;
     gap: 30px;
     position: absolute;
     width: 100%;
-    top: 57px;
+    top: 65px;
     left: 0;
     z-index: 3;
     box-sizing: border-box;
