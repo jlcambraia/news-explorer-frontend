@@ -1,6 +1,6 @@
 import "./NewsCard.css";
 
-import imagePlaceholder from "../../../../images/image1-card-placeholder.png";
+import imagePlaceholder from "../../../../assets/images/image1-card-placeholder.png";
 
 import { useState, useContext } from "react";
 import { CurrentPathContext } from "../../../../contexts/CurrentPathContext";
