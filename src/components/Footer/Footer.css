@@ -73,14 +73,10 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 543px) {
   .footer {
     flex-direction: column-reverse;
-    padding: 20px 16px;
-  }
-
-  .footer__copyrights {
-    text-align: center;
+    padding: 24px 16px;
   }
 
   .footer__navigation {
@@ -88,6 +84,12 @@
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .footer {
+    padding: 20px 16px;
   }
 
   .footer__navigation-links {
