@@ -1,6 +1,6 @@
 import "./About.css";
 
-import authorAvatar from "../../../../images/author-avatar.png";
+import authorAvatar from "../../../../assets/images/avatars/author-avatar.png";
 
 export default function About() {
   return (
