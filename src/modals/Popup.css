@@ -33,7 +33,7 @@
   position: absolute;
   width: 40px;
   height: 40px;
-  background-image: url(../../images/close-icon.png);
+  background-image: url(../images/close-icon.png);
   background-repeat: no-repeat;
   background-color: transparent;
   border: none;
@@ -70,7 +70,7 @@
   color: #2a65cc;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 543px) {
   .popup__wrapper {
     height: 100%;
     align-items: flex-start;
@@ -86,13 +86,19 @@
   }
 
   .popup__close-button {
-    top: -40px;
+    top: -43px;
     right: 0;
-    background-image: url(../../images/close-icon-mobile.png);
+    background-image: url(../images/close-icon-mobile.png);
     background-repeat: no-repeat;
   }
 
   .popup__title {
     margin: 0 0 17px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .popup__close-button {
+    top: -36px;
   }
 }
