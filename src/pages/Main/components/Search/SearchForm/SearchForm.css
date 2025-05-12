@@ -1,5 +1,11 @@
+.search-form {
+  width: 608px;
+  display: flex;
+  justify-content: center;
+}
+
 .search-form__input {
-  width: 503px;
+  width: 600px;
   height: 64px;
   border: 1px solid #d1d2d6;
   border-radius: calc(440px / 2);
@@ -38,14 +44,28 @@
 
 @media screen and (max-width: 768px) {
   .search-form__input {
-    margin-left: 160px;
-    width: 355px;
+    width: 390px;
     height: 56px;
   }
 
   .search-form__button {
     width: 160px;
     height: 57px;
+  }
+}
+
+@media screen and (max-width: 543px) {
+  .search-form {
+    width: 100%;
+  }
+  .search-form__input {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 391px) {
+  .search-form__button {
+    width: 130px;
   }
 }
 
