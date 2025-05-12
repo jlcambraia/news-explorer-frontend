@@ -9,9 +9,9 @@ import Header from "./components/Header/Header";
 import Main from "./pages/Main/Main";
 import SavedNews from "./pages/SavedNews/SavedNews";
 import Footer from "./components/Footer/Footer";
-import Popup from "./modals/Popup";
-import Login from "./modals/Login";
-import Register from "./modals/Register";
+import Popup from "./components/modals/Popup";
+import Login from "./components/modals/Login";
+import Register from "./components/modals/Register";
 
 // Criado apenas para desenvolvimento. Apagar depois que buscar informações da api.
 // Para ver a renderização de quando não encontra notícias, é necessário comentar esta variável placeholder e descomentar a variável placeholder abaixo.
@@ -404,7 +404,7 @@ const savedArticles = [
 
 function App() {
   // Criado apenas para desenvolvimento. Colocar em useState depois que implementar o login.
-  const isUserLoggedIn = true;
+  const isUserLoggedIn = false;
   // criado apenas para desenvolvimento. Colocar em useState depois que implementar as buscas por notícias.
   const isSearchingForNews = false;
 
