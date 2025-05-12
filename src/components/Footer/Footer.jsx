@@ -1,6 +1,6 @@
 import "./Footer.css";
-import githubIcon from "../../images/github-icon.png";
-import linkedinIcon from "../../images/linkedin-icon.png";
+import githubIcon from "../../assets/images/icons/github-icon.png";
+import linkedinIcon from "../../assets/images/icons/linkedin-icon.png";
 
 import { useNavigate } from "react-router-dom";
 
