@@ -27,53 +27,58 @@ export default function Navigation({
       : "");
 
   return (
-    <nav className={`navigation ${className}`}>
-      {!isUserLoggedIn ? (
-        <>
-          <NavLink className={handleActiveLink} to="/">
-            Home
-          </NavLink>
-          <button
-            className={
-              pathLocation ? "navigation__button" : "navigation__button_black"
-            }
-            onClick={() => openPopup(loginPopup)}
-          >
-            Sign in
-          </button>
-        </>
-      ) : (
-        <>
-          <NavLink className={handleActiveLink} to="/">
-            Home
-          </NavLink>
-          <NavLink className={handleActiveLink} to="/saved-news">
-            Saved articles
-          </NavLink>
-          <button
-            className={
-              pathLocation
-                ? "navigation__button navigation__button_active"
-                : isMobileMenuOpen
-                ? "navigation__button navigation__button_active"
-                : "navigation__button navigation__button_active navigation__button_black"
-            }
-          >
-            User
-            <img
-              className="navigation__button-image"
-              src={
-                pathLocation
-                  ? logoutIcon
-                  : isMobileMenuOpen
-                  ? logoutIcon
-                  : logoutIconBlack
+    <>
+      <nav className={`navigation ${className}`}>
+        {!isUserLoggedIn ? (
+          <>
+            <NavLink className={handleActiveLink} to="/">
+              Home
+            </NavLink>
+            <button
+              className={
+                pathLocation ? "navigation__button" : "navigation__button_black"
               }
-              alt="Ícone de logout"
-            />
-          </button>
-        </>
+              onClick={() => openPopup(loginPopup)}
+            >
+              Sign in
+            </button>
+          </>
+        ) : (
+          <>
+            <NavLink className={handleActiveLink} to="/">
+              Home
+            </NavLink>
+            <NavLink className={handleActiveLink} to="/saved-news">
+              Saved articles
+            </NavLink>
+            <button
+              className={
+                pathLocation
+                  ? "navigation__button navigation__button_active"
+                  : isMobileMenuOpen
+                  ? "navigation__button navigation__button_active"
+                  : "navigation__button navigation__button_active navigation__button_black"
+              }
+            >
+              User
+              <img
+                className="navigation__button-image"
+                src={
+                  pathLocation
+                    ? logoutIcon
+                    : isMobileMenuOpen
+                    ? logoutIcon
+                    : logoutIconBlack
+                }
+                alt="Ícone de logout"
+              />
+            </button>
+          </>
+        )}
+      </nav>
+      {className === "navigation_mobile" && (
+        <div className="navigation__overlay"></div>
       )}
-    </nav>
+    </>
   );
 }

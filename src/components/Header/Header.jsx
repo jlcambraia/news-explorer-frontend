@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 
 export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
-  const [isMobile, setisMobile] = useState(window.innerWidth <= 320);
+  const [isMobile, setisMobile] = useState(window.innerWidth <= 543);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const pathLocation = useContext(CurrentPathContext);
@@ -15,7 +15,7 @@ export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
 
   useEffect(() => {
     const handleResize = () => {
-      setisMobile(window.innerWidth <= 320);
+      setisMobile(window.innerWidth <= 543);
     };
 
     window.addEventListener("resize", handleResize);
@@ -28,9 +28,6 @@ export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
 
   return (
     <>
-      {isMobile && isMobileMenuOpen && (
-        <div className="header__overlay" onClick={handleOpenMobileMenu} />
-      )}
       <header
         className={
           pathLocation
