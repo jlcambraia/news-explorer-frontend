@@ -104,12 +104,18 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 543px) {
   .news-card-list {
-    padding: 32px 16px;
+    padding: 40px 16px;
   }
 
   .news-card-list__cards {
     grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .news-card-list {
+    padding: 32px 16px;
   }
 }
