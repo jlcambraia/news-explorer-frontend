@@ -43,6 +43,12 @@
   }
 }
 
+@media screen and (max-width: 415px) {
+  .saved-news-header__title {
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 320px) {
   .saved-news-header {
     padding: 12px 16px 32px;
