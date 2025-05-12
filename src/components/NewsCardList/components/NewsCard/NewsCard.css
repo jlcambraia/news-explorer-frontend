@@ -26,7 +26,7 @@
   border: none;
   border-radius: 10px;
   background-color: #fff;
-  background-image: url(../../../../images/save-article-icon-normal.png);
+  background-image: url(../../../../assets/images/icons/save-article-icon-normal.png);
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
@@ -34,23 +34,23 @@
 }
 
 .news-card__image-button:hover {
-  background-image: url(../../../../images/save-article-icon-hover.png);
+  background-image: url(../../../../assets/images/icons/save-article-icon-hover.png);
 }
 
 .news-card__image-button_saved {
-  background-image: url(../../../../images/save-article-icon-saved.png);
+  background-image: url(../../../../assets/images/icons/save-article-icon-saved.png);
 }
 
 .news-card__image-button_saved:hover {
-  background-image: url(../../../../images/save-article-icon-saved.png);
+  background-image: url(../../../../assets/images/icons/save-article-icon-saved.png);
 }
 
 .news-card__image-button_delete {
-  background-image: url(../../../../images/delete-icon.png);
+  background-image: url(../../../../assets/images/icons/delete-icon.png);
 }
 
 .news-card__image-button_delete:hover {
-  background-image: url(../../../../images/delete-icon-hover.png);
+  background-image: url(../../../../assets/images/icons/delete-icon-hover.png);
 }
 
 .news-card__image-popup {
