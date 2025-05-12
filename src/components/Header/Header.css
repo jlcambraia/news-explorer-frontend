@@ -39,9 +39,9 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 543px) {
   .header {
-    padding: 20px 16px;
+    padding: 13px 16px;
     z-index: 1;
   }
 
@@ -56,18 +56,6 @@
 
   .header_mobile_white {
     background-color: transparent;
-  }
-
-  .header__overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
   }
 
   .header__logo {
@@ -90,5 +78,11 @@
 
   .header__mobile-menu-button_black {
     background-image: url(../../images/menu-mobile-icon-black.png);
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    padding: 20px 16px;
   }
 }
