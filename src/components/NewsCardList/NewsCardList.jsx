@@ -10,6 +10,8 @@ export default function NewsCardList({
   savedArticles,
   isUserLoggedIn,
   isSearchingForNews,
+  hasSearched,
+  searchError,
 }) {
   const [articlesToRenderize, setArticlesToRenderize] = useState(3);
 
@@ -30,53 +32,63 @@ export default function NewsCardList({
               Searching for news...
             </p>
           </section>
-        ) : searchedArticles.length > 0 ? (
+        ) : searchError ? (
           <section className="news-card-list">
-            {pathLocation && (
+            <h3 className="news-card-list__not-found-title">
+              Sorry, an error occurred
+            </h3>
+            <p className="news-card-list__not-found-subtitle">
+              Something went wrong during the request. Please try again later.
+            </p>
+          </section>
+        ) : hasSearched ? (
+          searchedArticles.length > 0 ? (
+            <section className="news-card-list">
               <div className="news-card-list__title-container">
-                <h2 className="news-card-list__title">Search results</h2>{" "}
+                <h2 className="news-card-list__title">Search results</h2>
                 <span className="news-card-list__found-articles-quantity">
                   {`(Found ${searchedArticles.length} ${
                     searchedArticles.length === 1 ? "article" : "articles"
                   })`}
                 </span>
               </div>
-            )}
 
-            <ul className="news-card-list__cards">
-              {searchedArticles.slice(0, articlesToRenderize).map((article) => {
-                return (
-                  <NewsCard
-                    key={article.url}
-                    article={article}
-                    isUserLoggedIn={isUserLoggedIn}
-                  />
-                );
-              })}
-            </ul>
-            {searchedArticles.length > 3 &&
-              articlesToRenderize < searchedArticles.length && (
-                <button
-                  onClick={handleShowMoreButton}
-                  className="news-card-list__button"
-                >
-                  Show more
-                </button>
-              )}
-          </section>
-        ) : (
-          <section className="news-card-list">
-            <img
-              className="news-card-list__not-found-icon"
-              src={notFoundIcon}
-              alt="Ícone de artigo não encontrado"
-            />
-            <h3 className="news-card-list__not-found-title">Nothing found</h3>
-            <p className="news-card-list__not-found-subtitle">
-              Sorry, but nothing matched your search terms.
-            </p>
-          </section>
-        )
+              <ul className="news-card-list__cards">
+                {searchedArticles
+                  .slice(0, articlesToRenderize)
+                  .map((article) => (
+                    <NewsCard
+                      key={article.url}
+                      article={article}
+                      isUserLoggedIn={isUserLoggedIn}
+                    />
+                  ))}
+              </ul>
+
+              {searchedArticles.length > 3 &&
+                articlesToRenderize < searchedArticles.length && (
+                  <button
+                    onClick={handleShowMoreButton}
+                    className="news-card-list__button"
+                  >
+                    Show more
+                  </button>
+                )}
+            </section>
+          ) : (
+            <section className="news-card-list">
+              <img
+                className="news-card-list__not-found-icon"
+                src={notFoundIcon}
+                alt="Ícone de artigo não encontrado"
+              />
+              <h3 className="news-card-list__not-found-title">Nothing found</h3>
+              <p className="news-card-list__not-found-subtitle">
+                Sorry, but nothing matched your search terms.
+              </p>
+            </section>
+          )
+        ) : null
       ) : (
         savedArticles.length > 0 && (
           <section className="news-card-list">
