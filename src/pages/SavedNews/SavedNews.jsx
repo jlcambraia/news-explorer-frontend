@@ -3,7 +3,6 @@ import NewsCardList from "../../components/NewsCardList/NewsCardList";
 
 export default function SavedNews({
   savedArticles,
-  placeholder,
   isUserLoggedIn,
   isSearchingForNews,
 }) {
@@ -13,7 +12,6 @@ export default function SavedNews({
         <SavedNewsHeader savedArticles={savedArticles} />
         <NewsCardList
           savedArticles={savedArticles}
-          placeholder={placeholder}
           isUserLoggedIn={isUserLoggedIn}
           isSearchingForNews={isSearchingForNews}
         />

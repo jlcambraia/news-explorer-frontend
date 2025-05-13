@@ -3,7 +3,6 @@ import About from "./components/About/About";
 import NewsCardList from "../../components/NewsCardList/NewsCardList";
 
 export default function Main({
-  placeholder,
   savedArticles,
   isUserLoggedIn,
   isSearchingForNews,
@@ -12,7 +11,6 @@ export default function Main({
     <main>
       <Search />
       <NewsCardList
-        placeholder={placeholder}
         savedArticles={savedArticles}
         isUserLoggedIn={isUserLoggedIn}
         isSearchingForNews={isSearchingForNews}
