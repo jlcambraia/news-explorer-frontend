@@ -99,6 +99,13 @@
   width: 220px;
 }
 
+.news-card-list__not-found-error-subtitle {
+  margin: 0 auto;
+  text-align: center;
+  color: #b6bcbf;
+  width: 420px;
+}
+
 @media screen and (max-width: 1000px) {
   .news-card-list {
     padding: 40px;
@@ -147,6 +154,10 @@
     flex-direction: column;
     gap: 6px;
     align-items: flex-start;
+  }
+
+  .news-card-list__not-found-error-subtitle {
+    width: 250px;
   }
 
   .news-card-list__cards {
