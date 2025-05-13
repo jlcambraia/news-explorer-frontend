@@ -6,10 +6,11 @@ export default function Main({
   savedArticles,
   isUserLoggedIn,
   isSearchingForNews,
+  searchNewsFromApi,
 }) {
   return (
     <main>
-      <Search />
+      <Search searchNewsFromApi={searchNewsFromApi} />
       <NewsCardList
         savedArticles={savedArticles}
         isUserLoggedIn={isUserLoggedIn}
