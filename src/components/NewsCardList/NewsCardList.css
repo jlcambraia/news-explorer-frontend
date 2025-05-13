@@ -44,6 +44,10 @@
   line-height: 46px;
 }
 
+.news-card-list__keyword {
+  font-weight: 700;
+}
+
 .news-card-list__found-articles-quantity {
   color: #b6bcbf;
   font-size: 16px;
@@ -123,6 +127,14 @@
   .news-card-list__button {
     margin: 32px auto 0;
     padding: 18px 75px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .news-card-list__title-container {
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
   }
 }
 
