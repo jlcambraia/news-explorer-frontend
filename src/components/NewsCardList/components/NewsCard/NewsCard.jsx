@@ -28,7 +28,7 @@ export default function NewsCard({ article, isUserLoggedIn }) {
       <div className="news-card__image-container">
         <img
           className="news-card__image"
-          src={article.urlToImage}
+          src={article.urlToImage || "https://loremflickr.com/400/272"}
           alt={`Imagem do artigo de ${article.author}`}
         />
         {pathLocation ? (
