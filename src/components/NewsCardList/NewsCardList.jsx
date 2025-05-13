@@ -36,8 +36,9 @@ export default function NewsCardList({
               <div className="news-card-list__title-container">
                 <h2 className="news-card-list__title">Search results</h2>{" "}
                 <span className="news-card-list__found-articles-quantity">
-                  (Found {searchedArticles.length}{" "}
-                  {searchedArticles.length === 1 ? "article)" : "articles)"}
+                  {`(Found ${searchedArticles.length} ${
+                    searchedArticles.length === 1 ? "article" : "articles"
+                  })`}
                 </span>
               </div>
             )}
