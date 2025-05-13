@@ -7,6 +7,8 @@ export default function Main({
   isUserLoggedIn,
   isSearchingForNews,
   searchNewsFromApi,
+  hasSearched,
+  searchError,
 }) {
   return (
     <main>
@@ -15,6 +17,8 @@ export default function Main({
         savedArticles={savedArticles}
         isUserLoggedIn={isUserLoggedIn}
         isSearchingForNews={isSearchingForNews}
+        hasSearched={hasSearched}
+        searchError={searchError}
       />
       <About />
     </main>
