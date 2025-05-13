@@ -110,6 +110,7 @@ function App() {
   const [isSearchingForNews, setIsSearchingForNews] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const [searchError, setSearchError] = useState(false);
+  const [searchKeyword, setSearchKeyword] = useState("");
 
   useEffect(() => {
     setHomePathLocation(location.pathname === "/");
@@ -131,6 +132,7 @@ function App() {
   const searchNewsFromApi = async (inputValue) => {
     setSearchError(false);
     setHasSearched(false);
+    setSearchKeyword(inputValue);
     setIsSearchingForNews(true);
     try {
       const results = await api.searchForNews(inputValue);
@@ -179,6 +181,7 @@ function App() {
                     searchNewsFromApi={searchNewsFromApi}
                     hasSearched={hasSearched}
                     searchError={searchError}
+                    searchKeyword={searchKeyword}
                   />
                 }
               />
