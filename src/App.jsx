@@ -108,6 +108,8 @@ function App() {
   );
   const [searchedArticles, setSearchedArticles] = useState([]);
   const [isSearchingForNews, setIsSearchingForNews] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
+  const [searchError, setSearchError] = useState(false);
 
   useEffect(() => {
     setHomePathLocation(location.pathname === "/");
@@ -127,12 +129,15 @@ function App() {
   // };
 
   const searchNewsFromApi = async (inputValue) => {
+    setSearchError(false);
+    setHasSearched(false);
     setIsSearchingForNews(true);
     try {
       const results = await api.searchForNews(inputValue);
+      setHasSearched(true);
       setSearchedArticles(results.articles);
-    } catch (err) {
-      console.error(err.message || "Erro ao carregar informações do usuário");
+    } catch {
+      setSearchError(true);
     } finally {
       setIsSearchingForNews(false);
     }
@@ -172,6 +177,8 @@ function App() {
                     isUserLoggedIn={isUserLoggedIn}
                     isSearchingForNews={isSearchingForNews}
                     searchNewsFromApi={searchNewsFromApi}
+                    hasSearched={hasSearched}
+                    searchError={searchError}
                   />
                 }
               />
