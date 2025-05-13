@@ -38,8 +38,10 @@ export default function NewsCardList({
             <h3 className="news-card-list__not-found-title">
               Sorry, an error occurred
             </h3>
-            <p className="news-card-list__not-found-subtitle">
-              Something went wrong during the request. Please try again later.
+            <p className="news-card-list__not-found-error-subtitle">
+              Something went wrong during the request. There might be a
+              connection issue or the server could be down. Please try again
+              later.
             </p>
           </section>
         ) : hasSearched ? (
