@@ -9,6 +9,7 @@ export default function Main({
   searchNewsFromApi,
   hasSearched,
   searchError,
+  searchKeyword,
 }) {
   return (
     <main>
@@ -19,6 +20,7 @@ export default function Main({
         isSearchingForNews={isSearchingForNews}
         hasSearched={hasSearched}
         searchError={searchError}
+        searchKeyword={searchKeyword}
       />
       <About />
     </main>
