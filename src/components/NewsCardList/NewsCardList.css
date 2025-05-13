@@ -105,6 +105,14 @@
   }
 }
 
+@media screen and (max-width: 810px) {
+  .news-card-list__title-container {
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .news-card-list__title-container {
     margin: 0 0 32px;
@@ -127,14 +135,6 @@
   .news-card-list__button {
     margin: 32px auto 0;
     padding: 18px 75px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .news-card-list__title-container {
-    flex-direction: column;
-    gap: 6px;
-    align-items: flex-start;
   }
 }
 
