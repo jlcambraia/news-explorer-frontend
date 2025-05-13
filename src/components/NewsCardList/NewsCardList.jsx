@@ -4,9 +4,9 @@ import notFoundIcon from "../../assets/images/icons/not-found-icon.png";
 
 import { useState, useContext } from "react";
 import { CurrentPathContext } from "../../contexts/CurrentPathContext";
+import { SearchedArticlesContext } from "../../contexts/SearchedArticlesContext";
 
 export default function NewsCardList({
-  placeholder,
   savedArticles,
   isUserLoggedIn,
   isSearchingForNews,
@@ -14,6 +14,7 @@ export default function NewsCardList({
   const [articlesToRenderize, setArticlesToRenderize] = useState(3);
 
   const pathLocation = useContext(CurrentPathContext);
+  const searchedArticles = useContext(SearchedArticlesContext);
 
   const handleShowMoreButton = () => {
     setArticlesToRenderize((articles) => articles + 3);
@@ -29,14 +30,20 @@ export default function NewsCardList({
               Searching for news...
             </p>
           </section>
-        ) : placeholder.length > 0 ? (
+        ) : searchedArticles.length > 0 ? (
           <section className="news-card-list">
             {pathLocation && (
-              <h2 className="news-card-list__title">Search results</h2>
+              <div className="news-card-list__title-container">
+                <h2 className="news-card-list__title">Search results</h2>{" "}
+                <span className="news-card-list__found-articles-quantity">
+                  (Found {searchedArticles.length}{" "}
+                  {searchedArticles.length === 1 ? "article)" : "articles)"}
+                </span>
+              </div>
             )}
 
             <ul className="news-card-list__cards">
-              {placeholder.slice(0, articlesToRenderize).map((article) => {
+              {searchedArticles.slice(0, articlesToRenderize).map((article) => {
                 return (
                   <NewsCard
                     key={article.url}
@@ -46,8 +53,8 @@ export default function NewsCardList({
                 );
               })}
             </ul>
-            {placeholder.length > 3 &&
-              articlesToRenderize < placeholder.length && (
+            {searchedArticles.length > 3 &&
+              articlesToRenderize < searchedArticles.length && (
                 <button
                   onClick={handleShowMoreButton}
                   className="news-card-list__button"
