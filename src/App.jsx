@@ -126,20 +126,17 @@ function App() {
   //   title: "Registration failed, please try again!",
   // };
 
-  useEffect(() => {
+  const searchNewsFromApi = async (inputValue) => {
     setIsSearchingForNews(true);
-    api
-      .searchForNews("Apple")
-      .then((results) => {
-        setSearchedArticles(results.articles);
-      })
-      .catch((err) => {
-        setError(err.message || "Erro ao carregar informações do usuário");
-      })
-      .finally(() => {
-        setIsSearchingForNews(false);
-      });
-  }, []);
+    try {
+      const results = await api.searchForNews(inputValue);
+      setSearchedArticles(results.articles);
+    } catch (err) {
+      console.error(err.message || "Erro ao carregar informações do usuário");
+    } finally {
+      setIsSearchingForNews(false);
+    }
+  };
 
   function handleOpenPopup(popup) {
     setPopup(null);
@@ -174,6 +171,7 @@ function App() {
                     savedArticles={savedArticles}
                     isUserLoggedIn={isUserLoggedIn}
                     isSearchingForNews={isSearchingForNews}
+                    searchNewsFromApi={searchNewsFromApi}
                   />
                 }
               />
