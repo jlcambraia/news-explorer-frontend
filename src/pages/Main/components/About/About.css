@@ -25,6 +25,10 @@
 }
 
 @media screen and (max-width: 1000px) {
+  .about {
+    gap: 32px;
+    padding: 40px;
+  }
   .about__image {
     width: 264px;
     height: 264px;
