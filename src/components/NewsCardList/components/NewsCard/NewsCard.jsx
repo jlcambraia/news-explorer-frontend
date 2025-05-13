@@ -1,7 +1,5 @@
 import "./NewsCard.css";
 
-import imagePlaceholder from "../../../../assets/images/image1-card-placeholder.png";
-
 import { useState, useContext } from "react";
 import { CurrentPathContext } from "../../../../contexts/CurrentPathContext";
 import { formatArticleDate } from "../../../../utils/validators/formatDate";
@@ -30,7 +28,7 @@ export default function NewsCard({ article, isUserLoggedIn }) {
       <div className="news-card__image-container">
         <img
           className="news-card__image"
-          src={imagePlaceholder}
+          src={article.urlToImage}
           alt={`Imagem do artigo de ${article.author}`}
         />
         {pathLocation ? (
