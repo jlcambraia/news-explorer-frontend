@@ -43,10 +43,10 @@ export default function Popup({
           <h2 className="popup__title">{title}</h2>
           {children}
 
-          {(title === "Login" ||
+          {(title === "Entrar" ||
             title === "O cadastro falhou, por favor, tente novamente.") && (
             <p className="popup__signup-text">
-              {title === "Login" && "ou "}
+              {title === "Entrar" && "ou "}
               <Link
                 onClick={() => openPopup(registerPopup)}
                 className="popup__signup-link"
@@ -56,15 +56,15 @@ export default function Popup({
             </p>
           )}
 
-          {(title === "Registrar" ||
+          {(title === "Inscrever-se" ||
             title === "Cadastro concluído com sucesso!") && (
             <p className="popup__signup-text">
-              {title === "Registrar" && "ou "}
+              {title === "Inscrever-se" && "ou "}
               <Link
                 onClick={() => openPopup(loginPopup)}
                 className="popup__signup-link"
               >
-                Login
+                Entre
               </Link>
             </p>
           )}

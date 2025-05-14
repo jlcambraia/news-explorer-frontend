@@ -32,7 +32,7 @@ export default function Login() {
           <input
             className="login__email-input"
             type="email"
-            placeholder="Enter email"
+            placeholder="Insira seu email"
             onChange={handleEmailChange}
             autoComplete="email"
           />
@@ -44,11 +44,11 @@ export default function Login() {
         </label>
 
         <label className="login__password-input-label">
-          Password
+          Senha
           <input
             className="login__password-input"
             type="password"
-            placeholder="Enter password"
+            placeholder="Insira a senha"
             onChange={handlePasswordChange}
             minLength={8}
             maxLength={20}
@@ -71,7 +71,7 @@ export default function Login() {
             : "login__button_disabled"
         }
       >
-        Sign in
+        Entrar
       </button>
     </>
   );

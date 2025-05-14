@@ -42,7 +42,7 @@ export default function Register() {
           <input
             className="register__email-input"
             type="email"
-            placeholder="Enter email"
+            placeholder="Insira seu email"
             onChange={handleEmailChange}
             autoComplete="email"
           />
@@ -54,11 +54,11 @@ export default function Register() {
         </label>
 
         <label className="register__password-input-label">
-          Password
+          Senha
           <input
             className="register__password-input"
             type="password"
-            placeholder="Enter password"
+            placeholder="Insira a senha"
             onChange={handlePasswordChange}
             minLength={8}
             maxLength={20}
@@ -72,11 +72,11 @@ export default function Register() {
         </label>
 
         <label className="register__username-input-label">
-          Username
+          Nome de usuário
           <input
             className="register__username-input"
             type="text"
-            placeholder="Enter your username"
+            placeholder="Insira seu nome de usuário"
             onChange={handleUsernameChange}
             minLength={2}
             maxLength={20}
@@ -100,7 +100,7 @@ export default function Register() {
             : "register__button_disabled"
         }
       >
-        Sign up
+        Inscrever-se
       </button>
     </>
   );
