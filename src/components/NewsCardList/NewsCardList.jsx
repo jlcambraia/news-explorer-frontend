@@ -55,8 +55,8 @@ export default function NewsCardList({ savedArticles, isUserLoggedIn }) {
                   "
                 </h2>
                 <span className="news-card-list__found-articles-quantity">
-                  {`(Found ${searchedArticles.length} ${
-                    searchedArticles.length === 1 ? "article" : "articles"
+                  {`(Encontramos ${searchedArticles.length} ${
+                    searchedArticles.length === 1 ? "artigo" : "artigos"
                   })`}
                 </span>
               </div>
