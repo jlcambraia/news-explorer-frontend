@@ -4,7 +4,9 @@ import { useState, useEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import { CurrentPathContext } from "./contexts/CurrentPathContext";
-import { SearchedArticlesContext } from "./contexts/SearchedArticlesContext";
+import { SearchArticlesContext } from "./contexts/SearchArticlesContext.js";
+
+import { api } from "./utils/apis/NewsApi.js";
 
 import Header from "./components/Header/Header";
 import Main from "./pages/Main/Main";
@@ -13,8 +15,6 @@ import Footer from "./components/Footer/Footer";
 import Popup from "./components/modals/Popup";
 import Login from "./components/modals/Login";
 import Register from "./components/modals/Register";
-
-import { api } from "./utils/apis/NewsApi";
 
 // Criado apenas para desenvolvimento. Apagar depois que buscar informações da api.
 const savedArticles = [
@@ -99,25 +99,69 @@ const savedArticles = [
 
 function App() {
   // Criado apenas para desenvolvimento. Colocar em useState depois que implementar o login.
-  const isUserLoggedIn = true;
+  const isUserLoggedIn = false;
 
   const [popup, setPopup] = useState(null);
+
   const location = useLocation();
   const [homePathLocation, setHomePathLocation] = useState(
     location.pathname === "/"
   );
-  const [searchedArticles, setSearchedArticles] = useState([]);
-  const [isSearchingForNews, setIsSearchingForNews] = useState(false);
+
   const [hasSearched, setHasSearched] = useState(false);
-  const [searchError, setSearchError] = useState(false);
+  const [searchedArticles, setSearchedArticles] = useState([]);
+  const [isSearchingForArticles, setIsSearchingForArticles] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState("");
+  const [searchError, setSearchError] = useState(false);
+
+  useEffect(() => {
+    const savedArticles = localStorage.getItem("searchedArticles");
+    const savedKeyword = localStorage.getItem("searchKeyword");
+    if (savedArticles) {
+      setSearchedArticles(JSON.parse(savedArticles));
+      setHasSearched(true);
+    }
+    if (savedKeyword) {
+      setSearchKeyword(savedKeyword);
+    }
+  }, []);
 
   useEffect(() => {
     setHomePathLocation(location.pathname === "/");
   }, [location.pathname]);
 
+  const searchNewsFromApi = async (inputValue) => {
+    if (!inputValue) {
+      handleOpenPopup(keywordErrorPopup);
+      return;
+    }
+
+    setSearchError(false);
+    setHasSearched(false);
+    setSearchKeyword(inputValue);
+    setIsSearchingForArticles(true);
+
+    try {
+      const results = await api.searchForNews(inputValue);
+      setHasSearched(true);
+      setSearchedArticles(results.articles);
+      localStorage.setItem(
+        "searchedArticles",
+        JSON.stringify(results.articles)
+      );
+      localStorage.setItem("searchKeyword", inputValue);
+    } catch {
+      localStorage.removeItem("searchedArticles");
+      localStorage.removeItem("searchKeyword");
+      setSearchError(true);
+    } finally {
+      setIsSearchingForArticles(false);
+    }
+  };
+
   const loginPopup = { title: "Sign in", children: <Login /> };
   const registerPopup = { title: "Sign up", children: <Register /> };
+  const keywordErrorPopup = { title: "Please, enter a keyword." };
 
   // Este será o children do Popup quando o registro do usuário for bem sucedido.
   // const successfulRegistration = {
@@ -128,22 +172,6 @@ function App() {
   // const failedRegistration = {
   //   title: "Registration failed, please try again!",
   // };
-
-  const searchNewsFromApi = async (inputValue) => {
-    setSearchError(false);
-    setHasSearched(false);
-    setSearchKeyword(inputValue);
-    setIsSearchingForNews(true);
-    try {
-      const results = await api.searchForNews(inputValue);
-      setHasSearched(true);
-      setSearchedArticles(results.articles);
-    } catch {
-      setSearchError(true);
-    } finally {
-      setIsSearchingForNews(false);
-    }
-  };
 
   function handleOpenPopup(popup) {
     setPopup(null);
@@ -156,7 +184,16 @@ function App() {
 
   return (
     <>
-      <SearchedArticlesContext.Provider value={searchedArticles}>
+      <SearchArticlesContext.Provider
+        value={{
+          hasSearched,
+          searchedArticles,
+          isSearchingForArticles,
+          searchKeyword,
+          searchError,
+          searchNewsFromApi,
+        }}
+      >
         <CurrentPathContext.Provider value={homePathLocation}>
           <div
             className={
@@ -177,11 +214,6 @@ function App() {
                   <Main
                     savedArticles={savedArticles}
                     isUserLoggedIn={isUserLoggedIn}
-                    isSearchingForNews={isSearchingForNews}
-                    searchNewsFromApi={searchNewsFromApi}
-                    hasSearched={hasSearched}
-                    searchError={searchError}
-                    searchKeyword={searchKeyword}
                   />
                 }
               />
@@ -191,7 +223,6 @@ function App() {
                   <SavedNews
                     savedArticles={savedArticles}
                     isUserLoggedIn={isUserLoggedIn}
-                    isSearchingForNews={isSearchingForNews}
                   />
                 }
               />
@@ -212,7 +243,7 @@ function App() {
             )}
           </div>
         </CurrentPathContext.Provider>
-      </SearchedArticlesContext.Provider>
+      </SearchArticlesContext.Provider>
     </>
   );
 }
