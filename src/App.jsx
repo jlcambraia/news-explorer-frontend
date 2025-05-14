@@ -20,7 +20,7 @@ import Register from "./components/modals/Register";
 
 function App() {
   // Criado apenas para desenvolvimento. Colocar em useState depois que implementar o login.
-  const isUserLoggedIn = false;
+  const isUserLoggedIn = true;
 
   const [popup, setPopup] = useState(null);
 
@@ -40,11 +40,6 @@ function App() {
   const registerPopup = { title: "Inscrever-se", children: <Register /> };
   const keywordErrorPopup = { title: "Por favor, insira uma palavra-chave." };
 
-  // Popup falso para simular tratamento de erros na Api falsa.
-  const mockApiGetArticlesErrorPopup = {
-    title:
-      "Tivemos um erro ao tentar buscar os artigos salvos, lamentamos o ocorrido",
-  };
   // Popup falso para simular tratamento de erros na Api falsa.
   const mockApiSaveArticlesErrorPopup = {
     title: "Tivemos um erro ao salvar um artigo, lamentamos o ocorrido",
@@ -135,6 +130,8 @@ function App() {
       setSavedArticles(updatedArticles);
     } catch {
       handleOpenPopup(mockApiRemoveArticlesErrorPopup);
+    } finally {
+      handleClosePopup();
     }
   };
 
@@ -145,6 +142,10 @@ function App() {
         const articles = await mockApi.getSavedArticles();
         setSavedArticles(articles);
       } catch {
+        const mockApiGetArticlesErrorPopup = {
+          title:
+            "Tivemos um erro ao tentar buscar os artigos salvos, lamentamos o ocorrido",
+        };
         handleOpenPopup(mockApiGetArticlesErrorPopup);
       }
     };
@@ -202,6 +203,7 @@ function App() {
                 element={
                   <SavedNews
                     isUserLoggedIn={isUserLoggedIn}
+                    handleOpenPopup={handleOpenPopup}
                     handleRemoveArticle={handleRemoveArticle} // Será removido ou atualizado após desenvolvimento da Api correta.
                   />
                 }
