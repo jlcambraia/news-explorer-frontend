@@ -1,13 +1,21 @@
 import "./NewsCard.css";
 
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { CurrentPathContext } from "../../../../contexts/CurrentPathContext";
+import { SearchArticlesContext } from "../../../../contexts/SearchArticlesContext";
 import { formatArticleDate } from "../../../../utils/validators/formatDate";
 
-export default function NewsCard({ article, isUserLoggedIn }) {
+export default function NewsCard({
+  article,
+  isUserLoggedIn,
+  handleSaveArticle,
+  handleRemoveArticle,
+}) {
   const [isButtonHovered, setIsButtonHovered] = useState(false);
   const [isArticleSaved, setIsArticleSaved] = useState(false);
   const pathLocation = useContext(CurrentPathContext);
+
+  const { savedArticles } = useContext(SearchArticlesContext);
 
   const formattedDate = formatArticleDate(article.publishedAt);
 
@@ -19,9 +27,18 @@ export default function NewsCard({ article, isUserLoggedIn }) {
     setIsButtonHovered(false);
   }
 
-  function handleSaveArticle() {
-    setIsArticleSaved(!isArticleSaved);
+  function handleSaveArticleOnClick() {
+    handleSaveArticle(article);
   }
+
+  function handleRemoveArticleOnClick() {
+    handleRemoveArticle(article._id);
+  }
+
+  useEffect(() => {
+    const alreadySaved = savedArticles.some((a) => a.url === article.url);
+    setIsArticleSaved(alreadySaved);
+  }, [savedArticles, article.url]);
 
   return (
     <li className="news-card">
@@ -34,7 +51,7 @@ export default function NewsCard({ article, isUserLoggedIn }) {
         {pathLocation ? (
           isUserLoggedIn ? (
             <button
-              onClick={handleSaveArticle}
+              onClick={handleSaveArticleOnClick}
               className={
                 isArticleSaved
                   ? "news-card__image-button news-card__image-button_saved"
@@ -61,6 +78,7 @@ export default function NewsCard({ article, isUserLoggedIn }) {
             className="news-card__image-button news-card__image-button_delete"
             onMouseEnter={handleButtonOnMouseEnter}
             onMouseLeave={handleButtonOnMouseLeave}
+            onClick={handleRemoveArticleOnClick}
           >
             {isButtonHovered && (
               <span className="news-card__image-popup">
