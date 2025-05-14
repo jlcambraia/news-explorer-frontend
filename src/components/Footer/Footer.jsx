@@ -7,10 +7,16 @@ import { useNavigate } from "react-router-dom";
 export default function Footer() {
   const navigate = useNavigate();
 
+  function getCurrentYear() {
+    const today = new Date();
+    const year = today.getFullYear();
+    return year;
+  }
+
   return (
     <footer className="footer">
       <p className="footer__copyrights">
-        &copy; 2025 João Luiz Cambraia, Powered by News API
+        &copy; {getCurrentYear()} João Luiz Cambraia, com tecnologia da News API
       </p>
       <div className="footer__navigation">
         <div className="footer__navigation-links">
