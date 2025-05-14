@@ -64,9 +64,19 @@
   }
 }
 
-@media screen and (max-width: 543px) {
+@media screen and (max-width: 767px) {
   .about {
     flex-direction: column;
+  }
+
+  .about__image {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media screen and (max-width: 543px) {
+  .about {
     gap: 24px;
     padding: 32px 16px 50px;
   }
