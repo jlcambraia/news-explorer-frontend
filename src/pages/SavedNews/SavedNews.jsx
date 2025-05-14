@@ -1,11 +1,7 @@
 import SavedNewsHeader from "./components/SavedNewsHeader/SavedNewsHeader";
 import NewsCardList from "../../components/NewsCardList/NewsCardList";
 
-export default function SavedNews({
-  savedArticles,
-  isUserLoggedIn,
-  isSearchingForNews,
-}) {
+export default function SavedNews({ savedArticles, isUserLoggedIn }) {
   return (
     <>
       <main>
@@ -13,7 +9,6 @@ export default function SavedNews({
         <NewsCardList
           savedArticles={savedArticles}
           isUserLoggedIn={isUserLoggedIn}
-          isSearchingForNews={isSearchingForNews}
         />
       </main>
     </>
