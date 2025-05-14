@@ -5,9 +5,12 @@ import { CurrentPathContext } from "../../../../contexts/CurrentPathContext";
 import { SearchArticlesContext } from "../../../../contexts/SearchArticlesContext";
 import { formatArticleDate } from "../../../../utils/validators/formatDate";
 
+import Confirmation from "../../../modals/Confirmation";
+
 export default function NewsCard({
   article,
   isUserLoggedIn,
+  handleOpenPopup,
   handleSaveArticle,
   handleRemoveArticle,
 }) {
@@ -31,9 +34,16 @@ export default function NewsCard({
     handleSaveArticle(article);
   }
 
-  function handleRemoveArticleOnClick() {
-    handleRemoveArticle(article._id);
-  }
+  // Popup de confirmação de remoção do card
+  const removeConfirmationPopup = {
+    title: "Quer remover este artigo?",
+    children: (
+      <Confirmation
+        handleRemoveArticle={handleRemoveArticle}
+        article={article}
+      />
+    ),
+  };
 
   useEffect(() => {
     const alreadySaved = savedArticles.some((a) => a.url === article.url);
@@ -78,7 +88,7 @@ export default function NewsCard({
             className="news-card__image-button news-card__image-button_delete"
             onMouseEnter={handleButtonOnMouseEnter}
             onMouseLeave={handleButtonOnMouseLeave}
-            onClick={handleRemoveArticleOnClick}
+            onClick={() => handleOpenPopup(removeConfirmationPopup)}
           >
             {isButtonHovered && (
               <span className="news-card__image-popup">
