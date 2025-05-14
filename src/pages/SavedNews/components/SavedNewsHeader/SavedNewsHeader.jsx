@@ -9,15 +9,16 @@ export default function SavedNewsHeader({ savedArticles }) {
 
   return (
     <div className="saved-news-header">
-      <p className="saved-news-header__breadcrumb">Saved articles</p>
+      <p className="saved-news-header__breadcrumb">Artigos salvos</p>
       <h2 className="saved-news-header__title">
-        Elise, you have {savedArticles.length} saved{" "}
-        {keywords.length === 1 ? "article" : "articles"}
+        Elise, você tem {savedArticles.length}
+        {keywords.length === 1 ? " artigo " : " artigos "}
+        {keywords.length === 1 ? "salvo" : "salvos"}
       </h2>
       <p className="saved-news-header__keywords">
         {keywords.length > 0 && (
           <>
-            <span>By keywords: </span>
+            <span>Por palavras-chave: </span>
             <span className="saved-news-header__keyword">
               {formatKeywordsList(keywords)}
             </span>
