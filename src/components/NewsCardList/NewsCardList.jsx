@@ -89,7 +89,7 @@ export default function NewsCardList({ savedArticles, isUserLoggedIn }) {
               <img
                 className="news-card-list__not-found-icon"
                 src={notFoundIcon}
-                alt="Article not found icon"
+                alt="Ícone de artigo não encontrado"
               />
               <h3 className="news-card-list__not-found-title">Nothing found</h3>
               <p className="news-card-list__not-found-subtitle">
