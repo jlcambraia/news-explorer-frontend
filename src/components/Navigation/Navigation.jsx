@@ -32,7 +32,7 @@ export default function Navigation({
         {!isUserLoggedIn ? (
           <>
             <NavLink className={handleActiveLink} to="/">
-              Home
+              Início
             </NavLink>
             <button
               className={
@@ -40,16 +40,16 @@ export default function Navigation({
               }
               onClick={() => openPopup(loginPopup)}
             >
-              Sign in
+              Entrar
             </button>
           </>
         ) : (
           <>
             <NavLink className={handleActiveLink} to="/">
-              Home
+              Início
             </NavLink>
             <NavLink className={handleActiveLink} to="/saved-news">
-              Saved articles
+              Artigos salvos
             </NavLink>
             <button
               className={
