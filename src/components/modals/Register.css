@@ -1,7 +1,7 @@
 .register__form {
   display: flex;
   flex-direction: column;
-  margin-bottom: 43px;
+  margin: 30px 0 43px;
 }
 
 .register__email-input-label {
@@ -144,7 +144,6 @@
   font-weight: 500;
   box-shadow: 0 5px 15px 0 rgba(14, 26, 57, 0.2);
   cursor: pointer;
-  margin-bottom: 16px;
 }
 
 .register__button:hover {
@@ -165,7 +164,6 @@
   font-weight: 500;
   box-shadow: none;
   cursor: not-allowed;
-  margin-bottom: 16px;
 }
 
 @media screen and (max-width: 320px) {
