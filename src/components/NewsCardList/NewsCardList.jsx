@@ -6,7 +6,11 @@ import { useState, useContext } from "react";
 import { CurrentPathContext } from "../../contexts/CurrentPathContext";
 import { SearchArticlesContext } from "../../contexts/SearchArticlesContext";
 
-export default function NewsCardList({ savedArticles, isUserLoggedIn }) {
+export default function NewsCardList({
+  isUserLoggedIn,
+  handleSaveArticle,
+  handleRemoveArticle,
+}) {
   const [articlesToRenderize, setArticlesToRenderize] = useState(3);
 
   const pathLocation = useContext(CurrentPathContext);
@@ -17,6 +21,7 @@ export default function NewsCardList({ savedArticles, isUserLoggedIn }) {
     isSearchingForArticles,
     searchError,
     searchKeyword,
+    savedArticles,
   } = useContext(SearchArticlesContext);
 
   const handleShowMoreButton = () => {
@@ -69,6 +74,7 @@ export default function NewsCardList({ savedArticles, isUserLoggedIn }) {
                       key={article.url}
                       article={article}
                       isUserLoggedIn={isUserLoggedIn}
+                      handleSaveArticle={handleSaveArticle} // Será removido ou atualizado após desenvolvimento da Api correta.
                     />
                   ))}
               </ul>
@@ -104,7 +110,11 @@ export default function NewsCardList({ savedArticles, isUserLoggedIn }) {
           <section className="news-card-list">
             <ul className="news-card-list__cards">
               {savedArticles.map((article) => (
-                <NewsCard key={article.url} article={article} />
+                <NewsCard
+                  key={article.url}
+                  article={article}
+                  handleRemoveArticle={handleRemoveArticle} // Será removido daqui após desenvolvimento da Api correta.
+                />
               ))}
             </ul>
           </section>
