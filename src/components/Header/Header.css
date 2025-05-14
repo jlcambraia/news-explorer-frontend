@@ -52,6 +52,11 @@
   .header_mobile {
     background-color: #1a1b22;
     z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
   }
 
   .header_mobile_white {
