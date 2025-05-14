@@ -159,18 +159,18 @@ function App() {
     }
   };
 
-  const loginPopup = { title: "Sign in", children: <Login /> };
-  const registerPopup = { title: "Sign up", children: <Register /> };
-  const keywordErrorPopup = { title: "Please, enter a keyword." };
+  const loginPopup = { title: "Login", children: <Login /> };
+  const registerPopup = { title: "Registrar", children: <Register /> };
+  const keywordErrorPopup = { title: "Por favor, insira uma palavra-chave." };
 
   // Este será o children do Popup quando o registro do usuário for bem sucedido.
   // const successfulRegistration = {
-  //   title: "Registration successfully completed!",
+  //   title: "Cadastro concluído com sucesso!",
   // };
 
   // Este será o children do Popup quando o registro do usuário for mal sucedido.
   // const failedRegistration = {
-  //   title: "Registration failed, please try again!",
+  //   title: "O cadastro falhou, por favor, tente novamente.",
   // };
 
   function handleOpenPopup(popup) {
