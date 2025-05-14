@@ -3,8 +3,12 @@ import {
   extractUniqueKeywords,
   formatKeywordsList,
 } from "../../../../utils/validators/keywords";
+import { useContext } from "react";
+import { SearchArticlesContext } from "../../../../contexts/SearchArticlesContext";
 
-export default function SavedNewsHeader({ savedArticles }) {
+export default function SavedNewsHeader() {
+  const { savedArticles } = useContext(SearchArticlesContext);
+
   const keywords = extractUniqueKeywords(savedArticles);
 
   return (
@@ -12,8 +16,8 @@ export default function SavedNewsHeader({ savedArticles }) {
       <p className="saved-news-header__breadcrumb">Artigos salvos</p>
       <h2 className="saved-news-header__title">
         Elise, você tem {savedArticles.length}
-        {keywords.length === 1 ? " artigo " : " artigos "}
-        {keywords.length === 1 ? "salvo" : "salvos"}
+        {savedArticles.length === 1 ? " artigo " : " artigos "}
+        {savedArticles.length === 1 ? "salvo" : "salvos"}
       </h2>
       <p className="saved-news-header__keywords">
         {keywords.length > 0 && (
