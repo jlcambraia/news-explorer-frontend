@@ -8,6 +8,7 @@ import { SearchArticlesContext } from "../../contexts/SearchArticlesContext";
 
 export default function NewsCardList({
   isUserLoggedIn,
+  handleOpenPopup,
   handleSaveArticle,
   handleRemoveArticle,
 }) {
@@ -113,6 +114,7 @@ export default function NewsCardList({
                 <NewsCard
                   key={article.url}
                   article={article}
+                  handleOpenPopup={handleOpenPopup}
                   handleRemoveArticle={handleRemoveArticle} // Será removido daqui após desenvolvimento da Api correta.
                 />
               ))}
