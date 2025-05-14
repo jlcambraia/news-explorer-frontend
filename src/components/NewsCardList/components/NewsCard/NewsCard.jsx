@@ -51,7 +51,7 @@ export default function NewsCard({ article, isUserLoggedIn }) {
             >
               {isButtonHovered && (
                 <span className="news-card__image-popup">
-                  Sign in to save articles
+                  Entre para salvar artigos
                 </span>
               )}
             </button>
@@ -63,7 +63,9 @@ export default function NewsCard({ article, isUserLoggedIn }) {
             onMouseLeave={handleButtonOnMouseLeave}
           >
             {isButtonHovered && (
-              <span className="news-card__image-popup">Remove from saved</span>
+              <span className="news-card__image-popup">
+                Remover artigo salvo
+              </span>
             )}
           </button>
         )}
