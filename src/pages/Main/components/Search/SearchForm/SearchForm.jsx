@@ -1,9 +1,11 @@
 import "./SearchForm.css";
+import { useState, useContext } from "react";
+import { SearchArticlesContext } from "../../../../../contexts/SearchArticlesContext";
 
-import { useState } from "react";
-
-export default function SearchForm({ searchNewsFromApi }) {
+export default function SearchForm() {
   const [searchInputValue, setSearchInputValue] = useState("");
+
+  const { searchNewsFromApi } = useContext(SearchArticlesContext);
 
   function handleSearchInputChange(evt) {
     setSearchInputValue(evt.target.value.trim());
