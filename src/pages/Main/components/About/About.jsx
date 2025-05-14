@@ -1,6 +1,6 @@
 import "./About.css";
 
-import authorAvatar from "../../../../assets/images/avatars/author-avatar.png";
+import authorAvatar from "../../../../assets/images/avatars/author-avatar.jpeg";
 
 export default function About() {
   return (
@@ -11,12 +11,36 @@ export default function About() {
         alt="Avatar do autor da página"
       />
       <div>
-        <h2 className="about__title">About the author</h2>
+        <h2 className="about__title">Sobre o autor</h2>
         <p className="about__description">
-          This block describes the project author. Here you should indicate your
-          name, what you do, and which development technologies you know. You
-          can also talk about your experience with Practicum, what you learned
-          there, and how you can help potential customers.
+          <span className="about__description-paragraph">
+            Olá, meu nome é João Luiz Cambraia.
+          </span>
+          <span className="about__description-paragraph">
+            Sou um profissional em transição de carreira para a área da
+            teconologia.
+          </span>
+          <span className="about__description-paragraph">
+            Após quase 15 anos atuando com Strategic Sourcing e gerenciando dois
+            restaurantes na Bahia, decidi seguir minha verdadeira paixão: a
+            tecnologia.
+          </span>{" "}
+          <span className="about__description-paragraph">
+            Estou formando em Desenvolvimento Web na TripleTen, onde venho me
+            especializando em HTML, CSS, metodologia BEM, JavaScript, design
+            responsivo e React no front-end. No back-end, trabalho com Node.js,
+            Express, MongoDB e desenvolvimento de APIs REST.
+          </span>{" "}
+          <span className="about__description-paragraph">
+            Minha bagagem em negócios me permite trazer uma mentalidade
+            orientada a resultados e uma abordagem prática para resolver
+            problemas.
+          </span>{" "}
+          <span className="about__description-paragraph">
+            Estou entusiasmado para aplicar tudo o que venho aprendendo na
+            criação de produtos digitais completos, intuitivos e voltados para o
+            usuário.
+          </span>
         </p>
       </div>
     </section>
