@@ -30,18 +30,17 @@ export default function NewsCardList({ savedArticles, isUserLoggedIn }) {
           <section className="news-card-list">
             <i className="news-card-list__circle-preloader"></i>
             <p className="news-card-list__text-preloader">
-              Searching for news...
+              Procurando notícias...
             </p>
           </section>
         ) : searchError ? (
           <section className="news-card-list">
             <h3 className="news-card-list__not-found-title">
-              Sorry, an error occurred
+              Desculpe, algo deu errado durante a solicitação
             </h3>
             <p className="news-card-list__not-found-error-subtitle">
-              Something went wrong during the request. There might be a
-              connection issue or the server could be down. Please try again
-              later.
+              Pode haver um problema de conexão ou o servidor pode estar
+              inativo. Por favor, tente novamente mais tarde.
             </p>
           </section>
         ) : hasSearched ? (
@@ -49,7 +48,7 @@ export default function NewsCardList({ savedArticles, isUserLoggedIn }) {
             <section className="news-card-list">
               <div className="news-card-list__title-container">
                 <h2 className="news-card-list__title">
-                  Search results for: "
+                  Resultados encontrados para: "
                   <span className="news-card-list__keyword">
                     {searchKeyword}
                   </span>
@@ -80,7 +79,7 @@ export default function NewsCardList({ savedArticles, isUserLoggedIn }) {
                     onClick={handleShowMoreButton}
                     className="news-card-list__button"
                   >
-                    Show more
+                    Mostrar mais
                   </button>
                 )}
             </section>
@@ -91,9 +90,11 @@ export default function NewsCardList({ savedArticles, isUserLoggedIn }) {
                 src={notFoundIcon}
                 alt="Ícone de artigo não encontrado"
               />
-              <h3 className="news-card-list__not-found-title">Nothing found</h3>
+              <h3 className="news-card-list__not-found-title">
+                Nada encontrado
+              </h3>
               <p className="news-card-list__not-found-subtitle">
-                Sorry, but nothing matched your search terms.
+                Desculpe, mas nada corresponde aos seus termos de pesquisa.
               </p>
             </section>
           )
