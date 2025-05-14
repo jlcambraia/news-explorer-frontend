@@ -106,17 +106,17 @@
   width: 450px;
 }
 
-@media screen and (max-width: 1000px) {
-  .news-card-list {
-    padding: 40px;
-  }
-}
-
-@media screen and (max-width: 810px) {
+@media screen and (max-width: 1200px) {
   .news-card-list__title-container {
     flex-direction: column;
     gap: 6px;
     align-items: flex-start;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .news-card-list {
+    padding: 40px;
   }
 }
 
