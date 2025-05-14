@@ -11,7 +11,7 @@
   font-weight: normal;
   line-height: 24px;
   color: #1a1b22;
-  background-image: url(./assets/images/backgrounds/main-background-image.png);
+  background-image: url(./assets/images/backgrounds/main-background-image.jpg);
   background-position: top;
   background-repeat: no-repeat;
   display: flex;
@@ -24,7 +24,7 @@
 
 @media screen and (max-width: 768px) {
   .app__body {
-    background-image: url(./assets/images/backgrounds/main-background-image-tablet.png);
+    background-image: url(./assets/images/backgrounds/main-background-image-tablet.jpg);
   }
 
   .app__body_without-background-image {
@@ -34,7 +34,7 @@
 
 @media screen and (max-width: 320px) {
   .app__body {
-    background-image: url(./assets/images/backgrounds/main-background-image-mobile.png);
+    background-image: url(./assets/images/backgrounds/main-background-image-mobile.jpg);
   }
 
   .app__body_without-background-image {
