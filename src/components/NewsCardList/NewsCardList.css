@@ -96,14 +96,14 @@
   margin: 0 auto;
   text-align: center;
   color: #b6bcbf;
-  width: 220px;
+  width: 356px;
 }
 
 .news-card-list__not-found-error-subtitle {
   margin: 0 auto;
   text-align: center;
   color: #b6bcbf;
-  width: 420px;
+  width: 450px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -154,6 +154,10 @@
     flex-direction: column;
     gap: 6px;
     align-items: flex-start;
+  }
+
+  .news-card-list__not-found-subtitle {
+    width: 220px;
   }
 
   .news-card-list__not-found-error-subtitle {
