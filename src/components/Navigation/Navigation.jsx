@@ -37,6 +37,10 @@ export default function Navigation({
             <button
               className={
                 pathLocation
+                  ? isUserLoggedIn
+                    ? "navigation__button navigation__button_black"
+                    : "navigation__button"
+                  : isMobileMenuOpen
                   ? "navigation__button"
                   : "navigation__button navigation__button_black"
               }
