@@ -9,6 +9,8 @@
 .about__image {
   width: 464px;
   height: 464px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .about__title {
@@ -22,6 +24,15 @@
 
 .about__description {
   color: #000;
+}
+
+.about__description-paragraph {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.about__description-paragraph:last-of-type {
+  margin-bottom: 0;
 }
 
 @media screen and (max-width: 1000px) {
