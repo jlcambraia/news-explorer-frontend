@@ -68,16 +68,16 @@
     height: 24px;
     background-color: transparent;
     border: none;
-    background-image: url(../../assets/images/icons/menu-mobile-icon.png);
+    background-image: url(../../assets/images/icons/menu-mobile-icon.svg);
     cursor: pointer;
   }
 
   .header__mobile-menu-close-button {
-    background-image: url(../../assets/images/icons/close-icon-mobile.png);
+    background-image: url(../../assets/images/icons/close-icon-mobile.svg);
   }
 
   .header__mobile-menu-button_black {
-    background-image: url(../../assets/images/icons/menu-mobile-icon-black.png);
+    background-image: url(../../assets/images/icons/menu-mobile-icon-black.svg);
   }
 }
 

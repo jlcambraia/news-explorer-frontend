@@ -1,6 +1,6 @@
 import "./Navigation.css";
-import logoutIcon from "../../assets/images/icons/logout-icon.png";
-import logoutIconBlack from "../../assets/images/icons/logout-icon-black.png";
+import logoutIcon from "../../assets/images/icons/logout-icon.svg";
+import logoutIconBlack from "../../assets/images/icons/logout-icon-black.svg";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { CurrentPathContext } from "../../contexts/CurrentPathContext";

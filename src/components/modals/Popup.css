@@ -33,7 +33,7 @@
   position: absolute;
   width: 40px;
   height: 40px;
-  background-image: url(../../assets/images/icons/close-icon.png);
+  background-image: url(../../assets/images/icons/close-icon.svg);
   background-repeat: no-repeat;
   background-color: transparent;
   border: none;
@@ -88,7 +88,7 @@
   .popup__close-button {
     top: -43px;
     right: 0;
-    background-image: url(../../assets/images/icons/close-icon-mobile.png);
+    background-image: url(../../assets/images/icons/close-icon-mobile.svg);
     background-repeat: no-repeat;
   }
 

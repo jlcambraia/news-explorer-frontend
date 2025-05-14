@@ -1,6 +1,6 @@
 import "./NewsCardList.css";
 import NewsCard from "./components/NewsCard/NewsCard";
-import notFoundIcon from "../../assets/images/icons/not-found-icon.png";
+import notFoundIcon from "../../assets/images/icons/not-found-icon.svg";
 
 import { useState, useContext } from "react";
 import { CurrentPathContext } from "../../contexts/CurrentPathContext";

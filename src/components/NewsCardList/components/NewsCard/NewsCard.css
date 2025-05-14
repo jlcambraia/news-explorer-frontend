@@ -27,7 +27,7 @@
   border: none;
   border-radius: 10px;
   background-color: #fff;
-  background-image: url(../../../../assets/images/icons/save-article-icon-normal.png);
+  background-image: url(../../../../assets/images/icons/save-article-icon-normal.svg);
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
@@ -35,23 +35,23 @@
 }
 
 .news-card__image-button:hover {
-  background-image: url(../../../../assets/images/icons/save-article-icon-hover.png);
+  background-image: url(../../../../assets/images/icons/save-article-icon-hover.svg);
 }
 
 .news-card__image-button_saved {
-  background-image: url(../../../../assets/images/icons/save-article-icon-saved.png);
+  background-image: url(../../../../assets/images/icons/save-article-icon-saved.svg);
 }
 
 .news-card__image-button_saved:hover {
-  background-image: url(../../../../assets/images/icons/save-article-icon-saved.png);
+  background-image: url(../../../../assets/images/icons/save-article-icon-saved.svg);
 }
 
 .news-card__image-button_delete {
-  background-image: url(../../../../assets/images/icons/delete-icon.png);
+  background-image: url(../../../../assets/images/icons/delete-icon.svg);
 }
 
 .news-card__image-button_delete:hover {
-  background-image: url(../../../../assets/images/icons/delete-icon-hover.png);
+  background-image: url(../../../../assets/images/icons/delete-icon-hover.svg);
 }
 
 .news-card__image-popup {
