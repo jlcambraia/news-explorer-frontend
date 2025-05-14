@@ -1,14 +1,14 @@
 import SavedNewsHeader from "./components/SavedNewsHeader/SavedNewsHeader";
 import NewsCardList from "../../components/NewsCardList/NewsCardList";
 
-export default function SavedNews({ savedArticles, isUserLoggedIn }) {
+export default function SavedNews({ isUserLoggedIn, handleRemoveArticle }) {
   return (
     <>
       <main>
-        <SavedNewsHeader savedArticles={savedArticles} />
+        <SavedNewsHeader />
         <NewsCardList
-          savedArticles={savedArticles}
           isUserLoggedIn={isUserLoggedIn}
+          handleRemoveArticle={handleRemoveArticle} // Será removido ou atualizado após desenvolvimento da Api correta.
         />
       </main>
     </>
