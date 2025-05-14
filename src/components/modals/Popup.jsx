@@ -43,25 +43,28 @@ export default function Popup({
           <h2 className="popup__title">{title}</h2>
           {children}
 
-          {title === "Sign in" ||
-          title === "Registration failed, please try again!" ? (
+          {(title === "Login" ||
+            title === "O cadastro falhou, por favor, tente novamente.") && (
             <p className="popup__signup-text">
-              {title === "Sign in" ? "or " : null}
+              {title === "Login" && "ou "}
               <Link
                 onClick={() => openPopup(registerPopup)}
                 className="popup__signup-link"
               >
-                Sign up
+                Registrar
               </Link>
             </p>
-          ) : (
+          )}
+
+          {(title === "Registrar" ||
+            title === "Cadastro concluído com sucesso!") && (
             <p className="popup__signup-text">
-              {title === "Sign up" ? "or " : null}
+              {title === "Registrar" && "ou "}
               <Link
                 onClick={() => openPopup(loginPopup)}
                 className="popup__signup-link"
               >
-                Sign in
+                Login
               </Link>
             </p>
           )}
