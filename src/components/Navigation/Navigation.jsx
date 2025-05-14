@@ -36,7 +36,9 @@ export default function Navigation({
             </NavLink>
             <button
               className={
-                pathLocation ? "navigation__button" : "navigation__button_black"
+                pathLocation
+                  ? "navigation__button"
+                  : "navigation__button navigation__button_black"
               }
               onClick={() => openPopup(loginPopup)}
             >
