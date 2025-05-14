@@ -1,11 +1,9 @@
 .search-form {
-  width: 608px;
   display: flex;
-  justify-content: center;
 }
 
 .search-form__input {
-  width: 600px;
+  width: 535px;
   height: 64px;
   border: 1px solid #d1d2d6;
   border-radius: calc(440px / 2);
