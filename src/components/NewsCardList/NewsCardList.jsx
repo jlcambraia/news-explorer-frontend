@@ -4,20 +4,20 @@ import notFoundIcon from "../../assets/images/icons/not-found-icon.png";
 
 import { useState, useContext } from "react";
 import { CurrentPathContext } from "../../contexts/CurrentPathContext";
-import { SearchedArticlesContext } from "../../contexts/SearchedArticlesContext";
+import { SearchArticlesContext } from "../../contexts/SearchArticlesContext";
 
-export default function NewsCardList({
-  savedArticles,
-  isUserLoggedIn,
-  isSearchingForNews,
-  hasSearched,
-  searchError,
-  searchKeyword,
-}) {
+export default function NewsCardList({ savedArticles, isUserLoggedIn }) {
   const [articlesToRenderize, setArticlesToRenderize] = useState(3);
 
   const pathLocation = useContext(CurrentPathContext);
-  const searchedArticles = useContext(SearchedArticlesContext);
+
+  const {
+    hasSearched,
+    searchedArticles,
+    isSearchingForArticles,
+    searchError,
+    searchKeyword,
+  } = useContext(SearchArticlesContext);
 
   const handleShowMoreButton = () => {
     setArticlesToRenderize((articles) => articles + 3);
@@ -26,7 +26,7 @@ export default function NewsCardList({
   return (
     <>
       {pathLocation ? (
-        isSearchingForNews ? (
+        isSearchingForArticles ? (
           <section className="news-card-list">
             <i className="news-card-list__circle-preloader"></i>
             <p className="news-card-list__text-preloader">
@@ -89,7 +89,7 @@ export default function NewsCardList({
               <img
                 className="news-card-list__not-found-icon"
                 src={notFoundIcon}
-                alt="Ícone de artigo não encontrado"
+                alt="Article not found icon"
               />
               <h3 className="news-card-list__not-found-title">Nothing found</h3>
               <p className="news-card-list__not-found-subtitle">
