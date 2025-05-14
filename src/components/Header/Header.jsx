@@ -83,6 +83,7 @@ export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
             isMobileMenuOpen={isMobileMenuOpen}
             isMobile={isMobile}
             isUserLoggedIn={isUserLoggedIn}
+            setIsMobileMenuOpen={setIsMobileMenuOpen}
             className="navigation_mobile"
           />
         )}
