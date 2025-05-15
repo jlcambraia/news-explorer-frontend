@@ -5,6 +5,7 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import { CurrentPathContext } from "./contexts/CurrentPathContext";
 import { SearchArticlesContext } from "./contexts/SearchArticlesContext.js";
+import { UserContext } from "./contexts/UserContext.js";
 
 import { api } from "./utils/apis/NewsApi.js";
 // Importação de Api falsa apenas para desenvolvimento e funcionamento simulado
@@ -21,6 +22,8 @@ import Register from "./components/modals/Register";
 function App() {
   // Criado apenas para desenvolvimento. Colocar em useState depois que implementar o login.
   const isUserLoggedIn = true;
+  // Criado apenas para desenvolvimento. Colocar em useState depois que implementar o login.
+  const username = "Revisor";
 
   const [popup, setPopup] = useState(null);
 
@@ -175,56 +178,58 @@ function App() {
           searchNewsFromApi,
         }}
       >
-        <CurrentPathContext.Provider value={atHomepage}>
-          <div
-            className={
-              atHomepage
-                ? "app__body"
-                : "app__body app__body_without-background-image"
-            }
-          >
-            <Header
-              openPopup={handleOpenPopup}
-              loginPopup={loginPopup}
-              isUserLoggedIn={isUserLoggedIn}
-            />
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Main
-                    isUserLoggedIn={isUserLoggedIn}
-                    handleSaveArticle={handleSaveArticle} // Será removido ou atualizado após desenvolvimento da Api correta.
-                  />
-                }
-              />
-              <Route
-                path="/saved-news"
-                element={
-                  <SavedNews
-                    isUserLoggedIn={isUserLoggedIn}
-                    handleOpenPopup={handleOpenPopup}
-                    handleRemoveArticle={handleRemoveArticle} // Será removido ou atualizado após desenvolvimento da Api correta.
-                  />
-                }
-              />
-              <Route path="*" element={<Navigate to="/" />} />
-            </Routes>
-            <Footer />
-
-            {popup && (
-              <Popup
+        <UserContext.Provider value={username}>
+          <CurrentPathContext.Provider value={atHomepage}>
+            <div
+              className={
+                atHomepage
+                  ? "app__body"
+                  : "app__body app__body_without-background-image"
+              }
+            >
+              <Header
                 openPopup={handleOpenPopup}
-                closePopup={handleClosePopup}
-                title={popup.title}
-                registerPopup={registerPopup}
                 loginPopup={loginPopup}
-              >
-                {popup.children}
-              </Popup>
-            )}
-          </div>
-        </CurrentPathContext.Provider>
+                isUserLoggedIn={isUserLoggedIn}
+              />
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <Main
+                      isUserLoggedIn={isUserLoggedIn}
+                      handleSaveArticle={handleSaveArticle} // Será removido ou atualizado após desenvolvimento da Api correta.
+                    />
+                  }
+                />
+                <Route
+                  path="/saved-news"
+                  element={
+                    <SavedNews
+                      isUserLoggedIn={isUserLoggedIn}
+                      handleOpenPopup={handleOpenPopup}
+                      handleRemoveArticle={handleRemoveArticle} // Será removido ou atualizado após desenvolvimento da Api correta.
+                    />
+                  }
+                />
+                <Route path="*" element={<Navigate to="/" />} />
+              </Routes>
+              <Footer />
+
+              {popup && (
+                <Popup
+                  openPopup={handleOpenPopup}
+                  closePopup={handleClosePopup}
+                  title={popup.title}
+                  registerPopup={registerPopup}
+                  loginPopup={loginPopup}
+                >
+                  {popup.children}
+                </Popup>
+              )}
+            </div>
+          </CurrentPathContext.Provider>
+        </UserContext.Provider>
       </SearchArticlesContext.Provider>
     </>
   );
