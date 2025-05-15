@@ -5,7 +5,7 @@ import { CurrentPathContext } from "../../../../contexts/CurrentPathContext";
 import { SearchArticlesContext } from "../../../../contexts/SearchArticlesContext";
 import { formatArticleDate } from "../../../../utils/validators/formatDate";
 
-import Confirmation from "../../../modals/Confirmation";
+import Confirmation from "../../../modals/ConfirmationButton";
 
 export default function NewsCard({
   article,
