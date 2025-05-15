@@ -16,7 +16,7 @@ export default function NewsCard({
 }) {
   const [isButtonHovered, setIsButtonHovered] = useState(false);
   const [isArticleSaved, setIsArticleSaved] = useState(false);
-  const pathLocation = useContext(CurrentPathContext);
+  const atHomepage = useContext(CurrentPathContext);
 
   const { savedArticles } = useContext(SearchArticlesContext);
 
@@ -58,7 +58,7 @@ export default function NewsCard({
           src={article.urlToImage || "https://loremflickr.com/400/272"}
           alt={`Imagem do artigo de ${article.author}`}
         />
-        {pathLocation ? (
+        {atHomepage ? (
           isUserLoggedIn ? (
             <button
               onClick={handleSaveArticleOnClick}
@@ -97,7 +97,7 @@ export default function NewsCard({
             )}
           </button>
         )}
-        {!pathLocation ? (
+        {!atHomepage ? (
           <div className="news-card__image-tag">{article.source.name}</div>
         ) : null}
       </div>
