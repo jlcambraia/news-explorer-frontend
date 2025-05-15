@@ -80,6 +80,12 @@
   }
 }
 
+@media screen and (max-width: 600px) {
+  .navigation {
+    gap: 10px;
+  }
+}
+
 @media screen and (max-width: 543px) {
   .navigation_desktop {
     display: none;
