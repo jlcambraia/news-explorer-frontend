@@ -13,7 +13,7 @@ class Api {
 
   searchForNews(search) {
     return this._makeRequest(
-      `${this._baseUrl}q=${search}&from=${this._fromDate}&to=${this._toDate}&pageSize=100`,
+      `${this._baseUrl}q=${search}&from=${this._fromDate}&to=${this._toDate}&pageSize=100&apiKey=${this._token}`,
       {
         headers: {
           authorization: this._token,
@@ -32,8 +32,7 @@ function getDateFromNDaysAgo(n) {
 
 // Configuração para API
 const apiConfig = {
-  baseUrl:
-    "https://nomoreparties.co/news/v2/top-headlines?country=us&amp;apiKey=a300df36ab4040ff821994aeec2479fe",
+  baseUrl: "https://nomoreparties.co/news/v2/top-headlines?",
   token: "a300df36ab4040ff821994aeec2479fe",
   makeRequest: (...args) => fetch(...args),
   fromDate: getDateFromNDaysAgo(7),
