@@ -4,6 +4,7 @@ import logoutIconBlack from "../../assets/images/icons/logout-icon-black.svg";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { CurrentPathContext } from "../../contexts/CurrentPathContext";
+import { UserContext } from "../../contexts/UserContext";
 
 export default function Navigation({
   openPopup,
@@ -14,6 +15,7 @@ export default function Navigation({
   setIsMobileMenuOpen,
 }) {
   const atHomepage = useContext(CurrentPathContext);
+  const username = useContext(UserContext);
 
   const handleActiveLink = ({ isActive }) =>
     (atHomepage
@@ -73,7 +75,7 @@ export default function Navigation({
                   : "navigation__button navigation__button_active navigation__button_black"
               }
             >
-              User
+              {username}
               <img
                 className="navigation__button-image"
                 src={
