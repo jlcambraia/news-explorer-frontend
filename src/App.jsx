@@ -33,6 +33,7 @@ function App() {
   const [isSearchingForArticles, setIsSearchingForArticles] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState("");
   const [searchError, setSearchError] = useState(false);
+  const [articlesToRenderize, setArticlesToRenderize] = useState(3);
 
   const loginPopup = { title: "Entrar", children: <Login /> };
   const registerPopup = { title: "Inscrever-se", children: <Register /> };
@@ -169,6 +170,8 @@ function App() {
           searchKeyword,
           searchError,
           savedArticles,
+          articlesToRenderize,
+          setArticlesToRenderize,
           searchNewsFromApi,
         }}
       >

@@ -5,7 +5,9 @@ import { SearchArticlesContext } from "../../../../../contexts/SearchArticlesCon
 export default function SearchForm() {
   const [searchInputValue, setSearchInputValue] = useState("");
 
-  const { searchNewsFromApi } = useContext(SearchArticlesContext);
+  const { searchNewsFromApi, setArticlesToRenderize } = useContext(
+    SearchArticlesContext
+  );
 
   function handleSearchInputChange(evt) {
     setSearchInputValue(evt.target.value.trim());
@@ -14,6 +16,7 @@ export default function SearchForm() {
   const handleSearchFormSubmit = (evt) => {
     evt.preventDefault();
     searchNewsFromApi(searchInputValue);
+    setArticlesToRenderize(3);
     setSearchInputValue("");
   };
 

@@ -2,7 +2,7 @@ import "./NewsCardList.css";
 import NewsCard from "./components/NewsCard/NewsCard";
 import notFoundIcon from "../../assets/images/icons/not-found-icon.svg";
 
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { CurrentPathContext } from "../../contexts/CurrentPathContext";
 import { SearchArticlesContext } from "../../contexts/SearchArticlesContext";
 
@@ -12,8 +12,6 @@ export default function NewsCardList({
   handleSaveArticle,
   handleRemoveArticle,
 }) {
-  const [articlesToRenderize, setArticlesToRenderize] = useState(3);
-
   const atHomepage = useContext(CurrentPathContext);
 
   const {
@@ -23,6 +21,8 @@ export default function NewsCardList({
     searchError,
     searchKeyword,
     savedArticles,
+    articlesToRenderize,
+    setArticlesToRenderize,
   } = useContext(SearchArticlesContext);
 
   const handleShowMoreButton = () => {
