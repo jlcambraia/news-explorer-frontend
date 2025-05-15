@@ -2,6 +2,10 @@
 
 Projeto front-end desenvolvido com **React** utilizando **Vite**, com o objetivo de permitir a pesquisa e visualização de notícias em tempo real, além de salvar artigos favoritos.
 
+## Link para o GitHub Pages:
+
+O site está disponível no GitHub Pages: [Clique aqui para acessar](https://jlcambraia.github.io/news-explorer-frontend/)
+
 ## Sobre o Projeto
 
 O **News Explorer** é um aplicativo web responsivo que permite aos usuários buscar por notícias, visualizá-las em formato de cards e salvar artigos para consulta posterior. A aplicação utiliza rotas, componentes funcionais, estilização modular e segue o padrão BEM para classes CSS.
