@@ -7,5 +7,5 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  base: "/news-explorer-frontend/stage-react-api/",
+  base: "/news-explorer-frontend/",
 });
