@@ -1,5 +1,7 @@
 import "./NewsCard.css";
 
+import imagePlaceholder from "../../../../assets/images/placeholders/imagePlaceholder.jpg";
+
 import { useState, useContext, useEffect } from "react";
 import { CurrentPathContext } from "../../../../contexts/CurrentPathContext";
 import { SearchArticlesContext } from "../../../../contexts/SearchArticlesContext";
@@ -55,7 +57,7 @@ export default function NewsCard({
       <div className="news-card__image-container">
         <img
           className="news-card__image"
-          src={article.urlToImage || "https://loremflickr.com/400/272"}
+          src={article.urlToImage || imagePlaceholder}
           alt={`Imagem do artigo de ${article.author}`}
         />
         {atHomepage ? (
