@@ -126,10 +126,9 @@ function App() {
       await mockApi.removeArticle(articleId);
       const updatedArticles = await mockApi.getSavedArticles();
       setSavedArticles(updatedArticles);
+      handleClosePopup();
     } catch {
       handleOpenPopup(mockApiRemoveArticlesErrorPopup);
-    } finally {
-      handleClosePopup();
     }
   };
 
