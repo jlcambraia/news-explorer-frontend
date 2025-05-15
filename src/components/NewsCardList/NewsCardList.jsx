@@ -14,7 +14,7 @@ export default function NewsCardList({
 }) {
   const [articlesToRenderize, setArticlesToRenderize] = useState(3);
 
-  const pathLocation = useContext(CurrentPathContext);
+  const atHomepage = useContext(CurrentPathContext);
 
   const {
     hasSearched,
@@ -31,7 +31,7 @@ export default function NewsCardList({
 
   return (
     <>
-      {pathLocation ? (
+      {atHomepage ? (
         isSearchingForArticles ? (
           <section className="news-card-list">
             <i className="news-card-list__circle-preloader"></i>
