@@ -13,16 +13,16 @@ export default function Navigation({
   isUserLoggedIn,
   setIsMobileMenuOpen,
 }) {
-  const pathLocation = useContext(CurrentPathContext);
+  const atHomepage = useContext(CurrentPathContext);
 
   const handleActiveLink = ({ isActive }) =>
-    (pathLocation
+    (atHomepage
       ? "navigation__link"
       : isMobileMenuOpen
       ? "navigation__link"
       : "navigation__link navigation__link_black") +
     (isActive
-      ? pathLocation
+      ? atHomepage
         ? " navigation__link_active"
         : " navigation__link_active navigation__link_active_black"
       : "");
@@ -43,7 +43,7 @@ export default function Navigation({
             </NavLink>
             <button
               className={
-                pathLocation
+                atHomepage
                   ? isUserLoggedIn
                     ? "navigation__button navigation__button_black"
                     : "navigation__button"
@@ -66,7 +66,7 @@ export default function Navigation({
             </NavLink>
             <button
               className={
-                pathLocation
+                atHomepage
                   ? "navigation__button navigation__button_active"
                   : isMobileMenuOpen
                   ? "navigation__button navigation__button_active"
@@ -77,7 +77,7 @@ export default function Navigation({
               <img
                 className="navigation__button-image"
                 src={
-                  pathLocation
+                  atHomepage
                     ? logoutIcon
                     : isMobileMenuOpen
                     ? logoutIcon
