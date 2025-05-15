@@ -10,7 +10,7 @@ export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
   const [isMobile, setisMobile] = useState(window.innerWidth <= 543);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const pathLocation = useContext(CurrentPathContext);
+  const atHomepage = useContext(CurrentPathContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
     <>
       <header
         className={
-          pathLocation
+          atHomepage
             ? isMobile && isMobileMenuOpen
               ? "header header_mobile "
               : "header"
@@ -42,7 +42,7 @@ export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
         <h1
           onClick={() => navigate("/")}
           className={
-            pathLocation
+            atHomepage
               ? "header__logo"
               : isMobile && isMobileMenuOpen
               ? "header__logo"
@@ -56,7 +56,7 @@ export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
           <button
             onClick={handleOpenMobileMenu}
             className={
-              pathLocation
+              atHomepage
                 ? isMobileMenuOpen
                   ? "header__mobile-menu-button header__mobile-menu-close-button"
                   : "header__mobile-menu-button"
