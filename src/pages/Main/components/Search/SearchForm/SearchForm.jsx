@@ -24,12 +24,12 @@ export default function SearchForm() {
     <form className="search-form" onSubmit={handleSearchFormSubmit}>
       <input
         className="search-form__input"
-        placeholder="Enter topic"
+        placeholder="Inserir tema"
         type="text"
         value={searchInputValue}
         onChange={handleSearchInputChange}
       />
-      <button className="search-form__button">Search</button>
+      <button className="search-form__button">Procurar</button>
     </form>
   );
 }

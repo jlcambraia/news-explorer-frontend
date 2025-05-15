@@ -21,7 +21,7 @@ export default function Footer() {
       <div className="footer__navigation">
         <div className="footer__navigation-links">
           <p onClick={() => navigate("/")} className="footer__navigation-link">
-            Home
+            Início
           </p>
           <a
             className="footer__navigation-link"
