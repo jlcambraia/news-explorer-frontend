@@ -25,9 +25,7 @@ function App() {
   const [popup, setPopup] = useState(null);
 
   const location = useLocation();
-  const [homePathLocation, setHomePathLocation] = useState(
-    location.pathname === "/"
-  );
+  const [atHomepage, setAtHomepage] = useState(location.pathname === "/");
 
   const [hasSearched, setHasSearched] = useState(false);
   const [searchedArticles, setSearchedArticles] = useState([]);
@@ -74,7 +72,7 @@ function App() {
 
   // Busca informação de qual pathname o usuário está
   useEffect(() => {
-    setHomePathLocation(location.pathname === "/");
+    setAtHomepage(location.pathname === "/");
   }, [location.pathname]);
 
   // Chamada da NewsApi
@@ -175,10 +173,10 @@ function App() {
           searchNewsFromApi,
         }}
       >
-        <CurrentPathContext.Provider value={homePathLocation}>
+        <CurrentPathContext.Provider value={atHomepage}>
           <div
             className={
-              homePathLocation
+              atHomepage
                 ? "app__body"
                 : "app__body app__body_without-background-image"
             }
