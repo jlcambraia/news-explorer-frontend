@@ -32,7 +32,7 @@ function getDateFromNDaysAgo(n) {
 
 // Configuração para API
 const apiConfig = {
-  baseUrl: "https://newsapi.org/v2/everything?",
+  baseUrl: "https://nomoreparties.co/news/v2/everything?",
   token: "a300df36ab4040ff821994aeec2479fe",
   makeRequest: (...args) => fetch(...args),
   fromDate: getDateFromNDaysAgo(7),
