@@ -79,7 +79,7 @@ export default function Register() {
             placeholder="Insira seu nome de usuário"
             onChange={handleUsernameChange}
             minLength={2}
-            maxLength={20}
+            maxLength={30}
           />
           {!isUsernameValid && (
             <span className="register__username-input-error-message">
