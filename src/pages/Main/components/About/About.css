@@ -1,0 +1,96 @@
+.about {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  gap: 56px;
+  padding: 80px 104px;
+}
+
+.about__image {
+  width: 464px;
+  height: 464px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.about__title {
+  color: #000;
+  font-size: 40px;
+  line-height: 46px;
+  font-family: "RobotoSlab";
+  font-weight: 400;
+  margin: 0 0 24px;
+}
+
+.about__description {
+  color: #000;
+}
+
+.about__description-paragraph {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.about__description-paragraph:last-of-type {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 1000px) {
+  .about {
+    gap: 32px;
+    padding: 40px;
+  }
+  .about__image {
+    width: 264px;
+    height: 264px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about {
+    gap: 32px;
+    padding: 40px;
+  }
+
+  .about__image {
+    width: 232px;
+    height: 232px;
+  }
+
+  .about__title {
+    font-size: 30px;
+    line-height: 40px;
+    margin: 0 0 16px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .about {
+    flex-direction: column;
+  }
+
+  .about__image {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media screen and (max-width: 543px) {
+  .about {
+    gap: 24px;
+    padding: 32px 16px 50px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about__image {
+    width: 272px;
+    height: 272px;
+  }
+
+  .about__title {
+    font-size: 30px;
+    line-height: 40px;
+    margin: 0 0 16px;
+  }
+}
