@@ -32,8 +32,8 @@ function getDateFromNDaysAgo(n) {
 
 // Configuração para API
 const apiConfig = {
-  baseUrl: "https://nomoreparties.co/news/v2/top-headlines?",
-  token: "a300df36ab4040ff821994aeec2479fe",
+  baseUrl: import.meta.env.VITE_APP_API_BASE_URL,
+  token: import.meta.env.VITE_APP_API_TOKEN,
   makeRequest: (...args) => fetch(...args),
   fromDate: getDateFromNDaysAgo(7),
   toDate: new Date().toISOString().slice(0, 10),
