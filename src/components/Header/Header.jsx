@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import Navigation from "../Navigation/Navigation";
 
-export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
+export default function Header({ openPopup, loginPopup, handleLogout }) {
   const [isMobile, setisMobile] = useState(window.innerWidth <= 543);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -71,7 +71,7 @@ export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
           <Navigation
             openPopup={openPopup}
             loginPopup={loginPopup}
-            isUserLoggedIn={isUserLoggedIn}
+            handleLogout={handleLogout}
             className="navigation_desktop"
           />
         )}
@@ -82,8 +82,8 @@ export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
             loginPopup={loginPopup}
             isMobileMenuOpen={isMobileMenuOpen}
             isMobile={isMobile}
-            isUserLoggedIn={isUserLoggedIn}
             setIsMobileMenuOpen={setIsMobileMenuOpen}
+            handleLogout={handleLogout}
             className="navigation_mobile"
           />
         )}
