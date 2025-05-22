@@ -220,6 +220,13 @@ function App() {
     handleSavedArticles();
   }, []);
 
+  // Faz o logout do site
+  const handleLogout = () => {
+    tokenService.removeToken();
+    setIsUserLoggedIn(false);
+    navigate("/");
+  };
+
   function handleOpenPopup(popup) {
     setPopup(null);
     setPopup(popup);
