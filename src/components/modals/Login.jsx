@@ -2,7 +2,7 @@ import "./Login.css";
 
 import { useState } from "react";
 
-export default function Login() {
+export default function Login({ handleLogin }) {
   const [emailInputValue, setEmailInputValue] = useState("");
   const [passwordInputValue, setPasswordInputValue] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(true);
@@ -62,6 +62,7 @@ export default function Login() {
         </label>
       </form>
       <button
+        onClick={() => handleLogin(emailInputValue, passwordInputValue)}
         className={
           isEmailValid &&
           emailInputValue.length > 0 &&
