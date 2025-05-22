@@ -2,7 +2,7 @@ import "./Register.css";
 
 import { useState } from "react";
 
-export default function Register() {
+export default function Register({ handleRegistration }) {
   const [emailInputValue, setEmailInputValue] = useState("");
   const [passwordInputValue, setPasswordInputValue] = useState("");
   const [usernameInputValue, setUsernameInputValue] = useState("");
@@ -89,6 +89,13 @@ export default function Register() {
         </label>
       </form>
       <button
+        onClick={() =>
+          handleRegistration(
+            emailInputValue,
+            passwordInputValue,
+            usernameInputValue
+          )
+        }
         className={
           isEmailValid &&
           emailInputValue.length > 0 &&
