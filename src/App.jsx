@@ -1,7 +1,13 @@
 import "./App.css";
 
 import { useState, useEffect } from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 import { CurrentPathContext } from "./contexts/CurrentPathContext";
 import { SearchArticlesContext } from "./contexts/SearchArticlesContext.js";
@@ -20,10 +26,8 @@ import Login from "./components/modals/Login";
 import Register from "./components/modals/Register";
 
 function App() {
-  // Criado apenas para desenvolvimento. Colocar em useState depois que implementar o login.
-  const isUserLoggedIn = true;
-  // Criado apenas para desenvolvimento. Colocar em useState depois que implementar o login.
-  const username = "Revisor";
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const [popup, setPopup] = useState(null);
 
