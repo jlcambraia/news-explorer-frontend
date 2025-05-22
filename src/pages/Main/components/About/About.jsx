@@ -18,7 +18,7 @@ export default function About() {
           </span>
           <span className="about__description-paragraph">
             Sou um profissional em transição de carreira para a área da
-            teconologia.
+            tecnologia.
           </span>
           <span className="about__description-paragraph">
             Após quase 15 anos atuando com Strategic Sourcing e gerenciando dois
