@@ -9,7 +9,7 @@ import { UserContext } from "../../../../contexts/UserContext";
 
 export default function SavedNewsHeader() {
   const { savedArticles } = useContext(SearchArticlesContext);
-  const username = useContext(UserContext);
+  const { username } = useContext(UserContext);
 
   const keywords = extractUniqueKeywords(savedArticles);
 
