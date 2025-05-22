@@ -251,7 +251,7 @@ function App() {
           searchNewsFromApi,
         }}
       >
-        <UserContext.Provider value={username}>
+        <UserContext.Provider value={{ isUserLoggedIn, username }}>
           <CurrentPathContext.Provider value={atHomepage}>
             <div
               className={
@@ -270,7 +270,6 @@ function App() {
                   path="/"
                   element={
                     <Main
-                      isUserLoggedIn={isUserLoggedIn}
                       handleSaveArticle={handleSaveArticle} // Será removido ou atualizado após desenvolvimento da Api correta.
                     />
                   }
@@ -279,7 +278,6 @@ function App() {
                   path="/saved-news"
                   element={
                     <SavedNews
-                      isUserLoggedIn={isUserLoggedIn}
                       handleOpenPopup={handleOpenPopup}
                       handleRemoveArticle={handleRemoveArticle} // Será removido ou atualizado após desenvolvimento da Api correta.
                     />
