@@ -37,6 +37,8 @@ function App() {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [searchError, setSearchError] = useState(false);
   const [articlesToRenderize, setArticlesToRenderize] = useState(3);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [username, setUsername] = useState("Carregando...");
 
   const loginPopup = { title: "Entrar", children: <Login /> };
   const registerPopup = { title: "Inscrever-se", children: <Register /> };
