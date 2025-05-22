@@ -7,7 +7,7 @@ import { CurrentPathContext } from "./contexts/CurrentPathContext";
 import { SearchArticlesContext } from "./contexts/SearchArticlesContext.js";
 import { UserContext } from "./contexts/UserContext.js";
 
-import { api } from "./utils/apis/NewsApi.js";
+import { newsApi } from "./utils/apis/NewsApi.js";
 // Importação de Api falsa apenas para desenvolvimento e funcionamento simulado
 import { mockApi } from "./utils/apis/MockApi.js";
 
@@ -112,7 +112,7 @@ function App() {
     setIsSearchingForArticles(true);
 
     try {
-      const results = await api.searchForNews(inputValue);
+      const results = await newsApi.getArticles(inputValue);
       setHasSearched(true);
       setSearchedArticles(results.articles);
       localStorage.setItem(
