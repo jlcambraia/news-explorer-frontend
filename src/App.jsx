@@ -58,14 +58,14 @@ function App() {
   };
 
   // Este será o children do Popup quando o registro do usuário for bem sucedido.
-  // const successfulRegistration = {
-  //   title: "Cadastro concluído com sucesso!",
-  // };
+  const successfulRegistration = {
+    title: "Cadastro concluído com sucesso!",
+  };
 
   // Este será o children do Popup quando o registro do usuário for mal sucedido.
-  // const failedRegistration = {
-  //   title: "O cadastro falhou, por favor, tente novamente.",
-  // };
+  const failedRegistration = {
+    title: "O cadastro falhou, por favor, tente novamente.",
+  };
 
   useEffect(() => {
     const savedArticlesAtLocalStorage =
