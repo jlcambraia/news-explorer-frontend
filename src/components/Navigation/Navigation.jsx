@@ -11,11 +11,11 @@ export default function Navigation({
   loginPopup,
   className,
   isMobileMenuOpen,
-  isUserLoggedIn,
   setIsMobileMenuOpen,
+  handleLogout,
 }) {
+  const { username, isUserLoggedIn } = useContext(UserContext);
   const atHomepage = useContext(CurrentPathContext);
-  const username = useContext(UserContext);
 
   const handleActiveLink = ({ isActive }) =>
     (atHomepage
@@ -77,6 +77,7 @@ export default function Navigation({
             >
               {username}
               <img
+                onClick={handleLogout}
                 className="navigation__button-image"
                 src={
                   atHomepage
