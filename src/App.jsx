@@ -79,6 +79,26 @@ function App() {
     setAtHomepage(location.pathname === "/");
   }, [location.pathname]);
 
+  // Loga automaticamente caso tenha token salvo
+  useEffect(() => {
+    const token = tokenService.getToken();
+
+    if (!token) {
+      return;
+    }
+
+    const userdata = async () => {
+      try {
+        const userdata = await mainApi.getUserInfo();
+        setUsername(userdata.data.name);
+        setIsUserLoggedIn(true);
+      } catch {
+        setIsUserLoggedIn(false);
+      }
+    };
+    userdata();
+  }, []);
+
   // Chamada da NewsApi
   const searchNewsFromApi = async (inputValue) => {
     if (!inputValue) {
