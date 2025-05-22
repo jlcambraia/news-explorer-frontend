@@ -263,7 +263,7 @@ function App() {
               <Header
                 openPopup={handleOpenPopup}
                 loginPopup={loginPopup}
-                isUserLoggedIn={isUserLoggedIn}
+                handleLogout={handleLogout}
               />
               <Routes>
                 <Route
