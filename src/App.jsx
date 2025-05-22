@@ -129,7 +129,53 @@ function App() {
     }
   };
 
-  // Simula salvar artigos em uma Api falsa. Será removido ou atualizado após desenvolvimento da Api correta.
+  // Chamada de AuthApi para Register
+  const handleRegistration = async (email, password, name) => {
+    if (!email && !password && !name) {
+      return;
+    }
+
+    try {
+      const registeredUser = await authApi.register(email, password, name);
+      if (registeredUser) {
+        handleClosePopup();
+        handleOpenPopup(successfulRegistration);
+      }
+    } catch {
+      handleOpenPopup(failedRegistration);
+    }
+  };
+
+  // Reorganizar App.jsx, reorganizando as chamadas
+  const registerPopup = {
+    title: "Inscrever-se",
+    children: <Register handleRegistration={handleRegistration} />,
+  };
+
+  // Chamada de AuthApi para Login
+  const handleLogin = async (email, password) => {
+    if (!email && !password) {
+      return;
+    }
+
+    try {
+      const authorizeUser = await authApi.authorize(email, password);
+      tokenService.setToken(authorizeUser.token);
+      setUsername(authorizeUser.name);
+      setIsUserLoggedIn(true);
+      handleClosePopup();
+    } catch {
+      handleOpenPopup(failedRegistration);
+    }
+  };
+
+  // Reorganizar App.jsx, reorganizando as chamadas
+  const loginPopup = {
+    title: "Entrar",
+    children: <Login handleLogin={handleLogin} />,
+  };
+
+  // Salva artigos na MainApi
   const handleSaveArticle = async (article) => {
     const alreadySaved = savedArticles.some((a) => a.url === article.url);
     if (alreadySaved) {
