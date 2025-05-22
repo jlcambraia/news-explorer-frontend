@@ -5,6 +5,7 @@ import imagePlaceholder from "../../../../assets/images/placeholders/imagePlaceh
 import { useState, useContext, useEffect } from "react";
 import { CurrentPathContext } from "../../../../contexts/CurrentPathContext";
 import { SearchArticlesContext } from "../../../../contexts/SearchArticlesContext";
+import { UserContext } from "../../../../contexts/UserContext";
 import { formatArticleDate } from "../../../../utils/validators/formatDate";
 
 import Confirmation from "../../../modals/ConfirmationButton";
@@ -21,6 +22,7 @@ export default function NewsCard({
   const atHomepage = useContext(CurrentPathContext);
 
   const { savedArticles } = useContext(SearchArticlesContext);
+  const { isUserLoggedIn } = useContext(UserContext);
 
   const formattedDate = formatArticleDate(article.publishedAt);
 
