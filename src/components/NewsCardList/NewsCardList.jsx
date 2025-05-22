@@ -7,7 +7,6 @@ import { CurrentPathContext } from "../../contexts/CurrentPathContext";
 import { SearchArticlesContext } from "../../contexts/SearchArticlesContext";
 
 export default function NewsCardList({
-  isUserLoggedIn,
   handleOpenPopup,
   handleSaveArticle,
   handleRemoveArticle,
@@ -74,7 +73,6 @@ export default function NewsCardList({
                     <NewsCard
                       key={article.url}
                       article={article}
-                      isUserLoggedIn={isUserLoggedIn}
                       handleSaveArticle={handleSaveArticle} // Será removido ou atualizado após desenvolvimento da Api correta.
                     />
                   ))}
