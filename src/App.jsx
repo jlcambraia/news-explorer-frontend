@@ -30,10 +30,7 @@ function App() {
   const navigate = useNavigate();
 
   const [popup, setPopup] = useState(null);
-
-  const location = useLocation();
   const [atHomepage, setAtHomepage] = useState(location.pathname === "/");
-
   const [hasSearched, setHasSearched] = useState(false);
   const [searchedArticles, setSearchedArticles] = useState([]);
   const [savedArticles, setSavedArticles] = useState([]);
@@ -44,8 +41,6 @@ function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [username, setUsername] = useState("Carregando...");
 
-  const loginPopup = { title: "Entrar", children: <Login /> };
-  const registerPopup = { title: "Inscrever-se", children: <Register /> };
   const keywordErrorPopup = { title: "Por favor, insira uma palavra-chave." };
 
   // Popup falso para simular tratamento de erros na Api falsa.
