@@ -2,7 +2,7 @@ import "./Register.css";
 import { useInputValidator } from "../../utils/validators/inputValidator.js";
 
 import { useContext } from "react";
-import { RegistrationStatusContext } from "../../contexts/RegisterStatusContext.js";
+import { RegistrationStatusContext } from "../../contexts/RegistrationStatusContext.js";
 
 export default function Register({ handleRegistration }) {
   const email = useInputValidator();
