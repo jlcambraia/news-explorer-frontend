@@ -26,6 +26,7 @@ import Footer from "./components/Footer/Footer";
 import Popup from "./components/modals/Popup";
 import Login from "./components/modals/Login";
 import Register from "./components/modals/Register";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
 
 function App() {
   const location = useLocation();
@@ -264,7 +265,12 @@ function App() {
         }}
       >
         <CurrentUserContext.Provider
-          value={{ isUserLoggedIn, currentUserInfo }}
+          value={{
+            isUserLoggedIn,
+            currentUserInfo,
+            handleOpenPopup,
+            loginPopup,
+          }}
         >
           <CurrentPathContext.Provider value={atHomepage}>
             <RegistrationStatusContext.Provider value={registrationFailed}>
@@ -288,10 +294,12 @@ function App() {
                   <Route
                     path="/saved-news"
                     element={
-                      <SavedNews
-                        handleOpenPopup={handleOpenPopup}
-                        handleRemoveArticle={handleRemoveArticle}
-                      />
+                      <ProtectedRoute>
+                        <SavedNews
+                          handleOpenPopup={handleOpenPopup}
+                          handleRemoveArticle={handleRemoveArticle}
+                        />
+                      </ProtectedRoute>
                     }
                   />
                   <Route path="*" element={<Navigate to="/" />} />
