@@ -2,7 +2,7 @@ export function extractUniqueKeywords(articles) {
   const keywords = [];
 
   articles.forEach((article) => {
-    const source = article.source?.name;
+    const source = article.source;
     if (source && !keywords.includes(source)) {
       keywords.push(source);
     }
