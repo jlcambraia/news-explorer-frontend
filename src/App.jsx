@@ -12,6 +12,7 @@ import {
 import { CurrentPathContext } from "./contexts/CurrentPathContext";
 import { SearchArticlesContext } from "./contexts/SearchArticlesContext.js";
 import { CurrentUserContext } from "./contexts/CurrentUserContext.js";
+import { RegistrationStatusContext } from "./contexts/RegistrationStatusContext.js";
 
 import { newsApi } from "./utils/apis/NewsApi.js";
 import { authApi } from "./utils/apis/AuthApi.js";
@@ -41,6 +42,7 @@ function App() {
   const [articlesToRenderize, setArticlesToRenderize] = useState(3);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [currentUserInfo, setCurrentUserInfo] = useState(null);
+  const [registrationFailed, setRegistrationFailed] = useState(false);
 
   const keywordErrorPopup = { title: "Por favor, insira uma palavra-chave." };
 
@@ -142,9 +144,10 @@ function App() {
       if (registeredUser) {
         handleClosePopup();
         handleOpenPopup(successfulRegistration);
+        setRegistrationFailed(false);
       }
     } catch {
-      handleOpenPopup(failedRegistration);
+      setRegistrationFailed(true);
     }
   };
 
@@ -264,6 +267,7 @@ function App() {
           value={{ isUserLoggedIn, currentUserInfo }}
         >
           <CurrentPathContext.Provider value={atHomepage}>
+            <RegistrationStatusContext.Provider value={registrationFailed}>
             <div
               className={
                 atHomepage
@@ -306,6 +310,7 @@ function App() {
                 </Popup>
               )}
             </div>
+            </RegistrationStatusContext.Provider>
           </CurrentPathContext.Provider>
         </CurrentUserContext.Provider>
       </SearchArticlesContext.Provider>
