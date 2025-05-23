@@ -272,18 +272,14 @@ function App() {
               <Routes>
                 <Route
                   path="/"
-                  element={
-                    <Main
-                      handleSaveArticle={handleSaveArticle} // Será removido ou atualizado após desenvolvimento da Api correta.
-                    />
-                  }
+                  element={<Main handleSaveArticle={handleSaveArticle} />}
                 />
                 <Route
                   path="/saved-news"
                   element={
                     <SavedNews
                       handleOpenPopup={handleOpenPopup}
-                      handleRemoveArticle={handleRemoveArticle} // Será removido ou atualizado após desenvolvimento da Api correta.
+                      handleRemoveArticle={handleRemoveArticle}
                     />
                   }
                 />
