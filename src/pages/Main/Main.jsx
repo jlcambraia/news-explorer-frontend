@@ -6,9 +6,7 @@ export default function Main({ handleSaveArticle }) {
   return (
     <main>
       <Search />
-      <NewsCardList
-        handleSaveArticle={handleSaveArticle} // Será removido ou atualizado após desenvolvimento da Api correta.
-      />
+      <NewsCardList handleSaveArticle={handleSaveArticle} />
       <About />
     </main>
   );

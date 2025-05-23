@@ -8,7 +8,7 @@ export default function SavedNews({ handleOpenPopup, handleRemoveArticle }) {
         <SavedNewsHeader />
         <NewsCardList
           handleOpenPopup={handleOpenPopup}
-          handleRemoveArticle={handleRemoveArticle} // Será removido ou atualizado após desenvolvimento da Api correta.
+          handleRemoveArticle={handleRemoveArticle}
         />
       </main>
     </>
