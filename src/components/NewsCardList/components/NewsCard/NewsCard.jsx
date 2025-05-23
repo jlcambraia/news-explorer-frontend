@@ -5,7 +5,7 @@ import imagePlaceholder from "../../../../assets/images/placeholders/imagePlaceh
 import { useState, useContext, useEffect } from "react";
 import { CurrentPathContext } from "../../../../contexts/CurrentPathContext";
 import { SearchArticlesContext } from "../../../../contexts/SearchArticlesContext";
-import { UserContext } from "../../../../contexts/UserContext";
+import { CurrentUserContext } from "../../../../contexts/CurrentUserContext";
 import { formatArticleDate } from "../../../../utils/validators/formatDate";
 
 import Confirmation from "../../../modals/ConfirmationButton";
@@ -19,10 +19,11 @@ export default function NewsCard({
 }) {
   const [isButtonHovered, setIsButtonHovered] = useState(false);
   const [isArticleSaved, setIsArticleSaved] = useState(false);
+
   const atHomepage = useContext(CurrentPathContext);
 
   const { savedArticles } = useContext(SearchArticlesContext);
-  const { isUserLoggedIn } = useContext(UserContext);
+  const { isUserLoggedIn, currentUserInfo } = useContext(CurrentUserContext);
 
   const formattedDate = formatArticleDate(article.publishedAt);
 

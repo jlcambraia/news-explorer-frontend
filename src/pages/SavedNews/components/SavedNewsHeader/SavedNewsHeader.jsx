@@ -5,11 +5,11 @@ import {
 } from "../../../../utils/validators/keywords";
 import { useContext } from "react";
 import { SearchArticlesContext } from "../../../../contexts/SearchArticlesContext";
-import { UserContext } from "../../../../contexts/UserContext";
+import { CurrentUserContext } from "../../../../contexts/CurrentUserContext";
 
 export default function SavedNewsHeader() {
   const { savedArticles } = useContext(SearchArticlesContext);
-  const { username } = useContext(UserContext);
+  const { currentUserInfo } = useContext(CurrentUserContext);
 
   const keywords = extractUniqueKeywords(savedArticles);
 
@@ -17,7 +17,7 @@ export default function SavedNewsHeader() {
     <div className="saved-news-header">
       <p className="saved-news-header__breadcrumb">Artigos salvos</p>
       <h2 className="saved-news-header__title">
-        {username}, você tem {savedArticles.length}
+        {currentUserInfo.data.name}, você tem {savedArticles.length}
         {savedArticles.length === 1 ? " artigo " : " artigos "}
         {savedArticles.length === 1 ? "salvo" : "salvos"}
       </h2>

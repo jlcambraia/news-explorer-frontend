@@ -11,7 +11,7 @@ import {
 
 import { CurrentPathContext } from "./contexts/CurrentPathContext";
 import { SearchArticlesContext } from "./contexts/SearchArticlesContext.js";
-import { UserContext } from "./contexts/UserContext.js";
+import { CurrentUserContext } from "./contexts/CurrentUserContext.js";
 
 import { newsApi } from "./utils/apis/NewsApi.js";
 // Importação de Api falsa apenas para desenvolvimento e funcionamento simulado
@@ -252,7 +252,9 @@ function App() {
           searchNewsFromApi,
         }}
       >
-        <UserContext.Provider value={{ isUserLoggedIn, username }}>
+        <CurrentUserContext.Provider
+          value={{ isUserLoggedIn, currentUserInfo }}
+        >
           <CurrentPathContext.Provider value={atHomepage}>
             <div
               className={
@@ -301,7 +303,7 @@ function App() {
               )}
             </div>
           </CurrentPathContext.Provider>
-        </UserContext.Provider>
+        </CurrentUserContext.Provider>
       </SearchArticlesContext.Provider>
     </>
   );
