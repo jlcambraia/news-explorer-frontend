@@ -61,8 +61,8 @@ function App() {
   };
 
   // Este será o children do Popup quando o registro do usuário for mal sucedido.
-  const failedRegistration = {
-    title: "O cadastro falhou, por favor, tente novamente.",
+  const failedLogin = {
+    title: "O login falhou. Por favor, tente novamente com os dados corretos.",
   };
 
   useEffect(() => {
@@ -171,7 +171,7 @@ function App() {
       setIsUserLoggedIn(true);
       handleClosePopup();
     } catch {
-      handleOpenPopup(failedRegistration);
+      handleOpenPopup(failedLogin);
     }
   };
 
@@ -268,48 +268,48 @@ function App() {
         >
           <CurrentPathContext.Provider value={atHomepage}>
             <RegistrationStatusContext.Provider value={registrationFailed}>
-            <div
-              className={
-                atHomepage
-                  ? "app__body"
-                  : "app__body app__body_without-background-image"
-              }
-            >
-              <Header
-                openPopup={handleOpenPopup}
-                loginPopup={loginPopup}
-                handleLogout={handleLogout}
-              />
-              <Routes>
-                <Route
-                  path="/"
-                  element={<Main handleSaveArticle={handleSaveArticle} />}
-                />
-                <Route
-                  path="/saved-news"
-                  element={
-                    <SavedNews
-                      handleOpenPopup={handleOpenPopup}
-                      handleRemoveArticle={handleRemoveArticle}
-                    />
-                  }
-                />
-                <Route path="*" element={<Navigate to="/" />} />
-              </Routes>
-              <Footer />
-
-              {popup && (
-                <Popup
+              <div
+                className={
+                  atHomepage
+                    ? "app__body"
+                    : "app__body app__body_without-background-image"
+                }
+              >
+                <Header
                   openPopup={handleOpenPopup}
-                  closePopup={handleClosePopup}
-                  title={popup.title}
-                  registerPopup={registerPopup}
                   loginPopup={loginPopup}
-                >
-                  {popup.children}
-                </Popup>
-              )}
-            </div>
+                  handleLogout={handleLogout}
+                />
+                <Routes>
+                  <Route
+                    path="/"
+                    element={<Main handleSaveArticle={handleSaveArticle} />}
+                  />
+                  <Route
+                    path="/saved-news"
+                    element={
+                      <SavedNews
+                        handleOpenPopup={handleOpenPopup}
+                        handleRemoveArticle={handleRemoveArticle}
+                      />
+                    }
+                  />
+                  <Route path="*" element={<Navigate to="/" />} />
+                </Routes>
+                <Footer />
+
+                {popup && (
+                  <Popup
+                    openPopup={handleOpenPopup}
+                    closePopup={handleClosePopup}
+                    title={popup.title}
+                    registerPopup={registerPopup}
+                    loginPopup={loginPopup}
+                  >
+                    {popup.children}
+                  </Popup>
+                )}
+              </div>
             </RegistrationStatusContext.Provider>
           </CurrentPathContext.Provider>
         </CurrentUserContext.Provider>
