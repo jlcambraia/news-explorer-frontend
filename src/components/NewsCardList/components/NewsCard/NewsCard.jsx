@@ -6,7 +6,7 @@ import { useState, useContext, useEffect } from "react";
 import { CurrentPathContext } from "../../../../contexts/CurrentPathContext";
 import { SearchArticlesContext } from "../../../../contexts/SearchArticlesContext";
 import { CurrentUserContext } from "../../../../contexts/CurrentUserContext";
-import { formatArticleDate } from "../../../../utils/validators/formatDate";
+import { formatArticleDate } from "../../../../utils/validators/formatDateValidator";
 
 import ConfirmationButton from "../../../modals/ConfirmationButton";
 
