@@ -2,7 +2,7 @@ import "./NewsCardList.css";
 import NewsCard from "./components/NewsCard/NewsCard";
 import notFoundIcon from "../../assets/images/icons/not-found-icon.svg";
 
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { CurrentPathContext } from "../../contexts/CurrentPathContext";
 import { SearchArticlesContext } from "../../contexts/SearchArticlesContext";
 
@@ -23,6 +23,10 @@ export default function NewsCardList({
     articlesToRenderize,
     setArticlesToRenderize,
   } = useContext(SearchArticlesContext);
+
+  const articlesToShow = useMemo(() => {
+    return searchedArticles.slice(0, articlesToRenderize);
+  }, [searchedArticles, articlesToRenderize]);
 
   const handleShowMoreButton = () => {
     setArticlesToRenderize((articles) => articles + 3);
@@ -67,15 +71,13 @@ export default function NewsCardList({
               </div>
 
               <ul className="news-card-list__cards">
-                {searchedArticles
-                  .slice(0, articlesToRenderize)
-                  .map((article) => (
-                    <NewsCard
-                      key={article.url}
-                      article={article}
+                {articlesToShow.map((article) => (
+                  <NewsCard
+                    key={article.url}
+                    article={article}
                     handleSaveArticle={handleSaveArticle}
-                    />
-                  ))}
+                  />
+                ))}
               </ul>
 
               {searchedArticles.length > 3 &&
@@ -110,7 +112,7 @@ export default function NewsCardList({
             <ul className="news-card-list__cards">
               {savedArticles.map((article) => (
                 <NewsCard
-                  key={article.url}
+                  key={article._id}
                   article={article}
                   handleOpenPopup={handleOpenPopup}
                   handleRemoveArticle={handleRemoveArticle}
