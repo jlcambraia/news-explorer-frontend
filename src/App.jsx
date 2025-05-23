@@ -49,7 +49,7 @@ function App() {
     title: "Tivemos um erro ao salvar um artigo, lamentamos o ocorrido",
   };
   // Popup falso para simular tratamento de erros na Api falsa.
-  const mockApiRemoveArticlesErrorPopup = {
+  const removeArticlesErrorPopup = {
     title: "Tivemos um erro ao remover um artigo salvo, lamentamos o ocorrido",
   };
 
@@ -194,15 +194,16 @@ function App() {
     }
   };
 
-  // Simula remover artigos em uma Api falsa. Será removido ou atualizado após desenvolvimento da Api correta.
+  // Remove artigos na MainApi
   const handleRemoveArticle = async (articleId) => {
     try {
-      await mockApi.removeArticle(articleId);
-      const updatedArticles = await mockApi.getSavedArticles();
+      await mainApi.deleteArticle(articleId);
+      const articles = await mainApi.getArticles();
+      const updatedArticles = articles.data;
       setSavedArticles(updatedArticles);
       handleClosePopup();
     } catch {
-      handleOpenPopup(mockApiRemoveArticlesErrorPopup);
+      handleOpenPopup(removeArticlesErrorPopup);
     }
   };
 
