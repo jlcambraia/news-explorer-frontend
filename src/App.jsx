@@ -14,8 +14,9 @@ import { SearchArticlesContext } from "./contexts/SearchArticlesContext.js";
 import { CurrentUserContext } from "./contexts/CurrentUserContext.js";
 
 import { newsApi } from "./utils/apis/NewsApi.js";
-// Importação de Api falsa apenas para desenvolvimento e funcionamento simulado
-import { mockApi } from "./utils/apis/MockApi.js";
+import { authApi } from "./utils/apis/AuthApi.js";
+import { mainApi } from "./utils/apis/MainApi.js";
+import { tokenService } from "./utils/auth/Token.js";
 
 import Header from "./components/Header/Header";
 import Main from "./pages/Main/Main";
