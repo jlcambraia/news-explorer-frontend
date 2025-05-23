@@ -2,7 +2,7 @@ import "./SavedNewsHeader.css";
 import {
   extractUniqueKeywords,
   formatKeywordsList,
-} from "../../../../utils/validators/keywords";
+} from "../../../../utils/validators/keywordsValidator";
 import { useContext } from "react";
 import { SearchArticlesContext } from "../../../../contexts/SearchArticlesContext";
 import { CurrentUserContext } from "../../../../contexts/CurrentUserContext";
