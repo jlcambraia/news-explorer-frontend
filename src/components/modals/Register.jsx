@@ -1,38 +1,10 @@
 import "./Register.css";
 
-import { useState } from "react";
+import { useContext } from "react";
+import { RegistrationStatusContext } from "../../contexts/RegisterStatusContext.js";
 
 export default function Register({ handleRegistration }) {
-  const [emailInputValue, setEmailInputValue] = useState("");
-  const [passwordInputValue, setPasswordInputValue] = useState("");
-  const [usernameInputValue, setUsernameInputValue] = useState("");
-  const [isEmailValid, setIsEmailValid] = useState(true);
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [isUsernameValid, setIsUsernameValid] = useState(true);
-  const [emailErrorMessage, setEmailErrorMessage] = useState("");
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState(true);
-  const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
-
-  function handleEmailChange(evt) {
-    const input = evt.target;
-    setEmailInputValue(input.value.trim().replace(/\s+/g, ""));
-    setIsEmailValid(input.validity.valid);
-    setEmailErrorMessage(input.validationMessage);
-  }
-
-  function handlePasswordChange(evt) {
-    const input = evt.target;
-    setPasswordInputValue(input.value.trim().replace(/\s+/g, ""));
-    setIsPasswordValid(input.validity.valid);
-    setPasswordErrorMessage(input.validationMessage);
-  }
-
-  function handleUsernameChange(evt) {
-    const input = evt.target;
-    setUsernameInputValue(input.value.trim().replace(/\s+/g, ""));
-    setIsUsernameValid(input.validity.valid);
-    setUsernameErrorMessage(input.validationMessage);
-  }
+  const registrationFailed = useContext(RegistrationStatusContext);
 
   return (
     <>
@@ -88,6 +60,12 @@ export default function Register({ handleRegistration }) {
           )}
         </label>
       </form>
+      <div className="register__button-and-error-container">
+        {registrationFailed && (
+          <span className="register__registration-error-message">
+            Este e-mail não está disponível
+          </span>
+        )}
       <button
         onClick={() =>
           handleRegistration(
