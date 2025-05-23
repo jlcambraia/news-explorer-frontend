@@ -51,7 +51,7 @@ export default function Popup({
                 onClick={() => openPopup(registerPopup)}
                 className="popup__signup-link"
               >
-                Registrar
+                Inscreva-se
               </Link>
             </p>
           )}
