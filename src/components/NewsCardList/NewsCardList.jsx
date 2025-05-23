@@ -73,7 +73,7 @@ export default function NewsCardList({
                     <NewsCard
                       key={article.url}
                       article={article}
-                      handleSaveArticle={handleSaveArticle} // Será removido ou atualizado após desenvolvimento da Api correta.
+                    handleSaveArticle={handleSaveArticle}
                     />
                   ))}
               </ul>
@@ -113,7 +113,7 @@ export default function NewsCardList({
                   key={article.url}
                   article={article}
                   handleOpenPopup={handleOpenPopup}
-                  handleRemoveArticle={handleRemoveArticle} // Será removido daqui após desenvolvimento da Api correta.
+                  handleRemoveArticle={handleRemoveArticle}
                 />
               ))}
             </ul>
