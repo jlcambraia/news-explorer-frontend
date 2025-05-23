@@ -1,4 +1,4 @@
-class Api {
+class NewsApi {
   constructor({ baseUrl, token, makeRequest, fromDate, toDate }) {
     this._baseUrl = baseUrl;
     this._token = token;
@@ -7,11 +7,11 @@ class Api {
     this._toDate = toDate;
   }
 
-  _handleServerResponse(res) {
-    return res.ok ? res.json() : Promise.reject(console.log(res.status));
+  _handleResponse(res) {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   }
 
-  searchForNews(search) {
+  getArticles(search) {
     return this._makeRequest(
       `${this._baseUrl}q=${search}&from=${this._fromDate}&to=${this._toDate}&pageSize=100&apiKey=${this._token}`,
       {
@@ -19,7 +19,7 @@ class Api {
           authorization: this._token,
         },
       }
-    ).then(this._handleServerResponse);
+    ).then(this._handleResponse);
   }
 }
 
@@ -32,12 +32,12 @@ function getDateFromNDaysAgo(n) {
 
 // Configuração para API
 const apiConfig = {
-  baseUrl: import.meta.env.VITE_APP_API_BASE_URL,
-  token: import.meta.env.VITE_APP_API_TOKEN,
+  baseUrl: import.meta.env.VITE_APP_NEWSAPI_BASE_URL,
+  token: import.meta.env.VITE_APP_NEWSAPI_TOKEN,
   makeRequest: (...args) => fetch(...args),
   fromDate: getDateFromNDaysAgo(7),
   toDate: new Date().toISOString().slice(0, 10),
 };
 
 // Instância para o Api
-export const api = new Api(apiConfig);
+export const newsApi = new NewsApi(apiConfig);
