@@ -1,28 +1,15 @@
 import "./Login.css";
-
-import { useState } from "react";
+import { useInputValidator } from "../../utils/validators/inputValidator.js";
 
 export default function Login({ handleLogin }) {
-  const [emailInputValue, setEmailInputValue] = useState("");
-  const [passwordInputValue, setPasswordInputValue] = useState("");
-  const [isEmailValid, setIsEmailValid] = useState(true);
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [emailErrorMessage, setEmailErrorMessage] = useState("");
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState(true);
+  const email = useInputValidator();
+  const password = useInputValidator();
 
-  function handleEmailChange(evt) {
-    const input = evt.target;
-    setEmailInputValue(input.value.trim().replace(/\s+/g, ""));
-    setIsEmailValid(input.validity.valid);
-    setEmailErrorMessage(input.validationMessage);
-  }
-
-  function handlePasswordChange(evt) {
-    const input = evt.target;
-    setPasswordInputValue(input.value.trim().replace(/\s+/g, ""));
-    setIsPasswordValid(input.validity.valid);
-    setPasswordErrorMessage(input.validationMessage);
-  }
+  const isFormValid =
+    email.isValid &&
+    email.value.length > 0 &&
+    password.isValid &&
+    password.value.length > 0;
 
   return (
     <>
@@ -33,12 +20,12 @@ export default function Login({ handleLogin }) {
             className="login__email-input"
             type="email"
             placeholder="Insira seu email"
-            onChange={handleEmailChange}
+            onChange={email.handleChange}
             autoComplete="email"
           />
-          {!isEmailValid && (
+          {!email.isValid && (
             <span className="login__email-input-error-message">
-              {emailErrorMessage}
+              {email.errorMessage}
             </span>
           )}
         </label>
@@ -49,28 +36,21 @@ export default function Login({ handleLogin }) {
             className="login__password-input"
             type="password"
             placeholder="Insira a senha"
-            onChange={handlePasswordChange}
+            onChange={password.handleChange}
             minLength={8}
             maxLength={20}
             autoComplete="password"
           />
-          {!isPasswordValid && (
+          {!password.isValid && (
             <span className="login__password-input-error-message">
-              {passwordErrorMessage}
+              {password.errorMessage}
             </span>
           )}
         </label>
       </form>
       <button
-        onClick={() => handleLogin(emailInputValue, passwordInputValue)}
-        className={
-          isEmailValid &&
-          emailInputValue.length > 0 &&
-          isPasswordValid &&
-          passwordInputValue.length > 0
-            ? "login__button"
-            : "login__button_disabled"
-        }
+        onClick={() => handleLogin(email.value, password.value)}
+        className={isFormValid ? "login__button" : "login__button_disabled"}
       >
         Entrar
       </button>

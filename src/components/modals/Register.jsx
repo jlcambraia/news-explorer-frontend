@@ -1,9 +1,22 @@
 import "./Register.css";
+import { useInputValidator } from "../../utils/validators/inputValidator.js";
 
 import { useContext } from "react";
 import { RegistrationStatusContext } from "../../contexts/RegisterStatusContext.js";
 
 export default function Register({ handleRegistration }) {
+  const email = useInputValidator();
+  const password = useInputValidator();
+  const username = useInputValidator();
+
+  const isFormValid =
+    email.isValid &&
+    email.value.length > 0 &&
+    password.isValid &&
+    password.value.length > 0 &&
+    username.isValid &&
+    username.value.length > 0;
+
   const registrationFailed = useContext(RegistrationStatusContext);
 
   return (
@@ -15,12 +28,12 @@ export default function Register({ handleRegistration }) {
             className="register__email-input"
             type="email"
             placeholder="Insira seu email"
-            onChange={handleEmailChange}
+            onChange={email.handleChange}
             autoComplete="email"
           />
-          {!isEmailValid && (
+          {!email.isValid && (
             <span className="register__email-input-error-message">
-              {emailErrorMessage}
+              {email.errorMessage}
             </span>
           )}
         </label>
@@ -31,14 +44,14 @@ export default function Register({ handleRegistration }) {
             className="register__password-input"
             type="password"
             placeholder="Insira a senha"
-            onChange={handlePasswordChange}
+            onChange={password.handleChange}
             minLength={8}
             maxLength={20}
             autoComplete="password"
           />
-          {!isPasswordValid && (
+          {!password.isValid && (
             <span className="register__password-input-error-message">
-              {passwordErrorMessage}
+              {password.errorMessage}
             </span>
           )}
         </label>
@@ -49,13 +62,13 @@ export default function Register({ handleRegistration }) {
             className="register__username-input"
             type="text"
             placeholder="Insira seu nome de usuário"
-            onChange={handleUsernameChange}
+            onChange={username.handleChange}
             minLength={2}
             maxLength={30}
           />
-          {!isUsernameValid && (
+          {!username.isValid && (
             <span className="register__username-input-error-message">
-              {usernameErrorMessage}
+              {username.errorMessage}
             </span>
           )}
         </label>
@@ -66,27 +79,17 @@ export default function Register({ handleRegistration }) {
             Este e-mail não está disponível
           </span>
         )}
-      <button
-        onClick={() =>
-          handleRegistration(
-            emailInputValue,
-            passwordInputValue,
-            usernameInputValue
-          )
-        }
-        className={
-          isEmailValid &&
-          emailInputValue.length > 0 &&
-          isPasswordValid &&
-          passwordInputValue.length > 0 &&
-          isUsernameValid &&
-          usernameInputValue.length > 0
-            ? "register__button"
-            : "register__button_disabled"
-        }
-      >
-        Inscrever-se
-      </button>
+        <button
+          onClick={() =>
+            handleRegistration(email.value, password.value, username.value)
+          }
+          className={
+            isFormValid ? "register__button" : "register__button_disabled"
+          }
+        >
+          Inscrever-se
+        </button>
+      </div>
     </>
   );
 }
