@@ -207,23 +207,27 @@ function App() {
     }
   };
 
-  // Simula buscar artigos em uma Api falsa. Será removido ou atualizado após desenvolvimento da Api correta.
+  // Busca artigos salvos na MainApi
+
   useEffect(() => {
-    const handleSavedArticles = async () => {
+    const handleGetArticles = async () => {
       try {
-        const articles = await mockApi.getSavedArticles();
+        const receivedArticles = await mainApi.getArticles();
+        const articles = receivedArticles.data;
         setSavedArticles(articles);
       } catch {
-        const mockApiGetArticlesErrorPopup = {
+        const getArticlesErrorPopup = {
           title:
             "Tivemos um erro ao tentar buscar os artigos salvos, lamentamos o ocorrido",
         };
-        handleOpenPopup(mockApiGetArticlesErrorPopup);
+        handleOpenPopup(getArticlesErrorPopup);
       }
     };
 
-    handleSavedArticles();
-  }, []);
+    if (isUserLoggedIn) {
+      handleGetArticles();
+    }
+  }, [isUserLoggedIn]);
 
   // Faz o logout do site
   const handleLogout = () => {
