@@ -1,4 +1,4 @@
-import { tokenService } from "../auth/token";
+import { tokenService } from "../auth/Token";
 
 class MainApi {
   constructor({ baseUrl, headers, makeRequest }) {
