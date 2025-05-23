@@ -39,7 +39,7 @@ function App() {
   const [searchError, setSearchError] = useState(false);
   const [articlesToRenderize, setArticlesToRenderize] = useState(3);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-  const [username, setUsername] = useState("Carregando...");
+  const [currentUserInfo, setCurrentUserInfo] = useState(null);
 
   const keywordErrorPopup = { title: "Por favor, insira uma palavra-chave." };
 
@@ -91,7 +91,7 @@ function App() {
     const userdata = async () => {
       try {
         const userdata = await mainApi.getUserInfo();
-        setUsername(userdata.data.name);
+        setCurrentUserInfo(userdata);
         setIsUserLoggedIn(true);
       } catch {
         setIsUserLoggedIn(false);
@@ -162,7 +162,8 @@ function App() {
     try {
       const authorizeUser = await authApi.authorize(email, password);
       tokenService.setToken(authorizeUser.token);
-      setUsername(authorizeUser.name);
+      const userdata = await mainApi.getUserInfo();
+      setCurrentUserInfo(userdata);
       setIsUserLoggedIn(true);
       handleClosePopup();
     } catch {
