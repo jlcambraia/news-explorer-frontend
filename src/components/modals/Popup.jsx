@@ -43,8 +43,7 @@ export default function Popup({
           <h2 className="popup__title">{title}</h2>
           {children}
 
-          {(title === "Entrar" ||
-            title === "O cadastro falhou, por favor, tente novamente.") && (
+          {title === "Entrar" && (
             <p className="popup__signup-text">
               {title === "Entrar" && "ou "}
               <Link
@@ -57,7 +56,9 @@ export default function Popup({
           )}
 
           {(title === "Inscrever-se" ||
-            title === "Cadastro concluído com sucesso!") && (
+            title === "Cadastro concluído com sucesso!" ||
+            title ===
+              "O login falhou. Por favor, tente novamente com os dados corretos.") && (
             <p className="popup__signup-text">
               {title === "Inscrever-se" && "ou "}
               <Link
