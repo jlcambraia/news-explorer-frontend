@@ -8,11 +8,10 @@ import { SearchArticlesContext } from "../../../../contexts/SearchArticlesContex
 import { CurrentUserContext } from "../../../../contexts/CurrentUserContext";
 import { formatArticleDate } from "../../../../utils/validators/formatDate";
 
-import Confirmation from "../../../modals/ConfirmationButton";
+import ConfirmationButton from "../../../modals/ConfirmationButton";
 
 export default function NewsCard({
   article,
-  isUserLoggedIn,
   handleOpenPopup,
   handleSaveArticle,
   handleRemoveArticle,
@@ -21,7 +20,6 @@ export default function NewsCard({
   const [isArticleSaved, setIsArticleSaved] = useState(false);
 
   const atHomepage = useContext(CurrentPathContext);
-
   const { savedArticles } = useContext(SearchArticlesContext);
   const { isUserLoggedIn, currentUserInfo } = useContext(CurrentUserContext);
 
@@ -43,7 +41,7 @@ export default function NewsCard({
   const removeConfirmationPopup = {
     title: "Quer remover este artigo?",
     children: (
-      <Confirmation
+      <ConfirmationButton
         handleRemoveArticle={handleRemoveArticle}
         article={article}
       />
