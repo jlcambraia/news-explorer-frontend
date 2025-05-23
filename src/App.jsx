@@ -45,7 +45,7 @@ function App() {
   const keywordErrorPopup = { title: "Por favor, insira uma palavra-chave." };
 
   // Popup falso para simular tratamento de erros na Api falsa.
-  const mockApiSaveArticlesErrorPopup = {
+  const saveArticlesErrorPopup = {
     title: "Tivemos um erro ao salvar um artigo, lamentamos o ocorrido",
   };
   // Popup falso para simular tratamento de erros na Api falsa.
@@ -180,16 +180,17 @@ function App() {
 
   // Salva artigos na MainApi
   const handleSaveArticle = async (article) => {
-    const alreadySaved = savedArticles.some((a) => a.url === article.url);
-    if (alreadySaved) {
-      return;
-    }
+    const alreadySaved = savedArticles.some((a) => a.link === article.url);
+    if (alreadySaved) return;
 
     try {
-      const saved = await mockApi.saveArticle(article);
-      setSavedArticles((prev) => [...prev, saved]);
-    } catch {
-      handleOpenPopup(mockApiSaveArticlesErrorPopup);
+      const saved = await mainApi.createArticle(article);
+      const updatedSaved = saved.data;
+
+      setSavedArticles((prev) => [...prev, updatedSaved]);
+    } catch (error) {
+      console.error("Erro ao salvar artigo:", error);
+      handleOpenPopup(saveArticlesErrorPopup);
     }
   };
 
