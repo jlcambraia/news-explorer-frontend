@@ -26,8 +26,17 @@ export default function Header({ openPopup, loginPopup, handleLogout }) {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   }
 
+  const handleOverlayClick = (evt) => {
+    if (evt.target.classList.contains("header__overlay")) {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
   return (
     <>
+      {isMobileMenuOpen && (
+        <div className="header__overlay" onClick={handleOverlayClick}></div>
+      )}
       <header
         className={
           atHomepage

@@ -11,7 +11,6 @@ export default function Navigation({
   loginPopup,
   className,
   isMobileMenuOpen,
-  setIsMobileMenuOpen,
   handleLogout,
 }) {
   const { isUserLoggedIn, currentUserInfo } = useContext(CurrentUserContext);
@@ -28,12 +27,6 @@ export default function Navigation({
         ? " navigation__link_active"
         : " navigation__link_active navigation__link_active_black"
       : "");
-
-  const handleOverlayClick = (evt) => {
-    if (evt.target.classList.contains("navigation__overlay")) {
-      setIsMobileMenuOpen(false);
-    }
-  };
 
   return (
     <>
@@ -92,9 +85,6 @@ export default function Navigation({
           </>
         )}
       </nav>
-      {className === "navigation_mobile" && (
-        <div className="navigation__overlay" onClick={handleOverlayClick}></div>
-      )}
     </>
   );
 }
