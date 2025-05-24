@@ -6,9 +6,14 @@ import { useNavigate } from "react-router-dom";
 
 import Navigation from "../Navigation/Navigation";
 
-export default function Header({ openPopup, loginPopup, handleLogout }) {
+export default function Header({
+  openPopup,
+  loginPopup,
+  handleLogout,
+  isMobileMenuOpen,
+  setIsMobileMenuOpen,
+}) {
   const [isMobile, setisMobile] = useState(window.innerWidth <= 543);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const atHomepage = useContext(CurrentPathContext);
   const navigate = useNavigate();

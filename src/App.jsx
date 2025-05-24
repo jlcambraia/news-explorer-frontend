@@ -44,6 +44,8 @@ function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [currentUserInfo, setCurrentUserInfo] = useState(null);
   const [registrationFailed, setRegistrationFailed] = useState(false);
+  // Subindo de Header para App para que o menu mobile seja fechado após logout
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const keywordErrorPopup = { title: "Por favor, insira uma palavra-chave." };
 
@@ -170,6 +172,7 @@ function App() {
       const userdata = await mainApi.getUserInfo();
       setCurrentUserInfo(userdata);
       setIsUserLoggedIn(true);
+      setIsMobileMenuOpen(false);
       handleClosePopup();
     } catch {
       handleOpenPopup(failedLogin);
@@ -237,6 +240,7 @@ function App() {
   const handleLogout = () => {
     tokenService.removeToken();
     setIsUserLoggedIn(false);
+    setIsMobileMenuOpen(false);
     navigate("/");
   };
 
@@ -285,6 +289,8 @@ function App() {
                   openPopup={handleOpenPopup}
                   loginPopup={loginPopup}
                   handleLogout={handleLogout}
+                  isMobileMenuOpen={isMobileMenuOpen}
+                  setIsMobileMenuOpen={setIsMobileMenuOpen}
                 />
                 <Routes>
                   <Route
