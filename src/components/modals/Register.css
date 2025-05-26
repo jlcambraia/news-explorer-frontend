@@ -184,11 +184,7 @@
   cursor: not-allowed;
 }
 
-/* @media screen and (max-width: 543px) {
-
-} */
-
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 543px) {
   .register__form {
     width: 100%;
   }
