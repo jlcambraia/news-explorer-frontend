@@ -11,7 +11,7 @@ export const useSavedArticles = (isUserLoggedIn) => {
       try {
         const receivedArticles = await mainApi.getArticles();
         setSavedArticles(receivedArticles.data);
-      } catch (error) {
+      } catch {
         throw new Error("GET_ARTICLES_ERROR");
       }
     };
@@ -28,7 +28,7 @@ export const useSavedArticles = (isUserLoggedIn) => {
       const updatedSaved = saved.data;
       setSavedArticles((prev) => [...prev, updatedSaved]);
       return { success: true, article: updatedSaved };
-    } catch (error) {
+    } catch {
       return { error: "SAVE_ERROR" };
     }
   };
@@ -39,7 +39,7 @@ export const useSavedArticles = (isUserLoggedIn) => {
       const articles = await mainApi.getArticles();
       setSavedArticles(articles.data);
       return { success: true };
-    } catch (error) {
+    } catch {
       return { error: "REMOVE_ERROR" };
     }
   };

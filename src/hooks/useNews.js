@@ -42,7 +42,7 @@ export const useNews = () => {
       );
       localStorage.setItem("searchKeyword", inputValue);
       return { success: true, articles: results.articles };
-    } catch (error) {
+    } catch {
       localStorage.removeItem("searchedArticles");
       localStorage.removeItem("searchKeyword");
       setSearchError(true);
