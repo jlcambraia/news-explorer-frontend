@@ -8,6 +8,8 @@ export const useAuth = () => {
   const [currentUserInfo, setCurrentUserInfo] = useState(null);
   const [registrationFailed, setRegistrationFailed] = useState(false);
 
+  const token = tokenService.getToken();
+
   useEffect(() => {
     const token = tokenService.getToken();
     if (!token) return;
@@ -67,5 +69,6 @@ export const useAuth = () => {
     handleLogin,
     handleRegistration,
     handleLogout,
+    token,
   };
 };

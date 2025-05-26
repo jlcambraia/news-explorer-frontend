@@ -3,16 +3,20 @@ import { useContext, useEffect } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 
 export default function ProtectedRoute({ children }) {
-  const { isUserLoggedIn, handleOpenPopup, loginPopup } =
+  const { isUserLoggedIn, token, handleOpenPopup, loginPopup } =
     useContext(CurrentUserContext);
 
   useEffect(() => {
-    if (!isUserLoggedIn) {
+    if (!isUserLoggedIn && !token) {
       handleOpenPopup(loginPopup);
     }
-  }, [isUserLoggedIn, handleOpenPopup, loginPopup]);
+  }, [isUserLoggedIn, token, handleOpenPopup, loginPopup]);
 
-  if (!isUserLoggedIn) {
+  if (!isUserLoggedIn && token) {
+    return null;
+  }
+
+  if (!isUserLoggedIn && !token) {
     return <Navigate to="/" replace />;
   }
 

@@ -107,6 +107,7 @@ function App() {
           currentUserInfo: auth.currentUserInfo,
           handleOpenPopup: popupManager.handleOpenPopup,
           loginPopup,
+          token: auth.token,
         }}
       >
         <CurrentPathContext.Provider value={navigation.atHomepage}>
