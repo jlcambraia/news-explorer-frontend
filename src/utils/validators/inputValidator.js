@@ -7,7 +7,7 @@ export function useInputValidator(initialValue = "") {
 
   function handleChange(evt) {
     const input = evt.target;
-    const cleanValue = input.value.trim().replace(/\s+/g, "");
+    const cleanValue = input.value.trim();
 
     setValue(cleanValue);
     setIsValid(input.validity.valid);
