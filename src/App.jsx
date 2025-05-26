@@ -1,23 +1,10 @@
 import "./App.css";
-
-import { useState, useEffect } from "react";
-import {
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
 import { CurrentPathContext } from "./contexts/CurrentPathContext";
 import { SearchArticlesContext } from "./contexts/SearchArticlesContext.js";
 import { CurrentUserContext } from "./contexts/CurrentUserContext.js";
 import { RegistrationStatusContext } from "./contexts/RegistrationStatusContext.js";
-
-import { newsApi } from "./utils/apis/NewsApi.js";
-import { authApi } from "./utils/apis/AuthApi.js";
-import { mainApi } from "./utils/apis/MainApi.js";
-import { tokenService } from "./utils/auth/Token.js";
 
 import Header from "./components/Header/Header";
 import Main from "./pages/Main/Main";
@@ -28,307 +15,152 @@ import Login from "./components/modals/Login";
 import Register from "./components/modals/Register";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
 
+import { useAuth } from "./hooks/useAuth";
+import { useNews } from "./hooks/useNews";
+import { useSavedArticles } from "./hooks/useSavedArticles";
+import { usePopup } from "./hooks/usePopup";
+import { useNavigation } from "./hooks/useNavigation";
+import { POPUP_MESSAGES } from "./constants/popupMessages";
+
 function App() {
-  const location = useLocation();
   const navigate = useNavigate();
 
-  const [popup, setPopup] = useState(null);
-  const [atHomepage, setAtHomepage] = useState(location.pathname === "/");
-  const [hasSearched, setHasSearched] = useState(false);
-  const [searchedArticles, setSearchedArticles] = useState([]);
-  const [savedArticles, setSavedArticles] = useState([]);
-  const [isSearchingForArticles, setIsSearchingForArticles] = useState(false);
-  const [searchKeyword, setSearchKeyword] = useState("");
-  const [searchError, setSearchError] = useState(false);
-  const [articlesToRenderize, setArticlesToRenderize] = useState(3);
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-  const [currentUserInfo, setCurrentUserInfo] = useState(null);
-  const [registrationFailed, setRegistrationFailed] = useState(false);
-  // Subindo de Header para App para que o menu mobile seja fechado após logout
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const auth = useAuth();
+  const news = useNews();
+  const savedArticles = useSavedArticles(auth.isUserLoggedIn);
+  const popupManager = usePopup();
+  const navigation = useNavigation();
 
-  const keywordErrorPopup = { title: "Por favor, insira uma palavra-chave." };
+  const handleLoginWithUX = async (email, password) => {
+    const result = await auth.handleLogin(email, password);
 
-  // Popup falso para simular tratamento de erros na Api falsa.
-  const saveArticlesErrorPopup = {
-    title: "Tivemos um erro ao salvar um artigo, lamentamos o ocorrido",
-  };
-  // Popup falso para simular tratamento de erros na Api falsa.
-  const removeArticlesErrorPopup = {
-    title: "Tivemos um erro ao remover um artigo salvo, lamentamos o ocorrido",
-  };
-
-  // Este será o children do Popup quando o registro do usuário for bem sucedido.
-  const successfulRegistration = {
-    title: "Cadastro concluído com sucesso!",
-  };
-
-  // Este será o children do Popup quando o registro do usuário for mal sucedido.
-  const failedLogin = {
-    title: "O login falhou. Por favor, tente novamente com os dados corretos.",
-  };
-
-  useEffect(() => {
-    const savedArticlesAtLocalStorage =
-      localStorage.getItem("searchedArticles");
-    const savedKeywordAtLocalStorage = localStorage.getItem("searchKeyword");
-    if (savedArticlesAtLocalStorage) {
-      setSearchedArticles(JSON.parse(savedArticlesAtLocalStorage));
-      setHasSearched(true);
-    }
-    if (savedKeywordAtLocalStorage) {
-      setSearchKeyword(savedKeywordAtLocalStorage);
-    }
-  }, []);
-
-  // Busca informação de qual pathname o usuário está
-  useEffect(() => {
-    setAtHomepage(location.pathname === "/");
-  }, [location.pathname]);
-
-  // Loga automaticamente caso tenha token salvo
-  useEffect(() => {
-    const token = tokenService.getToken();
-
-    if (!token) {
-      return;
-    }
-
-    const userdata = async () => {
-      try {
-        const userdata = await mainApi.getUserInfo();
-        setCurrentUserInfo(userdata);
-        setIsUserLoggedIn(true);
-      } catch {
-        setIsUserLoggedIn(false);
-      }
-    };
-    userdata();
-  }, []);
-
-  // Chamada da NewsApi
-  const searchNewsFromApi = async (inputValue) => {
-    if (!inputValue) {
-      handleOpenPopup(keywordErrorPopup);
-      return;
-    }
-
-    setSearchError(false);
-    setHasSearched(false);
-    setSearchKeyword(inputValue);
-    setIsSearchingForArticles(true);
-
-    try {
-      const results = await newsApi.getArticles(inputValue);
-      setHasSearched(true);
-      setSearchedArticles(results.articles);
-      localStorage.setItem(
-        "searchedArticles",
-        JSON.stringify(results.articles)
-      );
-      localStorage.setItem("searchKeyword", inputValue);
-    } catch {
-      localStorage.removeItem("searchedArticles");
-      localStorage.removeItem("searchKeyword");
-      setSearchError(true);
-    } finally {
-      setIsSearchingForArticles(false);
+    if (result.success) {
+      navigation.closeMobileMenu();
+      popupManager.handleClosePopup();
+    } else {
+      popupManager.handleOpenPopup(POPUP_MESSAGES.FAILED_LOGIN);
     }
   };
 
-  // Chamada de AuthApi para Register
-  const handleRegistration = async (email, password, name) => {
-    if (!email && !password && !name) {
-      return;
-    }
+  const handleRegistrationWithUX = async (email, password, name) => {
+    const result = await auth.handleRegistration(email, password, name);
 
-    try {
-      const registeredUser = await authApi.register(email, password, name);
-      if (registeredUser) {
-        handleClosePopup();
-        handleOpenPopup(successfulRegistration);
-        setRegistrationFailed(false);
-      }
-    } catch {
-      setRegistrationFailed(true);
+    if (result.success) {
+      popupManager.handleClosePopup();
+      popupManager.handleOpenPopup(POPUP_MESSAGES.SUCCESSFUL_REGISTRATION);
     }
   };
 
-  // Reorganizar App.jsx, reorganizando as chamadas
-  const registerPopup = {
-    title: "Inscrever-se",
-    children: <Register handleRegistration={handleRegistration} />,
-  };
-
-  // Chamada de AuthApi para Login
-  const handleLogin = async (email, password) => {
-    if (!email && !password) {
-      return;
-    }
-
-    try {
-      const authorizeUser = await authApi.authorize(email, password);
-      tokenService.setToken(authorizeUser.token);
-      const userdata = await mainApi.getUserInfo();
-      setCurrentUserInfo(userdata);
-      setIsUserLoggedIn(true);
-      setIsMobileMenuOpen(false);
-      handleClosePopup();
-    } catch {
-      handleOpenPopup(failedLogin);
-    }
-  };
-
-  // Reorganizar App.jsx, reorganizando as chamadas
-  const loginPopup = {
-    title: "Entrar",
-    children: <Login handleLogin={handleLogin} />,
-  };
-
-  // Salva artigos na MainApi
-  const handleSaveArticle = async (article) => {
-    const alreadySaved = savedArticles.some((a) => a.link === article.url);
-    if (alreadySaved) return;
-
-    try {
-      const saved = await mainApi.createArticle(article);
-      const updatedSaved = saved.data;
-
-      setSavedArticles((prev) => [...prev, updatedSaved]);
-    } catch (error) {
-      console.error("Erro ao salvar artigo:", error);
-      handleOpenPopup(saveArticlesErrorPopup);
-    }
-  };
-
-  // Remove artigos na MainApi
-  const handleRemoveArticle = async (articleId) => {
-    try {
-      await mainApi.deleteArticle(articleId);
-      const articles = await mainApi.getArticles();
-      const updatedArticles = articles.data;
-      setSavedArticles(updatedArticles);
-      handleClosePopup();
-    } catch {
-      handleOpenPopup(removeArticlesErrorPopup);
-    }
-  };
-
-  // Busca artigos salvos na MainApi
-
-  useEffect(() => {
-    const handleGetArticles = async () => {
-      try {
-        const receivedArticles = await mainApi.getArticles();
-        const articles = receivedArticles.data;
-        setSavedArticles(articles);
-      } catch {
-        const getArticlesErrorPopup = {
-          title:
-            "Tivemos um erro ao tentar buscar os artigos salvos, lamentamos o ocorrido",
-        };
-        handleOpenPopup(getArticlesErrorPopup);
-      }
-    };
-
-    if (isUserLoggedIn) {
-      handleGetArticles();
-    }
-  }, [isUserLoggedIn]);
-
-  // Faz o logout do site
-  const handleLogout = () => {
-    tokenService.removeToken();
-    setIsUserLoggedIn(false);
-    setIsMobileMenuOpen(false);
+  const handleLogoutWithUX = () => {
+    auth.handleLogout();
+    navigation.closeMobileMenu();
     navigate("/");
   };
 
-  function handleOpenPopup(popup) {
-    setPopup(null);
-    setPopup(popup);
-  }
+  const handleSearchWithUX = async (inputValue) => {
+    const result = await news.searchNewsFromApi(inputValue);
 
-  function handleClosePopup() {
-    setPopup(null);
-  }
+    if (result.error === "KEYWORD_REQUIRED") {
+      popupManager.handleOpenPopup(POPUP_MESSAGES.KEYWORD_ERROR);
+    }
+  };
+
+  const handleSaveArticleWithUX = async (article) => {
+    const result = await savedArticles.handleSaveArticle(article);
+
+    if (result.error === "SAVE_ERROR") {
+      popupManager.handleOpenPopup(POPUP_MESSAGES.SAVE_ARTICLES_ERROR);
+    }
+  };
+
+  const handleRemoveArticleWithUX = async (articleId) => {
+    const result = await savedArticles.handleRemoveArticle(articleId);
+
+    if (result.success) {
+      popupManager.handleClosePopup();
+    } else {
+      popupManager.handleOpenPopup(POPUP_MESSAGES.REMOVE_ARTICLES_ERROR);
+    }
+  };
+
+  const registerPopup = {
+    title: "Inscrever-se",
+    children: <Register handleRegistration={handleRegistrationWithUX} />,
+  };
+
+  const loginPopup = {
+    title: "Entrar",
+    children: <Login handleLogin={handleLoginWithUX} />,
+  };
 
   return (
-    <>
-      <SearchArticlesContext.Provider
+    <SearchArticlesContext.Provider
+      value={{
+        ...news,
+        savedArticles: savedArticles.savedArticles,
+        searchNewsFromApi: handleSearchWithUX,
+      }}
+    >
+      <CurrentUserContext.Provider
         value={{
-          hasSearched,
-          searchedArticles,
-          isSearchingForArticles,
-          searchKeyword,
-          searchError,
-          savedArticles,
-          articlesToRenderize,
-          setArticlesToRenderize,
-          searchNewsFromApi,
+          isUserLoggedIn: auth.isUserLoggedIn,
+          currentUserInfo: auth.currentUserInfo,
+          handleOpenPopup: popupManager.handleOpenPopup,
+          loginPopup,
         }}
       >
-        <CurrentUserContext.Provider
-          value={{
-            isUserLoggedIn,
-            currentUserInfo,
-            handleOpenPopup,
-            loginPopup,
-          }}
-        >
-          <CurrentPathContext.Provider value={atHomepage}>
-            <RegistrationStatusContext.Provider value={registrationFailed}>
-              <div
-                className={
-                  atHomepage
-                    ? "app__body"
-                    : "app__body app__body_without-background-image"
-                }
-              >
-                <Header
-                  openPopup={handleOpenPopup}
-                  loginPopup={loginPopup}
-                  handleLogout={handleLogout}
-                  isMobileMenuOpen={isMobileMenuOpen}
-                  setIsMobileMenuOpen={setIsMobileMenuOpen}
+        <CurrentPathContext.Provider value={navigation.atHomepage}>
+          <RegistrationStatusContext.Provider value={auth.registrationFailed}>
+            <div
+              className={
+                navigation.atHomepage
+                  ? "app__body"
+                  : "app__body app__body_without-background-image"
+              }
+            >
+              <Header
+                openPopup={popupManager.handleOpenPopup}
+                loginPopup={loginPopup}
+                handleLogout={handleLogoutWithUX}
+                isMobileMenuOpen={navigation.isMobileMenuOpen}
+                setIsMobileMenuOpen={navigation.setIsMobileMenuOpen}
+              />
+              <Routes>
+                <Route
+                  path="/"
+                  element={<Main handleSaveArticle={handleSaveArticleWithUX} />}
                 />
-                <Routes>
-                  <Route
-                    path="/"
-                    element={<Main handleSaveArticle={handleSaveArticle} />}
-                  />
-                  <Route
-                    path="/saved-news"
-                    element={
-                      <ProtectedRoute>
-                        <SavedNews
-                          handleOpenPopup={handleOpenPopup}
-                          handleRemoveArticle={handleRemoveArticle}
-                        />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route path="*" element={<Navigate to="/" />} />
-                </Routes>
-                <Footer />
+                <Route
+                  path="/saved-news"
+                  element={
+                    <ProtectedRoute>
+                      <SavedNews
+                        handleOpenPopup={popupManager.handleOpenPopup}
+                        handleRemoveArticle={handleRemoveArticleWithUX}
+                      />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="*" element={<Navigate to="/" />} />
+              </Routes>
+              <Footer />
 
-                {popup && (
-                  <Popup
-                    openPopup={handleOpenPopup}
-                    closePopup={handleClosePopup}
-                    title={popup.title}
-                    registerPopup={registerPopup}
-                    loginPopup={loginPopup}
-                  >
-                    {popup.children}
-                  </Popup>
-                )}
-              </div>
-            </RegistrationStatusContext.Provider>
-          </CurrentPathContext.Provider>
-        </CurrentUserContext.Provider>
-      </SearchArticlesContext.Provider>
-    </>
+              {popupManager.popup && (
+                <Popup
+                  openPopup={popupManager.handleOpenPopup}
+                  closePopup={popupManager.handleClosePopup}
+                  title={popupManager.popup.title}
+                  registerPopup={registerPopup}
+                  loginPopup={loginPopup}
+                >
+                  {popupManager.popup.children}
+                </Popup>
+              )}
+            </div>
+          </RegistrationStatusContext.Provider>
+        </CurrentPathContext.Provider>
+      </CurrentUserContext.Provider>
+    </SearchArticlesContext.Provider>
   );
 }
 
