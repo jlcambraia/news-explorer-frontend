@@ -1,9 +1,11 @@
-export function formatArticleDate(publishedAt) {
-  if (!publishedAt || publishedAt.length < 8) return "Invalid date";
+export function formatArticleDate({ publishedAt, date }) {
+  const rawDate = publishedAt || date;
 
-  const year = publishedAt.slice(0, 4);
-  const day = publishedAt.slice(8, 10);
-  const monthNumber = publishedAt.slice(5, 7);
+  if (!rawDate || rawDate.length < 8) return "Invalid date";
+
+  const year = rawDate.slice(0, 4);
+  const day = rawDate.slice(8, 10);
+  const monthNumber = rawDate.slice(5, 7);
 
   const months = {
     "01": "January",

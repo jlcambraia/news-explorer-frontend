@@ -3,7 +3,7 @@
 
 import "./ConfirmationButton.css";
 
-export default function Confirmation({ handleRemoveArticle, article }) {
+export default function ConfirmationButton({ handleRemoveArticle, article }) {
   function handleRemoveArticleOnClick() {
     handleRemoveArticle(article._id);
   }

@@ -1,38 +1,23 @@
 import "./Register.css";
+import { useInputValidator } from "../../utils/validators/inputValidator.js";
 
-import { useState } from "react";
+import { useContext } from "react";
+import { RegistrationStatusContext } from "../../contexts/RegistrationStatusContext.js";
 
-export default function Register() {
-  const [emailInputValue, setEmailInputValue] = useState("");
-  const [passwordInputValue, setPasswordInputValue] = useState("");
-  const [usernameInputValue, setUsernameInputValue] = useState("");
-  const [isEmailValid, setIsEmailValid] = useState(true);
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [isUsernameValid, setIsUsernameValid] = useState(true);
-  const [emailErrorMessage, setEmailErrorMessage] = useState("");
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState(true);
-  const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
+export default function Register({ handleRegistration }) {
+  const email = useInputValidator();
+  const password = useInputValidator();
+  const username = useInputValidator();
 
-  function handleEmailChange(evt) {
-    const input = evt.target;
-    setEmailInputValue(input.value.trim().replace(/\s+/g, ""));
-    setIsEmailValid(input.validity.valid);
-    setEmailErrorMessage(input.validationMessage);
-  }
+  const isFormValid =
+    email.isValid &&
+    email.value.length > 0 &&
+    password.isValid &&
+    password.value.length > 0 &&
+    username.isValid &&
+    username.value.length > 0;
 
-  function handlePasswordChange(evt) {
-    const input = evt.target;
-    setPasswordInputValue(input.value.trim().replace(/\s+/g, ""));
-    setIsPasswordValid(input.validity.valid);
-    setPasswordErrorMessage(input.validationMessage);
-  }
-
-  function handleUsernameChange(evt) {
-    const input = evt.target;
-    setUsernameInputValue(input.value.trim().replace(/\s+/g, ""));
-    setIsUsernameValid(input.validity.valid);
-    setUsernameErrorMessage(input.validationMessage);
-  }
+  const registrationFailed = useContext(RegistrationStatusContext);
 
   return (
     <>
@@ -43,12 +28,12 @@ export default function Register() {
             className="register__email-input"
             type="email"
             placeholder="Insira seu email"
-            onChange={handleEmailChange}
+            onChange={email.handleChange}
             autoComplete="email"
           />
-          {!isEmailValid && (
+          {!email.isValid && (
             <span className="register__email-input-error-message">
-              {emailErrorMessage}
+              {email.errorMessage}
             </span>
           )}
         </label>
@@ -59,14 +44,14 @@ export default function Register() {
             className="register__password-input"
             type="password"
             placeholder="Insira a senha"
-            onChange={handlePasswordChange}
+            onChange={password.handleChange}
             minLength={8}
             maxLength={20}
             autoComplete="password"
           />
-          {!isPasswordValid && (
+          {!password.isValid && (
             <span className="register__password-input-error-message">
-              {passwordErrorMessage}
+              {password.errorMessage}
             </span>
           )}
         </label>
@@ -77,31 +62,34 @@ export default function Register() {
             className="register__username-input"
             type="text"
             placeholder="Insira seu nome de usuário"
-            onChange={handleUsernameChange}
+            onChange={username.handleChange}
             minLength={2}
             maxLength={30}
           />
-          {!isUsernameValid && (
+          {!username.isValid && (
             <span className="register__username-input-error-message">
-              {usernameErrorMessage}
+              {username.errorMessage}
             </span>
           )}
         </label>
       </form>
-      <button
-        className={
-          isEmailValid &&
-          emailInputValue.length > 0 &&
-          isPasswordValid &&
-          passwordInputValue.length > 0 &&
-          isUsernameValid &&
-          usernameInputValue.length > 0
-            ? "register__button"
-            : "register__button_disabled"
-        }
-      >
-        Inscrever-se
-      </button>
+      <div className="register__button-and-error-container">
+        {registrationFailed && (
+          <span className="register__registration-error-message">
+            Este e-mail não está disponível
+          </span>
+        )}
+        <button
+          onClick={() =>
+            handleRegistration(email.value, password.value, username.value)
+          }
+          className={
+            isFormValid ? "register__button" : "register__button_disabled"
+          }
+        >
+          Inscrever-se
+        </button>
+      </div>
     </>
   );
 }

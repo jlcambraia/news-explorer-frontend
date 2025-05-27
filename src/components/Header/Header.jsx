@@ -6,9 +6,14 @@ import { useNavigate } from "react-router-dom";
 
 import Navigation from "../Navigation/Navigation";
 
-export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
+export default function Header({
+  openPopup,
+  loginPopup,
+  handleLogout,
+  isMobileMenuOpen,
+  setIsMobileMenuOpen,
+}) {
   const [isMobile, setisMobile] = useState(window.innerWidth <= 543);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const atHomepage = useContext(CurrentPathContext);
   const navigate = useNavigate();
@@ -26,8 +31,17 @@ export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   }
 
+  const handleOverlayClick = (evt) => {
+    if (evt.target.classList.contains("header__overlay")) {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
   return (
     <>
+      {isMobileMenuOpen && (
+        <div className="header__overlay" onClick={handleOverlayClick}></div>
+      )}
       <header
         className={
           atHomepage
@@ -71,7 +85,7 @@ export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
           <Navigation
             openPopup={openPopup}
             loginPopup={loginPopup}
-            isUserLoggedIn={isUserLoggedIn}
+            handleLogout={handleLogout}
             className="navigation_desktop"
           />
         )}
@@ -82,8 +96,8 @@ export default function Header({ openPopup, loginPopup, isUserLoggedIn }) {
             loginPopup={loginPopup}
             isMobileMenuOpen={isMobileMenuOpen}
             isMobile={isMobile}
-            isUserLoggedIn={isUserLoggedIn}
             setIsMobileMenuOpen={setIsMobileMenuOpen}
+            handleLogout={handleLogout}
             className="navigation_mobile"
           />
         )}

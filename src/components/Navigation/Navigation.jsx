@@ -4,18 +4,17 @@ import logoutIconBlack from "../../assets/images/icons/logout-icon-black.svg";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { CurrentPathContext } from "../../contexts/CurrentPathContext";
-import { UserContext } from "../../contexts/UserContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 export default function Navigation({
   openPopup,
   loginPopup,
   className,
   isMobileMenuOpen,
-  isUserLoggedIn,
-  setIsMobileMenuOpen,
+  handleLogout,
 }) {
+  const { isUserLoggedIn, currentUserInfo } = useContext(CurrentUserContext);
   const atHomepage = useContext(CurrentPathContext);
-  const username = useContext(UserContext);
 
   const handleActiveLink = ({ isActive }) =>
     (atHomepage
@@ -28,12 +27,6 @@ export default function Navigation({
         ? " navigation__link_active"
         : " navigation__link_active navigation__link_active_black"
       : "");
-
-  const handleOverlayClick = (evt) => {
-    if (evt.target.classList.contains("navigation__overlay")) {
-      setIsMobileMenuOpen(false);
-    }
-  };
 
   return (
     <>
@@ -75,8 +68,9 @@ export default function Navigation({
                   : "navigation__button navigation__button_active navigation__button_black"
               }
             >
-              {username}
+              {currentUserInfo.data.name}
               <img
+                onClick={handleLogout}
                 className="navigation__button-image"
                 src={
                   atHomepage
@@ -91,9 +85,6 @@ export default function Navigation({
           </>
         )}
       </nav>
-      {className === "navigation_mobile" && (
-        <div className="navigation__overlay" onClick={handleOverlayClick}></div>
-      )}
     </>
   );
 }

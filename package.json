@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && scp -r ./dist/* joaoluiz.cambraia@34.19.81.166:/home/joaoluiz.cambraia/news-explorer-frontend"
   },
   "dependencies": {
     "react": "^19.0.0",

@@ -134,6 +134,24 @@
   top: 56px;
 }
 
+.register__button-and-error-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  position: relative;
+}
+
+.register__registration-error-message {
+  color: #ff0000;
+  font-family: "Inter";
+  font-size: 12px;
+  line-height: 100%;
+  margin-bottom: 15px;
+  position: absolute;
+  top: -20px;
+}
+
 .register__button {
   width: 100%;
   border: none;
@@ -166,7 +184,7 @@
   cursor: not-allowed;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 543px) {
   .register__form {
     width: 100%;
   }
