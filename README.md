@@ -4,7 +4,7 @@ Projeto front-end desenvolvido com **React** utilizando **Vite**, com o objetivo
 
 ## Links do Projeto:
 
-- **Frontend:** [https://news-explorer-tt.mooo.com](https://news-explorer-tt.mooo.com)
+- **Frontend:** [Clique aqui](https://news-explorer-frontend-coral.vercel.app/)
 
 ## Sobre o Projeto
 
