@@ -1,6 +1,6 @@
 .warning-popup__text {
 	margin-top: 30px;
-	max-width: 500px;
+	width: 500px;
 }
 
 .warning-popup__font-weight_bold {
@@ -10,4 +10,22 @@
 .warning-popup__paragraph {
 	display: block;
 	margin-top: 10px;
+}
+
+@media screen and (max-width: 720px) {
+	.warning-popup__text {
+		width: 400px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.warning-popup__text {
+		width: 350px;
+	}
+}
+
+@media screen and (max-width: 543px) {
+	.warning-popup__text {
+		width: 100%;
+	}
 }
