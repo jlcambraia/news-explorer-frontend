@@ -1,52 +1,73 @@
-# News Explorer
+# News Explorer — Frontend
 
-Projeto front-end desenvolvido com **React** utilizando **Vite**, com o objetivo de permitir a pesquisa e visualização de notícias em tempo real, além de salvar artigos favoritos.
+A responsive news discovery application built with **React 19 and Vite 6**, featuring keyword search, article collections, and authentication-aware navigation.
 
-## Links do Projeto:
+**[Live Demo](https://news-explorer-frontend-coral.vercel.app/)** · **[Backend Repository](https://github.com/jlcambraia/news-explorer-backend)**
 
-- **Frontend:** [Clique aqui](https://news-explorer-frontend-coral.vercel.app/)
+## Overview
 
-## Sobre o Projeto
+News Explorer lets users search for news, browse article cards, and save articles to a personal collection. The interface communicates with a separate backend responsible for authentication and saved articles.
 
-O **News Explorer** é um aplicativo web responsivo que permite aos usuários buscar por notícias, visualizá-las em formato de cards e salvar artigos para consulta posterior. A aplicação utiliza rotas, componentes funcionais, estilização modular e segue o padrão BEM para classes CSS.
+Developed during the **TripleTen Full Stack Web Development program**.
 
-## Funcionalidades
+## Features
 
-- Pesquisa de notícias por palavra-chave
-- Salvamento de artigos
-- Visualização dos artigos salvos
-- Navegação entre páginas com React Router
-- Componentes modais (login, cadastro e confirmação)
-- Validação de formulários em tempo real
-- Controle de autenticação com tokens
-- Armazenamento local de sessão
-- Redirecionamento automático baseado em login
-- Layout 100% responsivo
-- Estados distintos para usuários logados e visitantes
+- Keyword-based news search and article cards
+- Save and view articles
+- Registration and login modals
+- Authentication-aware navigation and protected routes
+- Session token handling
+- Form validation with feedback
+- Modal closing through overlay clicks and Escape
+- Responsive layout
 
----
+## Tech Stack
 
-## Tecnologias Utilizadas
+React 19 · Vite 6 · React Router 6 · JavaScript · HTML5 · CSS3 · BEM · React Hooks · REST APIs
 
-- [React](https://reactjs.org/)
-- [Vite](https://vitejs.dev/)
-- [React Router DOM](https://reactrouter.com/)
-- HTML5 Semântico
-- CSS3 com metodologia BEM
-- Flexbox
-- Normalize.css
-- Fontes em formato `.woff`
+## Architecture
 
----
+```text
+React / Vite frontend
+        |
+      REST APIs
+        |
+Node.js / Express backend
+        |
+      MongoDB
+```
 
-## Observações
+## Getting Started
 
-- Componentes foram criados de forma funcional e divididos em pastas.
-- Uso de useState, useEffect, useContext e useMemo
-- O comportamento das janelas modais inclui clique fora, tecla Esc e botão de fechar (X).
-- Validação de formulários no React com feedback instantâneo
-- Layout e estilo responsivo com foco em usabilidade.
+Requires Node.js and npm.
 
-## Autor
+```bash
+git clone https://github.com/jlcambraia/news-explorer-frontend.git
+cd news-explorer-frontend
+npm install
+npm run dev
+```
 
-Desenvolvido por João Luiz Cambraia durante o Bootcamp da TripleTen.
+Open the local URL displayed by Vite. API integration must be configured for the backend environment you intend to use.
+
+To build and preview:
+
+```bash
+npm run build
+npm run preview
+```
+
+## Related Repository
+
+[News Explorer — Backend](https://github.com/jlcambraia/news-explorer-backend)
+
+## Potential Improvements
+
+- Automated frontend tests
+- More detailed loading and error states
+- Accessibility improvements
+- Additional search filters
+
+## Author
+
+**João Luiz Cambraia** · [GitHub](https://github.com/jlcambraia) · [LinkedIn](https://www.linkedin.com/in/joaoluizcambraia/)
